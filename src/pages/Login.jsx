@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Login() {
+  const [userEmailInput, setUserEmailInput] = useState('');
+  const [userPasswordInput, setUserPasswordInput] = useState('');
+
+  const pattern = /\S+@\S+.com/;
+  const isEmailValid = pattern.test(userEmailInput);
+  console.log(isEmailValid);
+  const MIN_PASSWORD_LENGTH = 6;
+  const isBtnEnabled = isEmailValid && userPasswordInput.length > MIN_PASSWORD_LENGTH;
+
   return (
     <div>
       <form>
@@ -10,6 +19,7 @@ function Login() {
             id="email"
             placeholder="Insira seu email"
             data-testid="email-input"
+            onChange={ ({ target }) => setUserEmailInput(target.value) }
           />
           Email:
         </label>
@@ -19,12 +29,14 @@ function Login() {
             id="password"
             placeholder="Insira sua senha"
             data-testid="password-input"
+            onChange={ ({ target }) => setUserPasswordInput(target.value) }
           />
           Senha:
         </label>
         <button
           type="submit"
           data-testid="login-submit-btn"
+          disabled={ !isBtnEnabled }
         >
           Entrar
         </button>
