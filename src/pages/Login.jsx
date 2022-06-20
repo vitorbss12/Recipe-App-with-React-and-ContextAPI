@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
 
 function Login() {
+  // define os estados
   const [userEmailInput, setUserEmailInput] = useState('');
   const [userPasswordInput, setUserPasswordInput] = useState('');
 
+  // faz a validação do email
   const pattern = /\S+@\S+.com/;
   const isEmailValid = pattern.test(userEmailInput);
   console.log(isEmailValid);
   const MIN_PASSWORD_LENGTH = 6;
   const isBtnEnabled = isEmailValid && userPasswordInput.length > MIN_PASSWORD_LENGTH;
 
+  // funções:
+  const saveTokensToLocalStorage = (event) => {
+    event.preventDefault();
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={ saveTokensToLocalStorage }>
         <label htmlFor="email">
           <input
             type="email"
