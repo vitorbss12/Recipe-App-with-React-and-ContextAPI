@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import DrinksContext from './DrinksContext';
 
 function DrinksProvider({ children }) {
-  // const [searchType, setSearchType] = useState('');
-  // const [searchInput, setSearchInput] = useState('');
   const [drinkData, setDrinkData] = useState([]);
 
   useEffect(() => { console.log(drinkData); }, [drinkData]);
@@ -15,13 +13,13 @@ function DrinksProvider({ children }) {
       case 'Ingredient': {
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${inputSearch}`);
         const drinksData = await response.json();
-        setDrinkData(drinksData);
+        setDrinkData(drinksData.drinks);
         break;
       }
       case 'Name': {
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputSearch}`);
         const drinksData = await response.json();
-        setDrinkData(drinksData);
+        setDrinkData(drinksData.drinks);
         break;
       }
       case 'First letter': {
@@ -32,7 +30,7 @@ function DrinksProvider({ children }) {
         }
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${inputSearch}`);
         const drinksData = await response.json();
-        setDrinkData(drinksData);
+        setDrinkData(drinksData.drinks);
         break;
       }
       default:
@@ -45,6 +43,8 @@ function DrinksProvider({ children }) {
 
   const drinksContextValue = {
     fetchDrinks,
+    drinkData,
+    setDrinkData,
   };
 
   return (
