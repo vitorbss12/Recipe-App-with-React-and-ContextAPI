@@ -20,8 +20,6 @@ function SearchBar({ title }) {
 
   useEffect(() => {
     if (foodData.length === 1) {
-      console.log(foodData);
-      console.log('me apaixonei');
       history.push(`${location.pathname}/${foodData[0].idMeal}`);
       setFoodData([]);
     }
@@ -29,18 +27,19 @@ function SearchBar({ title }) {
 
   useEffect(() => {
     if (drinkData.length === 1) {
-      console.log(drinkData);
-      console.log('me apaixonei');
       history.push(`${location.pathname}/${drinkData[0].idDrink}`);
       setDrinkData([]);
     }
   }, [drinkData, setDrinkData, history, location]);
+
+  const alertMessage = 'Sorry, we haven\'t found any recipes for these filters.';
 
   return (
     <div>
       <input
         type="text"
         data-testid="search-input"
+        value={ searchInput }
         placeholder="Search Recipe"
         onChange={ ({ target }) => setSearchInput(target.value) }
       />
@@ -83,10 +82,16 @@ function SearchBar({ title }) {
         onClick={ () => {
           if (title === 'Foods') {
             fetchFoods(searchType, searchInput);
+            if (foodData.length === 0) {
+              global.alert(alertMessage);
+            }
             setSearchInput('');
           }
           if (title === 'Drinks') {
             fetchDrinks(searchType, searchInput);
+            if (drinkData.length === 0) {
+              global.alert(alertMessage);
+            }
             setSearchInput('');
           }
         } }

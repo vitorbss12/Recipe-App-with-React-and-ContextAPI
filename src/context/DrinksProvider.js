@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import DrinksContext from './DrinksContext';
 
 function DrinksProvider({ children }) {
   const [drinkData, setDrinkData] = useState([]);
-
-  useEffect(() => { console.log(drinkData); }, [drinkData]);
 
   const fetchDrinks = async (typeSearch, inputSearch) => {
     try {
@@ -13,13 +11,17 @@ function DrinksProvider({ children }) {
       case 'Ingredient': {
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${inputSearch}`);
         const drinksData = await response.json();
-        setDrinkData(drinksData.drinks);
+        if (drinksData.drinks) {
+          setDrinkData(drinksData.drinks);
+        }
         break;
       }
       case 'Name': {
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputSearch}`);
         const drinksData = await response.json();
-        setDrinkData(drinksData.drinks);
+        if (drinksData.drinks) {
+          setDrinkData(drinksData.drinks);
+        }
         break;
       }
       case 'First letter': {
@@ -30,7 +32,9 @@ function DrinksProvider({ children }) {
         }
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${inputSearch}`);
         const drinksData = await response.json();
-        setDrinkData(drinksData.drinks);
+        if (drinksData.drinks) {
+          setDrinkData(drinksData.drinks);
+        }
         break;
       }
       default:
