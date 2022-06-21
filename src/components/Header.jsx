@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import FoodsContext from '../context/FoodsContext';
+import DrinksContext from '../context/DrinksContext';
 
 function Header({ title, showBtn }) {
   const [showSearchInput, setShowSearchInput] = useState(false);
@@ -13,6 +14,8 @@ function Header({ title, showBtn }) {
     fetchFoods,
     searchInput,
     setSearchInput } = useContext(FoodsContext);
+
+  const { fetchDrinks } = useContext(DrinksContext);
 
   const history = useHistory();
 
@@ -88,7 +91,14 @@ function Header({ title, showBtn }) {
           <button
             type="button"
             data-testid="exec-search-btn"
-            onClick={ () => fetchFoods(searchType, searchInput) }
+            onClick={ () => {
+              if (title === 'Foods') {
+                fetchFoods(searchType, searchInput);
+              }
+              if (title === 'Drinks') {
+                fetchDrinks(searchType, searchInput);
+              }
+            } }
           >
             Search
           </button>
