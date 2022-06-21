@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
+import FoodsContext from '../context/FoodsContext';
 
 function Header({ title, showBtn }) {
   const [showSearchInput, setShowSearchInput] = useState(false);
+
+  const { searchType,
+    setSearchType,
+    fetchFoods,
+    searchInput,
+    setSearchInput } = useContext(FoodsContext);
 
   const history = useHistory();
 
@@ -43,14 +50,17 @@ function Header({ title, showBtn }) {
             type="text"
             data-testid="search-input"
             placeholder="Search Recipe"
+            onChange={ ({ target }) => setSearchInput(target.value) }
           />
           <label htmlFor="ingredient">
             Ingredient
             <input
               type="radio"
               name="search-type"
-              value="ingredient"
+              value="Ingredient"
+              id="ingredient"
               data-testid="ingredient-search-radio"
+              onChange={ ({ target }) => setSearchType(target.value) }
             />
           </label>
           <label htmlFor="name">
@@ -58,8 +68,10 @@ function Header({ title, showBtn }) {
             <input
               type="radio"
               name="search-type"
-              value="name"
+              value="Name"
+              id="name"
               data-testid="name-search-radio"
+              onChange={ ({ target }) => setSearchType(target.value) }
             />
           </label>
           <label htmlFor="first-letter">
@@ -67,13 +79,16 @@ function Header({ title, showBtn }) {
             <input
               type="radio"
               name="search-type"
-              value="first-letter"
+              value="First letter"
+              id="first-letter"
               data-testid="first-letter-search-radio"
+              onChange={ ({ target }) => setSearchType(target.value) }
             />
           </label>
           <button
             type="button"
             data-testid="exec-search-btn"
+            onClick={ () => fetchFoods(searchType, searchInput) }
           >
             Search
           </button>
