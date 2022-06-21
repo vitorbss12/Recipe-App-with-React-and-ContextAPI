@@ -19,18 +19,22 @@ function SearchBar({ title }) {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(drinkData, drinkData.length, foodData);
     if (foodData.length === 1) {
+      console.log(foodData);
       console.log('me apaixonei');
       history.push(`${location.pathname}/${foodData[0].idMeal}`);
       setFoodData([]);
     }
+  }, [foodData, history, location, setFoodData]);
+
+  useEffect(() => {
     if (drinkData.length === 1) {
+      console.log(drinkData);
       console.log('me apaixonei');
       history.push(`${location.pathname}/${drinkData[0].idDrink}`);
       setDrinkData([]);
     }
-  }, [foodData, history, location, drinkData, setDrinkData, setFoodData]);
+  }, [drinkData, setDrinkData, history, location]);
 
   return (
     <div>
@@ -79,9 +83,11 @@ function SearchBar({ title }) {
         onClick={ () => {
           if (title === 'Foods') {
             fetchFoods(searchType, searchInput);
+            setSearchInput('');
           }
           if (title === 'Drinks') {
             fetchDrinks(searchType, searchInput);
+            setSearchInput('');
           }
         } }
       >
