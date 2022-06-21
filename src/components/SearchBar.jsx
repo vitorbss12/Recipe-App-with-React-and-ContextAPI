@@ -19,14 +19,13 @@ function SearchBar({ title }) {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(drinkData, foodData);
     if (foodData && foodData.length === 1) {
       history.push(`${location.pathname}/${foodData[0].idMeal}`);
     }
     if (drinkData && drinkData.length === 1) {
       history.push(`${location.pathname}/${drinkData[0].idDrink}`);
     }
-  }, [foodData, history, location, drinkData, setDrinkData, setFoodData]);
+  }, [foodData, setFoodData, drinkData, setDrinkData, history, location]);
 
   return (
     <div>
@@ -75,9 +74,11 @@ function SearchBar({ title }) {
         onClick={ () => {
           if (title === 'Foods') {
             fetchFoods(searchType, searchInput);
+            setSearchInput('');
           }
           if (title === 'Drinks') {
             fetchDrinks(searchType, searchInput);
+            setSearchInput('');
           }
           console.log('cliquei');
         } }
