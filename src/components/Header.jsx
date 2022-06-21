@@ -38,11 +38,46 @@ function Header({ title, showBtn }) {
         </button>
       )}
       {showSearchInput && (
-        <input
-          type="text"
-          data-testid="search-input"
-          placeholder="Search Recipe"
-        />
+        <>
+          <input
+            type="text"
+            data-testid="search-input"
+            placeholder="Search Recipe"
+          />
+          <label htmlFor="ingredient">
+            Ingredient
+            <input
+              type="radio"
+              name="search-type"
+              value="ingredient"
+              data-testid="ingredient-search-radio"
+            />
+          </label>
+          <label htmlFor="name">
+            Name
+            <input
+              type="radio"
+              name="search-type"
+              value="name"
+              data-testid="name-search-radio"
+            />
+          </label>
+          <label htmlFor="first-letter">
+            First Letter
+            <input
+              type="radio"
+              name="search-type"
+              value="first-letter"
+              data-testid="first-letter-search-radio"
+            />
+          </label>
+          <button
+            type="button"
+            data-testid="exec-search-btn"
+          >
+            Search
+          </button>
+        </>
       )}
     </div>
   );
