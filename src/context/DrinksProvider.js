@@ -1,0 +1,61 @@
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import DrinksContext from './DrinksContext';
+
+function DrinksProvider({ children }) {
+  // const [searchType, setSearchType] = useState('');
+  // const [searchInput, setSearchInput] = useState('');
+  const [drinkData, setDrinkData] = useState([]);
+
+  useEffect(() => { console.log(drinkData); }, [drinkData]);
+
+  const fetchDrinks = async (typeSearch, inputSearch) => {
+    try {
+      switch (typeSearch) {
+      case 'Ingredient': {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${inputSearch}`);
+        const drinksData = await response.json();
+        setDrinkData(drinksData);
+        break;
+      }
+      case 'Name': {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputSearch}`);
+        const drinksData = await response.json();
+        setDrinkData(drinksData);
+        break;
+      }
+      case 'First letter': {
+        console.log(inputSearch);
+        if (inputSearch.length > 1) {
+          console.log('ESQUEÇA TUDO');
+          global.alert('Your search must have only 1 (one) character');
+        }
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${inputSearch}`);
+        const drinksData = await response.json();
+        setDrinkData(drinksData);
+        break;
+      }
+      default:
+        break;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const drinksContextValue = {
+    fetchDrinks,
+  };
+
+  return (
+    <DrinksContext.Provider value={ drinksContextValue }>
+      { children }
+    </DrinksContext.Provider>
+  );
+}
+
+DrinksProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default DrinksProvider;
