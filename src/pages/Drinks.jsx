@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import DrinksContext from '../context/DrinksContext';
@@ -8,7 +8,6 @@ function Drinks() {
   const RECIPES_PER_VISUALIZATION = 12;
 
   const { drinkData } = useContext(DrinksContext);
-  useEffect(() => { console.log(drinkData); }, [drinkData]);
 
   return (
     <div>

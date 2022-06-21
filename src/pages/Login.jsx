@@ -9,7 +9,6 @@ function Login({ history }) {
   // faz a validação do email
   const pattern = /\S+@\S+.com/;
   const isEmailValid = pattern.test(userEmailInput);
-  console.log(isEmailValid);
   const MIN_PASSWORD_LENGTH = 6;
   const isBtnEnabled = isEmailValid && userPasswordInput.length > MIN_PASSWORD_LENGTH;
 

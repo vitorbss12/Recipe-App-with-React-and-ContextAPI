@@ -15,13 +15,17 @@ function FoodsProvider({ children }) {
       case 'Ingredient': {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${inputSearch}`);
         const foodsData = await response.json();
-        setFoodData(foodsData.meals);
+        if (foodsData.meals) {
+          setFoodData(foodsData.meals);
+        }
         break;
       }
       case 'Name': {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputSearch}`);
         const foodsData = await response.json();
-        setFoodData(foodsData.meals);
+        if (foodsData.meals) {
+          setFoodData(foodsData.meals);
+        }
         break;
       }
       case 'First letter': {
@@ -30,7 +34,9 @@ function FoodsProvider({ children }) {
         } else {
           const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${inputSearch}`);
           const foodsData = await response.json();
+          if (foodsData.meals) {
           setFoodData(foodsData.meals);
+          }
         }
         break;
       }
