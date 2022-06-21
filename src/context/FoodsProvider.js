@@ -35,7 +35,7 @@ function FoodsProvider({ children }) {
           const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${inputSearch}`);
           const foodsData = await response.json();
           if (foodsData.meals) {
-          setFoodData(foodsData.meals);
+            setFoodData(foodsData.meals);
           }
         }
         break;
