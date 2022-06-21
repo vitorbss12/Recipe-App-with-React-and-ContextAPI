@@ -19,16 +19,12 @@ function SearchBar({ title }) {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(drinkData, drinkData.length, foodData);
-    if (foodData.length === 1) {
-      console.log('me apaixonei');
+    console.log(drinkData, foodData);
+    if (foodData && foodData.length === 1) {
       history.push(`${location.pathname}/${foodData[0].idMeal}`);
-      setFoodData([]);
     }
-    if (drinkData.length === 1) {
-      console.log('me apaixonei');
+    if (drinkData && drinkData.length === 1) {
       history.push(`${location.pathname}/${drinkData[0].idDrink}`);
-      setDrinkData([]);
     }
   }, [foodData, history, location, drinkData, setDrinkData, setFoodData]);
 
@@ -41,7 +37,6 @@ function SearchBar({ title }) {
         onChange={ ({ target }) => setSearchInput(target.value) }
       />
       <label htmlFor="ingredient">
-        Ingredient
         <input
           type="radio"
           name="search-type"
@@ -50,9 +45,9 @@ function SearchBar({ title }) {
           data-testid="ingredient-search-radio"
           onChange={ ({ target }) => setSearchType(target.value) }
         />
+        Ingredient
       </label>
       <label htmlFor="name">
-        Name
         <input
           type="radio"
           name="search-type"
@@ -61,9 +56,9 @@ function SearchBar({ title }) {
           data-testid="name-search-radio"
           onChange={ ({ target }) => setSearchType(target.value) }
         />
+        Name
       </label>
       <label htmlFor="first-letter">
-        First Letter
         <input
           type="radio"
           name="search-type"
@@ -72,6 +67,7 @@ function SearchBar({ title }) {
           data-testid="first-letter-search-radio"
           onChange={ ({ target }) => setSearchType(target.value) }
         />
+        First Letter
       </label>
       <button
         type="button"
@@ -83,6 +79,7 @@ function SearchBar({ title }) {
           if (title === 'Drinks') {
             fetchDrinks(searchType, searchInput);
           }
+          console.log('cliquei');
         } }
       >
         Search

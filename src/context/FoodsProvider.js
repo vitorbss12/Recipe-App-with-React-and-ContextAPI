@@ -6,6 +6,8 @@ function FoodsProvider({ children }) {
   const [searchType, setSearchType] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [foodData, setFoodData] = useState([]);
+  const [currentFood, setCurrentFood] = useState([]);
+  const [foodsRecommendations, setFoodsRecommendations] = useState([]);
 
   const fetchFoods = async (typeSearch, inputSearch) => {
     try {
@@ -23,13 +25,13 @@ function FoodsProvider({ children }) {
         break;
       }
       case 'First letter': {
-        console.log(inputSearch);
         if (inputSearch.length > 1) {
           global.alert('Your search must have only 1 (one) character');
+        } else {
+          const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${inputSearch}`);
+          const foodsData = await response.json();
+          setFoodData(foodsData.meals);
         }
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${inputSearch}`);
-        const foodsData = await response.json();
-        setFoodData(foodsData.meals);
         break;
       }
       default:
@@ -48,6 +50,10 @@ function FoodsProvider({ children }) {
     setSearchInput,
     foodData,
     setFoodData,
+    currentFood,
+    setCurrentFood,
+    foodsRecommendations,
+    setFoodsRecommendations,
   };
 
   return (
