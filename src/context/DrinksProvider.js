@@ -4,6 +4,8 @@ import DrinksContext from './DrinksContext';
 
 function DrinksProvider({ children }) {
   const [drinkData, setDrinkData] = useState([]);
+  const [currentDrink, setCurrentDrink] = useState([]);
+  const [drinksRecommendations, setDrinksRecommendations] = useState([]);
 
   useEffect(() => { console.log(drinkData); }, [drinkData]);
 
@@ -45,6 +47,10 @@ function DrinksProvider({ children }) {
     fetchDrinks,
     drinkData,
     setDrinkData,
+    currentDrink,
+    setCurrentDrink,
+    drinksRecommendations,
+    setDrinksRecommendations,
   };
 
   return (
