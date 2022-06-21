@@ -14,6 +14,8 @@ import ExploreNationalitiesFoods from './pages/ExploreNationalitiesFoods';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
+import DrinkRecipeDetail from './pages/DrinkRecipeDetail';
+import FoodRecipeDetail from './pages/FoodRecipeDetail';
 import FoodsProvider from './context/FoodsProvider';
 import DrinksProvider from './context/DrinksProvider';
 
@@ -58,6 +60,16 @@ function App() {
               exact
               path="/favorite-recipes"
               component={ FavoriteRecipes }
+            />
+            <Route
+              exact
+              path="/foods/:id"
+              component={ FoodRecipeDetail }
+            />
+            <Route
+              exact
+              path="/drinks/:id"
+              component={ DrinkRecipeDetail }
             />
           </Switch>
         </BrowserRouter>
