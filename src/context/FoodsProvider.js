@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import FoodsContext from './FoodsContext';
 
@@ -9,6 +9,8 @@ function FoodsProvider({ children }) {
   const [currentFood, setCurrentFood] = useState([]);
   const [foodsRecommendations, setFoodsRecommendations] = useState([]);
 
+  const alertMessage = 'Sorry, we haven\'t found any recipes for these filters.';
+
   const fetchFoods = async (typeSearch, inputSearch) => {
     try {
       switch (typeSearch) {
@@ -17,7 +19,7 @@ function FoodsProvider({ children }) {
         const foodsData = await response.json();
         if (foodsData.meals) {
           setFoodData(foodsData.meals);
-        }
+        } global.alert(alertMessage);
         break;
       }
       case 'Name': {
@@ -25,7 +27,7 @@ function FoodsProvider({ children }) {
         const foodsData = await response.json();
         if (foodsData.meals) {
           setFoodData(foodsData.meals);
-        }
+        } global.alert(alertMessage);
         break;
       }
       case 'First letter': {
@@ -36,7 +38,7 @@ function FoodsProvider({ children }) {
           const foodsData = await response.json();
           if (foodsData.meals) {
             setFoodData(foodsData.meals);
-          }
+          } global.alert(alertMessage);
         }
         break;
       }
