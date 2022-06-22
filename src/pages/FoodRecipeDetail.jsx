@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
 import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
 import useRecommendations from '../hooks/useRecommendations';
+import useGetIngredients from '../hooks/useGetIngredients';
 import FoodsContext from '../context/FoodsContext';
 import DrinksContext from '../context/DrinksContext';
-import useGetIngredients from '../hooks/useGetIngredients';
 import RecommendationCard from '../components/RecommendationCard';
 
 function FoodRecipeDetail() {
@@ -15,53 +19,62 @@ function FoodRecipeDetail() {
   useFetchCurrentRecipe('foods', foodId);
   useRecommendations('drinks');
   const imgStyle = {
+    borderRadius: '25px',
+    width: '100%',
+    padding: '10px',
+  };
+  const buttonStyle = {
+    margin: '5px',
     width: '100%',
   };
   const fixedBottom = {
-    position: 'fixed',
     bottom: 0,
+    left: 0,
+    position: 'fixed',
+    width: '100%',
   };
 
   const ingredients = useGetIngredients(currentFood);
 
   return (
-    <main>
+    <Container fluid style={ { marginBottom: '25px' } }>
       <img
         src={ currentFood.strMealThumb }
         alt={ currentFood.strMeal }
         style={ imgStyle }
         data-testid="recipe-photo"
       />
-      <p data-testid="recipe-title"><strong>{ currentFood.strMeal }</strong></p>
-      <button
+      <h3 data-testid="recipe-title"><strong>{ currentFood.strMeal }</strong></h3>
+      <h5 data-testid="recipe-category">{ currentFood.strCategory }</h5>
+      <Button
         type="submit"
         data-testid="share-btn"
+        style={ buttonStyle }
         onClick={ (e) => e.preventDefault() }
       >
         Compartilhar
-      </button>
-      <button
+      </Button>
+      <Button
         type="submit"
         data-testid="favorite-btn"
+        style={ buttonStyle }
         onClick={ (e) => e.preventDefault() }
       >
         Favoritar
-      </button>
-      <p data-testid="recipe-category">{ currentFood.strCategory }</p>
-      <ul>
-        {
-          ingredients.map((ingredient, index) => (
-            <li
-              key={ index }
-              data-testid={ `${index}-ingredient-name-and-measure` }
-            >
-              { ingredient }
-            </li>
-          ))
-        }
-      </ul>
+      </Button>
+      {
+        ingredients.map((ingredient, index) => (
+          <li
+            style={ buttonStyle }
+            key={ index }
+            data-testid={ `${index}-ingredient-name-and-measure` }
+          >
+            { ingredient }
+          </li>
+        ))
+      }
       <p data-testid="instructions">{ currentFood.strInstructions }</p>
-      <p>
+      <h5>
         <a
           href={ currentFood.strYoutube }
           target="_blank"
@@ -70,28 +83,35 @@ function FoodRecipeDetail() {
         >
           Youtube Video
         </a>
-      </p>
-      <ul>
-        {
-          drinksRecommendations.map((alternative, index) => (
-            <RecommendationCard
-              option="drinks"
-              key={ index }
-              recipe={ alternative }
-              index={ index }
-            />
-          ))
-        }
-      </ul>
-      <button
-        type="submit"
-        data-testid="start-recipe-btn"
-        onClick={ (e) => e.preventDefault() }
-        style={ fixedBottom }
-      >
-        Iniciar Receita
-      </button>
-    </main>
+      </h5>
+      <Table responsive>
+        <tbody>
+          <tr>
+            {
+              drinksRecommendations.map((alternative, index) => (
+                <td key={ index } data-testid={ `${index}-recomendation-card` }>
+                  <RecommendationCard
+                    option="drinks"
+                    recipe={ alternative }
+                    index={ index }
+                  />
+                </td>
+              ))
+            }
+          </tr>
+        </tbody>
+      </Table>
+      <Navbar fixed="bottom">
+        <Button
+          type="submit"
+          data-testid="start-recipe-btn"
+          style={ fixedBottom }
+          onClick={ (e) => e.preventDefault() }
+        >
+          Iniciar Receita
+        </Button>
+      </Navbar>
+    </Container>
   );
 }
 

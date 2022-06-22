@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
 import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
 import useRecommendations from '../hooks/useRecommendations';
-import DrinksContext from '../context/DrinksContext';
 import useGetIngredients from '../hooks/useGetIngredients';
+import DrinksContext from '../context/DrinksContext';
 import FoodsContext from '../context/FoodsContext';
 import RecommendationCard from '../components/RecommendationCard';
 
@@ -15,77 +19,93 @@ function DrinkRecipeDetails() {
   useFetchCurrentRecipe('drinks', drinkId);
   useRecommendations('foods');
   const imgStyle = {
+    borderRadius: '25px',
+    width: '100%',
+    padding: '10px',
+  };
+  const buttonStyle = {
+    margin: '5px',
     width: '100%',
   };
   const fixedBottom = {
-    position: 'fixed',
     bottom: 0,
+    left: 0,
+    position: 'fixed',
+    width: '100%',
   };
 
   const ingredients = useGetIngredients(currentDrink);
 
   return (
-    <main>
+    <Container fluid style={ { marginBottom: '25px' } }>
       <img
         src={ currentDrink.strDrinkThumb }
         alt={ currentDrink.strDrink }
         style={ imgStyle }
         data-testid="recipe-photo"
       />
-      <p data-testid="recipe-title"><strong>{ currentDrink.strDrink }</strong></p>
-      <button
-        type="submit"
-        data-testid="share-btn"
-        onClick={ (e) => e.preventDefault() }
-      >
-        Compartilhar
-      </button>
-      <button
-        type="submit"
-        data-testid="favorite-btn"
-        onClick={ (e) => e.preventDefault() }
-      >
-        Favoritar
-      </button>
-      <p data-testid="recipe-category">
+      <h3 data-testid="recipe-title"><strong>{ currentDrink.strDrink }</strong></h3>
+      <h5 data-testid="recipe-category">
         {
           `${currentDrink.strAlcoholic} - ${currentDrink.strCategory}`
         }
-      </p>
-      <ul>
-        {
-          ingredients.map((ingredient, index) => (
-            <li
-              key={ index }
-              data-testid={ `${index}-ingredient-name-and-measure` }
-            >
-              { ingredient }
-            </li>
-          ))
-        }
-      </ul>
-      <p data-testid="instructions">{ currentDrink.strInstructions }</p>
-      <ul>
-        {
-          foodsRecommendations.map((alternative, index) => (
-            <RecommendationCard
-              option="foods"
-              key={ index }
-              recipe={ alternative }
-              index={ index }
-            />
-          ))
-        }
-      </ul>
-      <button
+      </h5>
+      <Button
         type="submit"
-        data-testid="start-recipe-btn"
+        data-testid="share-btn"
+        style={ buttonStyle }
         onClick={ (e) => e.preventDefault() }
-        style={ fixedBottom }
       >
-        Iniciar Receita
-      </button>
-    </main>
+        Compartilhar
+      </Button>
+      <Button
+        type="submit"
+        data-testid="favorite-btn"
+        style={ buttonStyle }
+        onClick={ (e) => e.preventDefault() }
+      >
+        Favoritar
+      </Button>
+      {
+        ingredients.map((ingredient, index) => (
+          <li
+            style={ buttonStyle }
+            key={ index }
+            data-testid={ `${index}-ingredient-name-and-measure` }
+          >
+            { ingredient }
+          </li>
+        ))
+      }
+      <p data-testid="instructions">{ currentDrink.strInstructions }</p>
+      <Table responsive>
+        <tbody>
+          <tr>
+            {
+              foodsRecommendations.map((alternative, index) => (
+                <td key={ index } data-testid={ `${index}-recomendation-card` }>
+                  <RecommendationCard
+                    option="foods"
+                    recipe={ alternative }
+                    index={ index }
+                  />
+                </td>
+              ))
+            }
+          </tr>
+        </tbody>
+      </Table>
+      <Navbar fixed="bottom">
+        <Button
+          type="submit"
+          data-testid="start-recipe-btn"
+          style={ fixedBottom }
+          onClick={ (e) => e.preventDefault() }
+        >
+          Iniciar Receita
+        </Button>
+      </Navbar>
+    </Container>
   );
 }
 
