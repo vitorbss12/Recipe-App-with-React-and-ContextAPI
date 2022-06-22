@@ -75,7 +75,7 @@ function FoodRecipeDetail() {
         {
           drinksRecommendations.map((alternative, index) => (
             <RecommendationCard
-              option="food"
+              option="drinks"
               key={ index }
               recipe={ alternative }
               index={ index }
