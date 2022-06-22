@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
 import useRecommendations from '../hooks/useRecommendations';
 import useGetIngredients from '../hooks/useGetIngredients';
+import useGetDoneRecipe from '../hooks/useGetDoneRecipe';
 import FoodsContext from '../context/FoodsContext';
 import DrinksContext from '../context/DrinksContext';
 import RecommendationCard from '../components/RecommendationCard';
@@ -18,6 +19,8 @@ function FoodRecipeDetail() {
   const foodId = parseInt(location.pathname.split('/')[2], 10);
   useFetchCurrentRecipe('foods', foodId);
   useRecommendations('drinks');
+  const doneRecipe = useGetDoneRecipe(foodId);
+  console.log(doneRecipe);
   const imgStyle = {
     borderRadius: '25px',
     width: '100%',
@@ -101,16 +104,20 @@ function FoodRecipeDetail() {
           </tr>
         </tbody>
       </Table>
-      <Navbar fixed="bottom">
-        <Button
-          type="submit"
-          data-testid="start-recipe-btn"
-          style={ fixedBottom }
-          onClick={ (e) => e.preventDefault() }
-        >
-          Iniciar Receita
-        </Button>
-      </Navbar>
+      {
+        !doneRecipe && (
+          <Navbar fixed="bottom">
+            <Button
+              type="submit"
+              data-testid="start-recipe-btn"
+              style={ fixedBottom }
+              onClick={ (e) => e.preventDefault() }
+            >
+              Iniciar Receita
+            </Button>
+          </Navbar>
+        )
+      }
     </Container>
   );
 }
