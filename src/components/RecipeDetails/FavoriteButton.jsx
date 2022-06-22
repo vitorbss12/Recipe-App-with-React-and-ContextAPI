@@ -20,6 +20,14 @@ function ShareButton({ id }) {
     }
   }, [favoriteRecipe]);
 
+  function handleClick(e) {
+    e.preventDefault();
+    setFavoriteImage(
+      favoriteImage === WhiteFavoriteButtonImg
+        ? BlackFavoriteButtonImg : WhiteFavoriteButtonImg,
+    );
+  }
+
   return (
     <div>
       <input
@@ -28,6 +36,7 @@ function ShareButton({ id }) {
         alt="Favorite"
         data-testid="favorite-btn"
         style={ buttonStyle }
+        onClick={ handleClick }
       />
     </div>
   );
