@@ -6,9 +6,13 @@ import RecipeCard from '../components/RecipeCard';
 
 function Foods() {
   const RECIPES_PER_VISUALIZATION = 12;
-  const { foodData } = useContext(FoodsContext);
+  const { foodData, fetchOnLoad } = useContext(FoodsContext);
 
   useEffect(() => { console.log(foodData); }, [foodData]);
+
+  useEffect(() => {
+    fetchOnLoad();
+  }, [fetchOnLoad]);
 
   return (
     <div>
