@@ -38,7 +38,7 @@ function FoodsProvider({ children }) {
           const foodsData = await response.json();
           if (foodsData.meals) {
             setFoodData(foodsData.meals);
-          } global.alert(alertMessage)
+          } global.alert(alertMessage);
         }
         break;
       }
