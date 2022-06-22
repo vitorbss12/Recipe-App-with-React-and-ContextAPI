@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
@@ -17,6 +17,7 @@ function FoodRecipeDetail() {
   const { currentFood } = useContext(FoodsContext);
   const { drinksRecommendations } = useContext(DrinksContext);
   const location = useLocation();
+  const history = useHistory();
   const foodId = parseInt(location.pathname.split('/')[2], 10);
   useFetchCurrentRecipe('foods', foodId);
   useRecommendations('drinks');
@@ -112,7 +113,7 @@ function FoodRecipeDetail() {
               type="submit"
               data-testid="start-recipe-btn"
               style={ fixedBottom }
-              onClick={ (e) => e.preventDefault() }
+              onClick={ () => history.push(`/foods/${foodId}/in-progress`) }
             >
               { inProgressRecipe ? 'Continue Recipe' : 'Start Recipe' }
             </Button>

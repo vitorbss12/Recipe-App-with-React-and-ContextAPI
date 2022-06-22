@@ -16,6 +16,8 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import DrinkRecipeDetail from './pages/DrinkRecipeDetail';
 import FoodRecipeDetail from './pages/FoodRecipeDetail';
+import inProgressFoodRecipe from './pages/InProgressFoodRecipe';
+import inProgressDrinkRecipe from './pages/InProgressDrinkRecipe';
 import FoodsProvider from './context/FoodsProvider';
 import DrinksProvider from './context/DrinksProvider';
 
@@ -70,6 +72,16 @@ function App() {
               exact
               path="/drinks/:id"
               component={ DrinkRecipeDetail }
+            />
+            <Route
+              exact
+              path="/foods/:id/in-progress"
+              component={ inProgressFoodRecipe }
+            />
+            <Route
+              exact
+              path="/drinks/:id/in-progress"
+              component={ inProgressDrinkRecipe }
             />
           </Switch>
         </BrowserRouter>
