@@ -2,19 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function RecommendationCard({ option, recipe, index }) {
+  let recipeName = 'unknown';
+
+  if (option === 'foods') {
+    recipeName = recipe.strMeal;
+  }
+  if (option === 'drinks') {
+    recipeName = recipe.strDrink;
+  }
+
   return (
     <li
       data-testid={ `${index}-recomendation-card` }
     >
-      {
-        option === 'food' ? <p>{recipe.strMeal}</p> : <p>{recipe.strDrink}</p>
-      }
+      {recipeName}
     </li>
   );
 }
 
 RecommendationCard.defaultProps = {
   recipe: {},
+  option: null,
 };
 
 RecommendationCard.propTypes = {
@@ -23,7 +31,7 @@ RecommendationCard.propTypes = {
     strMeal: PropTypes.string,
   }),
   index: PropTypes.number.isRequired,
-  option: PropTypes.string.isRequired,
+  option: PropTypes.string,
 };
 
 export default RecommendationCard;
