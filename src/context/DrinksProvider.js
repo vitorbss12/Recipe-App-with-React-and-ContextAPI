@@ -6,6 +6,7 @@ function DrinksProvider({ children }) {
   const [drinkData, setDrinkData] = useState([]);
   const [currentDrink, setCurrentDrink] = useState([]);
   const [drinksRecommendations, setDrinksRecommendations] = useState([]);
+  const [filterData, setFilterData] = useState([]);
 
   const alertMessage = 'Sorry, we haven\'t found any recipes for these filters.';
 
@@ -61,6 +62,19 @@ function DrinksProvider({ children }) {
     }
   }, []);
 
+  const fetchFilters = useCallback(async () => {
+    try {
+      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+      const data = await response.json();
+      console.log(data);
+      if (data.drinks) {
+        setFilterData(data.drinks);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   const drinksContextValue = {
     fetchDrinks,
     drinkData,
@@ -70,6 +84,8 @@ function DrinksProvider({ children }) {
     drinksRecommendations,
     setDrinksRecommendations,
     fetchOnLoad,
+    fetchFilters,
+    filterData,
   };
 
   return (

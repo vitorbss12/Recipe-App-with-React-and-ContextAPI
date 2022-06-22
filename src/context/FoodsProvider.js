@@ -8,6 +8,7 @@ function FoodsProvider({ children }) {
   const [foodData, setFoodData] = useState([]);
   const [currentFood, setCurrentFood] = useState([]);
   const [foodsRecommendations, setFoodsRecommendations] = useState([]);
+  const [filterData, setFilterData] = useState([]);
 
   const alertMessage = 'Sorry, we haven\'t found any recipes for these filters.';
 
@@ -63,6 +64,18 @@ function FoodsProvider({ children }) {
     }
   }, []);
 
+  const fetchFilters = useCallback(async () => {
+    try {
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+      const data = await response.json();
+      if (data.meals) {
+        setFilterData(data.meals);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   const foodsContextValue = {
     searchType,
     setSearchType,
@@ -76,6 +89,9 @@ function FoodsProvider({ children }) {
     foodsRecommendations,
     setFoodsRecommendations,
     fetchOnLoad,
+    fetchFilters,
+    filterData,
+    setFilterData,
   };
 
   return (
