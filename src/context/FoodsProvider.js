@@ -50,6 +50,7 @@ function FoodsProvider({ children }) {
     }
   };
 
+  // carrega as receitas assim que a tela carrega
   const fetchOnLoad = useCallback(async () => {
     try {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
