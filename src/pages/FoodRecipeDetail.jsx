@@ -8,6 +8,7 @@ import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
 import useRecommendations from '../hooks/useRecommendations';
 import useGetIngredients from '../hooks/useGetIngredients';
 import useGetDoneRecipe from '../hooks/useGetDoneRecipe';
+import useGetInProgressRecipe from '../hooks/useGetInProgressRecipe';
 import FoodsContext from '../context/FoodsContext';
 import DrinksContext from '../context/DrinksContext';
 import RecommendationCard from '../components/RecommendationCard';
@@ -20,7 +21,7 @@ function FoodRecipeDetail() {
   useFetchCurrentRecipe('foods', foodId);
   useRecommendations('drinks');
   const doneRecipe = useGetDoneRecipe(foodId);
-  console.log(doneRecipe);
+  const inProgressRecipe = useGetInProgressRecipe('food', foodId);
   const imgStyle = {
     borderRadius: '25px',
     width: '100%',
@@ -113,7 +114,7 @@ function FoodRecipeDetail() {
               style={ fixedBottom }
               onClick={ (e) => e.preventDefault() }
             >
-              Iniciar Receita
+              { inProgressRecipe ? 'Continue Recipe' : 'Start Recipe' }
             </Button>
           </Navbar>
         )
