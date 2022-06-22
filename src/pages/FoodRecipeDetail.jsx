@@ -12,8 +12,8 @@ import useGetInProgressRecipe from '../hooks/useGetInProgressRecipe';
 import FoodsContext from '../context/FoodsContext';
 import DrinksContext from '../context/DrinksContext';
 import RecommendationCard from '../components/RecommendationCard';
-// import ShareButton from '../images/shareIcon.svg';
 import ShareButton from '../components/RecipeDetails/ShareButton';
+import FavoriteButton from '../components/RecipeDetails/FavoriteButton';
 
 function FoodRecipeDetail() {
   const { currentFood } = useContext(FoodsContext);
@@ -54,14 +54,7 @@ function FoodRecipeDetail() {
       <h3 data-testid="recipe-title"><strong>{ currentFood.strMeal }</strong></h3>
       <h5 data-testid="recipe-category">{ currentFood.strCategory }</h5>
       <ShareButton />
-      <Button
-        type="submit"
-        data-testid="favorite-btn"
-        style={ buttonStyle }
-        onClick={ (e) => e.preventDefault() }
-      >
-        Favoritar
-      </Button>
+      <FavoriteButton id={ foodId } />
       {
         ingredients.map((ingredient, index) => (
           <li

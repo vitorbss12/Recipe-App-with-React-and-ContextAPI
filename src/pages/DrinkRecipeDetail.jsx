@@ -13,6 +13,7 @@ import DrinksContext from '../context/DrinksContext';
 import FoodsContext from '../context/FoodsContext';
 import RecommendationCard from '../components/RecommendationCard';
 import ShareButton from '../components/RecipeDetails/ShareButton';
+import FavoriteButton from '../components/RecipeDetails/FavoriteButton';
 
 function DrinkRecipeDetails() {
   const { currentDrink } = useContext(DrinksContext);
@@ -57,14 +58,7 @@ function DrinkRecipeDetails() {
         }
       </h5>
       <ShareButton />
-      <Button
-        type="submit"
-        data-testid="favorite-btn"
-        style={ buttonStyle }
-        onClick={ (e) => e.preventDefault() }
-      >
-        Favoritar
-      </Button>
+      <FavoriteButton id={ drinkId } />
       {
         ingredients.map((ingredient, index) => (
           <li
