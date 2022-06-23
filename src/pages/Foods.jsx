@@ -37,6 +37,7 @@ function Foods() {
       <Footer />
       <button
         type="button"
+        data-testid="All-category-filter"
         onClick={ () => setSelectedFoodFilter('All') }
       >
         All
@@ -60,6 +61,8 @@ function Foods() {
               imgAlt={ recipe.strMeal }
               name={ recipe.strMeal }
               key={ recipe.idMeal }
+              urlId={ recipe.idMeal }
+              option="food"
             />)
         ))
       ) : null }
