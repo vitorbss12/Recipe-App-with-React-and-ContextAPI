@@ -10,7 +10,8 @@ function Foods() {
   const RECIPES_PER_VISUALIZATION = 12;
   const FILTERS_PER_VISUALIZATION = 5;
 
-  const { foodData, fetchFoodsAPI, selectedFoodFilter } = useContext(FoodsContext);
+  const { foodData,
+    fetchFoodsAPI, selectedFoodFilter, setSelectedFoodFilter } = useContext(FoodsContext);
   const { fetchFilters, filterData } = useContext(FilterContext);
 
   const fetchFoodsOnLoad = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -34,6 +35,12 @@ function Foods() {
     <div>
       <Header title="Foods" showBtn />
       <Footer />
+      <button
+        type="button"
+        onClick={ () => setSelectedFoodFilter('All') }
+      >
+        All
+      </button>
       { filterData.length > 1 && (
         filterData.map((filter, index) => (
           index < FILTERS_PER_VISUALIZATION && (

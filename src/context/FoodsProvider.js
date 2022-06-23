@@ -62,6 +62,9 @@ function FoodsProvider({ children }) {
 
   // carrega as receitas assim que a tela carrega
   const fetchFoodsAPI = useCallback(async (url) => {
+    if (url.includes('All')) {
+      url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+    }
     try {
       console.log(url);
       const response = await fetch(url);
