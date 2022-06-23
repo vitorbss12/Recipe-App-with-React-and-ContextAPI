@@ -12,6 +12,7 @@ import useGetInProgressRecipe from '../hooks/useGetInProgressRecipe';
 import DrinksContext from '../context/DrinksContext';
 import FoodsContext from '../context/FoodsContext';
 import RecommendationCard from '../components/RecommendationCard';
+import ShareButton from '../components/RecipeDetails/ShareButton';
 
 function DrinkRecipeDetails() {
   const { currentDrink } = useContext(DrinksContext);
@@ -55,14 +56,7 @@ function DrinkRecipeDetails() {
           `${currentDrink.strAlcoholic} - ${currentDrink.strCategory}`
         }
       </h5>
-      <Button
-        type="submit"
-        data-testid="share-btn"
-        style={ buttonStyle }
-        onClick={ (e) => e.preventDefault() }
-      >
-        Compartilhar
-      </Button>
+      <ShareButton />
       <Button
         type="submit"
         data-testid="favorite-btn"
