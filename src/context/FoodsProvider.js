@@ -9,8 +9,11 @@ function FoodsProvider({ children }) {
   const [currentFood, setCurrentFood] = useState([]);
   const [foodsRecommendations, setFoodsRecommendations] = useState([]);
 
+  const [selectedFoodFilter, setSelectedFoodFilter] = useState('');
+
   const alertMessage = 'Sorry, we haven\'t found any recipes for these filters.';
 
+  // faz o fetch da busca pela search bar
   const fetchFoods = async (typeSearch, inputSearch) => {
     try {
       switch (typeSearch) {
@@ -19,15 +22,20 @@ function FoodsProvider({ children }) {
         const foodsData = await response.json();
         if (foodsData.meals) {
           setFoodData(foodsData.meals);
-        } global.alert(alertMessage);
+        } else {
+          global.alert(alertMessage);
+        }
         break;
       }
       case 'Name': {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputSearch}`);
         const foodsData = await response.json();
+        console.log(foodsData);
         if (foodsData.meals) {
           setFoodData(foodsData.meals);
-        } global.alert(alertMessage);
+        } else {
+          global.alert(alertMessage);
+        }
         break;
       }
       case 'First letter': {
@@ -38,7 +46,9 @@ function FoodsProvider({ children }) {
           const foodsData = await response.json();
           if (foodsData.meals) {
             setFoodData(foodsData.meals);
-          } global.alert(alertMessage);
+          } else {
+            global.alert(alertMessage);
+          }
         }
         break;
       }
@@ -51,9 +61,10 @@ function FoodsProvider({ children }) {
   };
 
   // carrega as receitas assim que a tela carrega
-  const fetchOnLoad = useCallback(async () => {
+  const fetchFoodsAPI = useCallback(async (url) => {
     try {
-      const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+      console.log(url);
+      const response = await fetch(url);
       const foodsData = await response.json();
       if (foodsData.meals) {
         setFoodData(foodsData.meals);
@@ -75,7 +86,9 @@ function FoodsProvider({ children }) {
     setCurrentFood,
     foodsRecommendations,
     setFoodsRecommendations,
-    fetchOnLoad,
+    fetchFoodsAPI,
+    selectedFoodFilter,
+    setSelectedFoodFilter,
   };
 
   return (

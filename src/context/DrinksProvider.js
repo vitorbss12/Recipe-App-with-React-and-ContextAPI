@@ -6,9 +6,11 @@ function DrinksProvider({ children }) {
   const [drinkData, setDrinkData] = useState([]);
   const [currentDrink, setCurrentDrink] = useState([]);
   const [drinksRecommendations, setDrinksRecommendations] = useState([]);
+  const [selectedDrinkFilter, setSelectedDrinkFilter] = useState('');
 
   const alertMessage = 'Sorry, we haven\'t found any recipes for these filters.';
 
+  // faz o fetch da busca pela search bar
   const fetchDrinks = async (typeSearch, inputSearch) => {
     try {
       switch (typeSearch) {
@@ -31,7 +33,6 @@ function DrinksProvider({ children }) {
       case 'First letter': {
         console.log(inputSearch);
         if (inputSearch.length > 1) {
-          console.log('ESQUEÇA TUDO');
           global.alert('Your search must have only 1 (one) character');
         }
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${inputSearch}`);
@@ -49,9 +50,11 @@ function DrinksProvider({ children }) {
     }
   };
 
-  const fetchOnLoad = useCallback(async () => {
+  // carrega as receitas assim que a tela carrega e faz o fetch de acordo com filtro
+  const fetchDrinksAPI = useCallback(async (url) => {
     try {
-      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+      console.log(url);
+      const response = await fetch(url);
       const drinksData = await response.json();
       if (drinksData.drinks) {
         setDrinkData(drinksData.drinks);
@@ -69,7 +72,9 @@ function DrinksProvider({ children }) {
     setCurrentDrink,
     drinksRecommendations,
     setDrinksRecommendations,
-    fetchOnLoad,
+    fetchDrinksAPI,
+    selectedDrinkFilter,
+    setSelectedDrinkFilter,
   };
 
   return (
