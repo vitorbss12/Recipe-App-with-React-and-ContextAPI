@@ -3,8 +3,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import DrinksContext from '../context/DrinksContext';
 import RecipeCard from '../components/RecipeCard';
-import FilterBtn from '../components/FilterBtn';
 import FilterContext from '../context/FilterContext';
+import FilterBtn from '../components/FilterBtn';
 
 function Drinks() {
   const RECIPES_PER_VISUALIZATION = 12;
@@ -33,6 +33,12 @@ function Drinks() {
     <div>
       <Header title="Drinks" showBtn />
       <Footer />
+      <button
+        type="button"
+        onClick={ () => setSelectedFoodFilter('All') }
+      >
+        All
+      </button>
       { filterData.length > 1 && (
         filterData.map((filter, index) => (
           index < FILTERS_PER_VISUALIZATION && (
