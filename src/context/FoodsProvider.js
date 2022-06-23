@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import FoodsContext from './FoodsContext';
-// t
 
 function FoodsProvider({ children }) {
   const [searchType, setSearchType] = useState('');

@@ -5,7 +5,6 @@ import FoodsContext from '../context/FoodsContext';
 import RecipeCard from '../components/RecipeCard';
 import FilterBtn from '../components/FilterBtn';
 import FilterContext from '../context/FilterContext';
-// t
 
 function Foods() {
   const RECIPES_PER_VISUALIZATION = 12;
