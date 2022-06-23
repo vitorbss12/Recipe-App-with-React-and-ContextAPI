@@ -27,8 +27,6 @@ function SearchBar({ title }) {
     }
   }, [foodData, setFoodData, drinkData, setDrinkData, history, location]);
 
-  const alertMessage = 'Sorry, we haven\'t found any recipes for these filters.';
-
   return (
     <div>
       <input
@@ -77,16 +75,10 @@ function SearchBar({ title }) {
         onClick={ () => {
           if (title === 'Foods') {
             fetchFoods(searchType, searchInput);
-            if (foodData.length === 0) {
-              global.alert(alertMessage);
-            }
             setSearchInput('');
           }
           if (title === 'Drinks') {
             fetchDrinks(searchType, searchInput);
-            if (drinkData.length === 0) {
-              global.alert(alertMessage);
-            }
             setSearchInput('');
           }
           console.log('cliquei');

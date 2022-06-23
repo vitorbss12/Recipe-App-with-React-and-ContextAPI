@@ -12,6 +12,8 @@ import useGetInProgressRecipe from '../hooks/useGetInProgressRecipe';
 import DrinksContext from '../context/DrinksContext';
 import FoodsContext from '../context/FoodsContext';
 import RecommendationCard from '../components/RecommendationCard';
+import ShareButton from '../components/RecipeDetails/ShareButton';
+import FavoriteButton from '../components/RecipeDetails/FavoriteButton';
 
 function DrinkRecipeDetails() {
   const { currentDrink } = useContext(DrinksContext);
@@ -55,22 +57,8 @@ function DrinkRecipeDetails() {
           `${currentDrink.strAlcoholic} - ${currentDrink.strCategory}`
         }
       </h5>
-      <Button
-        type="submit"
-        data-testid="share-btn"
-        style={ buttonStyle }
-        onClick={ (e) => e.preventDefault() }
-      >
-        Compartilhar
-      </Button>
-      <Button
-        type="submit"
-        data-testid="favorite-btn"
-        style={ buttonStyle }
-        onClick={ (e) => e.preventDefault() }
-      >
-        Favoritar
-      </Button>
+      <ShareButton />
+      <FavoriteButton id={ drinkId } />
       {
         ingredients.map((ingredient, index) => (
           <li
