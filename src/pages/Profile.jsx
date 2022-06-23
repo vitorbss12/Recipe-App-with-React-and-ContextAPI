@@ -5,7 +5,6 @@ import Footer from '../components/Footer';
 
 function Profile({ history }) {
   const user = JSON.parse(localStorage.getItem('user'));
-
   const loginRoute = () => {
     localStorage.clear();
     history.push('/');
@@ -16,7 +15,7 @@ function Profile({ history }) {
       <Header title="Profile" />
       <Footer />
       <div>
-        <p data-testid="profile-email">{ user.email }</p>
+        <p data-testid="profile-email">{ user?.email }</p>
         <button
           type="submit"
           data-testid="profile-done-btn"
