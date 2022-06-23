@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import FoodsContext from '../context/FoodsContext';
 import DrinksContext from '../context/DrinksContext';
 import FilterContext from '../context/FilterContext';
+// t
 
 function FilterBtn({ name }) {
   const { setSelectedFoodFilter } = useContext(FoodsContext);
