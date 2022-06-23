@@ -28,7 +28,6 @@ function useFetchCurrentRecipe(option, id) {
           .then((response) => response.json())
           .then(
             (dataAPI) => {
-              console.log(dataAPI);
               setCurrentDrink(dataAPI.drinks[0]);
             },
             (error) => {
