@@ -32,7 +32,7 @@ function FoodRecipeDetail() {
   };
   const buttonStyle = {
     margin: '5px',
-    width: '30px',
+    width: '100%',
   };
   const fixedBottom = {
     bottom: 0,
