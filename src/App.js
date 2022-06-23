@@ -18,62 +18,65 @@ import DrinkRecipeDetail from './pages/DrinkRecipeDetail';
 import FoodRecipeDetail from './pages/FoodRecipeDetail';
 import FoodsProvider from './context/FoodsProvider';
 import DrinksProvider from './context/DrinksProvider';
+import FilterProvider from './context/FilterProvider';
 
 function App() {
   return (
-    <FoodsProvider>
-      <DrinksProvider>
-        <Switch>
-          <Route exact path="/" component={ Login } />
-          <Route exact path="/foods" component={ Foods } />
-          <Route exact path="/drinks" component={ Drinks } />
-          <Route exact path="/explore" component={ Explore } />
-          <Route exact path="/explore/drinks" component={ ExploreDrinks } />
-          <Route exact path="/explore/foods" component={ ExploreFoods } />
-          <Route
-            exact
-            path="/explore/foods/ingredients"
-            component={ ExploreIngredientsFoods }
-          />
-          <Route
-            exact
-            path="/explore/drinks/ingredients"
-            component={ ExploreIngredientsDrinks }
-          />
-          <Route
-            exact
-            path="/explore/foods/nationalities"
-            component={ ExploreNationalitiesFoods }
-          />
-          <Route
-            exact
-            path="/profile"
-            component={ Profile }
-          />
-          <Route
-            exact
-            path="/done-recipes"
-            component={ DoneRecipes }
-          />
-          <Route
-            exact
-            path="/favorite-recipes"
-            component={ FavoriteRecipes }
-          />
-          <Route
-            exact
-            path="/foods/:id"
-            component={ FoodRecipeDetail }
-          />
-          <Route
-            exact
-            path="/drinks/:id"
-            component={ DrinkRecipeDetail }
-          />
-        </Switch>
-      </DrinksProvider>
+    <FilterProvider>
+      <FoodsProvider>
+        <DrinksProvider>
+          <Switch>
+            <Route exact path="/" component={ Login } />
+            <Route exact path="/foods" component={ Foods } />
+            <Route exact path="/drinks" component={ Drinks } />
+            <Route exact path="/explore" component={ Explore } />
+            <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+            <Route exact path="/explore/foods" component={ ExploreFoods } />
+            <Route
+              exact
+              path="/explore/foods/ingredients"
+              component={ ExploreIngredientsFoods }
+            />
+            <Route
+              exact
+              path="/explore/drinks/ingredients"
+              component={ ExploreIngredientsDrinks }
+            />
+            <Route
+              exact
+              path="/explore/foods/nationalities"
+              component={ ExploreNationalitiesFoods }
+            />
+            <Route
+              exact
+              path="/profile"
+              component={ Profile }
+            />
+            <Route
+              exact
+              path="/done-recipes"
+              component={ DoneRecipes }
+            />
+            <Route
+              exact
+              path="/favorite-recipes"
+              component={ FavoriteRecipes }
+            />
+            <Route
+              exact
+              path="/foods/:id"
+              component={ FoodRecipeDetail }
+            />
+            <Route
+              exact
+              path="/drinks/:id"
+              component={ DrinkRecipeDetail }
+            />
+          </Switch>
+        </DrinksProvider>
 
-    </FoodsProvider>
+      </FoodsProvider>
+    </FilterProvider>
 
   );
 }

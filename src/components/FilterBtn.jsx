@@ -2,13 +2,15 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import FoodsContext from '../context/FoodsContext';
 import DrinksContext from '../context/DrinksContext';
+import FilterContext from '../context/FilterContext';
 
 function FilterBtn({ name }) {
-  const { filterFoodsData, setSelectedFoodFilter } = useContext(FoodsContext);
-  const { filterDrinksData, setSelectedDrinkFilter } = useContext(DrinksContext);
+  const { setSelectedFoodFilter } = useContext(FoodsContext);
+  const { setSelectedDrinkFilter } = useContext(DrinksContext);
+  const { filterData } = useContext(FilterContext);
 
-  const foodFilters = filterFoodsData.map((filter) => filter.strCategory);
-  const drinkFilters = filterDrinksData.map((filter) => filter.strCategory);
+  const foodFilters = filterData.map((filter) => filter.strCategory);
+  const drinkFilters = filterData.map((filter) => filter.strCategory);
 
   const handleClick = (selectedFilter) => {
     if (drinkFilters.includes(selectedFilter)) {
@@ -20,8 +22,9 @@ function FilterBtn({ name }) {
   };
 
   return (
-    <div data-testid={ `${name}-category-filter` }>
+    <div>
       <button
+        data-testid={ `${name}-category-filter` }
         type="button"
         onClick={ () => handleClick(name) }
       >
