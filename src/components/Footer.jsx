@@ -8,6 +8,7 @@ function Footer() {
   const fixedFooterBottom = {
     position: 'fixed',
     bottom: 0,
+    zIndex: 1,
   };
   const history = useHistory();
 
