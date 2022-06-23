@@ -52,6 +52,9 @@ function DrinksProvider({ children }) {
 
   // carrega as receitas assim que a tela carrega e faz o fetch de acordo com filtro
   const fetchDrinksAPI = useCallback(async (url) => {
+    if (url.includes('All')) {
+      url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+    }
     try {
       console.log(url);
       const response = await fetch(url);
