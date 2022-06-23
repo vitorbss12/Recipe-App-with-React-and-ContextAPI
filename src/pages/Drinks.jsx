@@ -10,7 +10,8 @@ function Drinks() {
   const RECIPES_PER_VISUALIZATION = 12;
   const FILTERS_PER_VISUALIZATION = 5;
 
-  const { drinkData, fetchDrinksAPI, selectedDrinkFilter } = useContext(DrinksContext);
+  const { drinkData, fetchDrinksAPI,
+    selectedDrinkFilter, setSelectedDrinkFilter } = useContext(DrinksContext);
   const { fetchFilters, filterData } = useContext(FilterContext);
 
   const fetchDrinksOnLoad = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
@@ -35,7 +36,8 @@ function Drinks() {
       <Footer />
       <button
         type="button"
-        onClick={ () => setSelectedFoodFilter('All') }
+        data-testid="All-category-filter"
+        onClick={ () => setSelectedDrinkFilter('All') }
       >
         All
       </button>
@@ -57,6 +59,8 @@ function Drinks() {
               img={ recipe.strDrinkThumb }
               name={ recipe.strDrink }
               key={ recipe.idDrink }
+              urlId={ recipe.idDrink }
+              option="drink"
             />)))
 
       ) }
