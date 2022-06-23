@@ -9,20 +9,29 @@ function Foods() {
   const RECIPES_PER_VISUALIZATION = 12;
   const FILTERS_PER_VISUALIZATION = 5;
 
-  const { foodData, fetchOnLoad, fetchFilters, filterData } = useContext(FoodsContext);
-  console.log(filterData);
+  const { foodData, fetchFoodsAPI, fetchFilters,
+    filterFoodsData, selectedFoodFilter } = useContext(FoodsContext);
+
+  const fetchFoodsOnLoad = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  // problema com linha de string grande:
+  const APIurlFilterByCategory = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
+  const fetchFoodByCategory = `${APIurlFilterByCategory}${selectedFoodFilter}`;
 
   useEffect(() => {
-    fetchOnLoad();
+    fetchFoodsAPI(fetchFoodsOnLoad);
     fetchFilters();
-  }, [fetchOnLoad, fetchFilters]);
+  }, [fetchFoodsAPI, fetchFilters]);
+
+  useEffect(() => {
+    fetchFoodsAPI(fetchFoodByCategory);
+  }, [fetchFoodByCategory, fetchFoodsAPI, selectedFoodFilter]);
 
   return (
     <div>
       <Header title="Foods" showBtn />
       <Footer />
-      { filterData.length > 1 && (
-        filterData.map((filter, index) => (
+      { filterFoodsData.length > 1 && (
+        filterFoodsData.map((filter, index) => (
           index < FILTERS_PER_VISUALIZATION && (
             <FilterBtn
               key={ filter.strCategory }

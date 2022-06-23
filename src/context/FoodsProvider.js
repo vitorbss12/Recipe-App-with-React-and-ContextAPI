@@ -8,10 +8,12 @@ function FoodsProvider({ children }) {
   const [foodData, setFoodData] = useState([]);
   const [currentFood, setCurrentFood] = useState([]);
   const [foodsRecommendations, setFoodsRecommendations] = useState([]);
-  const [filterData, setFilterData] = useState([]);
+  const [filterFoodsData, setFilterFoodsData] = useState([]);
+  const [selectedFoodFilter, setSelectedFoodFilter] = useState('');
 
   const alertMessage = 'Sorry, we haven\'t found any recipes for these filters.';
 
+  // faz o fetch da busca pela search bar
   const fetchFoods = async (typeSearch, inputSearch) => {
     try {
       switch (typeSearch) {
@@ -52,9 +54,10 @@ function FoodsProvider({ children }) {
   };
 
   // carrega as receitas assim que a tela carrega
-  const fetchOnLoad = useCallback(async () => {
+  const fetchFoodsAPI = useCallback(async (url) => {
     try {
-      const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+      console.log(url);
+      const response = await fetch(url);
       const foodsData = await response.json();
       if (foodsData.meals) {
         setFoodData(foodsData.meals);
@@ -64,12 +67,13 @@ function FoodsProvider({ children }) {
     }
   }, []);
 
+  // faz o fetch dos filtros
   const fetchFilters = useCallback(async () => {
     try {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
       const data = await response.json();
       if (data.meals) {
-        setFilterData(data.meals);
+        setFilterFoodsData(data.meals);
       }
     } catch (error) {
       console.log(error);
@@ -88,10 +92,12 @@ function FoodsProvider({ children }) {
     setCurrentFood,
     foodsRecommendations,
     setFoodsRecommendations,
-    fetchOnLoad,
+    fetchFoodsAPI,
     fetchFilters,
-    filterData,
-    setFilterData,
+    filterFoodsData,
+    setFilterFoodsData,
+    selectedFoodFilter,
+    setSelectedFoodFilter,
   };
 
   return (
