@@ -1,11 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import useGetIngredients from '../hooks/useGetIngredients';
 import DrinksContext from '../context/DrinksContext';
-// opa!
+import FoodsContext from '../context/FoodsContext';
 
-function IngredientList() {
+function IngredientList({ option }) {
   const { currentDrink } = useContext(DrinksContext);
-  const ingredients = useGetIngredients(currentDrink);
+  const { currentFood } = useContext(FoodsContext);
+  const [currentRecipe, setCurrentRecipe] = useState('');
+  const ingredients = useGetIngredients(currentRecipe);
+
+  useEffect(() => {
+    if (option === 'drink') {
+      setCurrentRecipe(currentDrink);
+    }
+    if (option === 'food') {
+      setCurrentRecipe(currentFood);
+    }
+  }, [currentDrink, currentFood, option]);
 
   const buttonStyle = {
     margin: '5px',
@@ -42,5 +54,9 @@ function IngredientList() {
     </div>
   );
 }
+
+IngredientList.propTypes = {
+  option: PropTypes.string.isRequired,
+};
 
 export default IngredientList;

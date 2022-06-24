@@ -25,7 +25,12 @@ function ShareButton() {
   }, [show]);
 
   function writeText() {
-    copy(window.location.href);
+    const textToCopy = window.location.href;
+    if (textToCopy.includes('/in-progress')) {
+      copy(textToCopy.replace('/in-progress', ''));
+    } else {
+      copy(textToCopy);
+    }
   }
 
   function handleClick() {

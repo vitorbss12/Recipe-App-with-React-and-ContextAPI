@@ -7,15 +7,14 @@ import FoodsContext from '../context/FoodsContext';
 import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
 import ShareButton from '../components/RecipeDetails/ShareButton';
 import FavoriteButton from '../components/RecipeDetails/FavoriteButton';
-import useGetIngredients from '../hooks/useGetIngredients';
 import useGetDoneRecipe from '../hooks/useGetDoneRecipe';
+import IngredientList from '../components/IngredientList';
 
 function InProgressFoodRecipe() {
   const { currentFood } = useContext(FoodsContext);
   const location = useLocation();
   const foodId = parseInt(location.pathname.split('/')[2], 10);
   useFetchCurrentRecipe('foods', foodId);
-  const ingredients = useGetIngredients(currentFood);
   const doneRecipe = useGetDoneRecipe(foodId);
 
   useEffect(() => {
@@ -26,11 +25,6 @@ function InProgressFoodRecipe() {
     borderRadius: '25px',
     width: '100%',
     padding: '10px',
-  };
-
-  const buttonStyle = {
-    margin: '5px',
-    width: '100%',
   };
 
   const fixedBottom = {
@@ -49,22 +43,10 @@ function InProgressFoodRecipe() {
         data-testid="recipe-photo"
       />
       <h3 data-testid="recipe-title"><strong>{ currentFood.strMeal }</strong></h3>
-      <ShareButton />
-      <FavoriteButton id={ foodId } />
       <h5 data-testid="recipe-category">{ currentFood.strCategory }</h5>
-      {
-        ingredients.map((ingredient, index) => (
-          <label key={ index } htmlFor={ `${index}-ingredient-step` }>
-            <li
-              style={ buttonStyle }
-              data-testid={ `${index}-ingredient-step` }
-            >
-              { ingredient }
-              <input type="checkbox" id={ `${index}-ingredient-step` } />
-            </li>
-          </label>
-        ))
-      }
+      <ShareButton />
+      <FavoriteButton option="food" id={ foodId } />
+      <IngredientList option="food" />
       <p data-testid="instructions">{ currentFood.strInstructions }</p>
       {
         !doneRecipe && (
