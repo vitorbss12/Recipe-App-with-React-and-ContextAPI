@@ -52,13 +52,15 @@ function DrinkRecipeDetails() {
       <FavoriteButton id={ drinkId } />
       {
         ingredients.map((ingredient, index) => (
-          <li
-            style={ buttonStyle }
-            key={ index }
-            data-testid={ `${index}-ingredient-step` }
-          >
-            { ingredient }
-          </li>
+          <label key={ index } htmlFor={ `${index}-ingredient-step` }>
+            <li
+              style={ buttonStyle }
+              data-testid={ `${index}-ingredient-step` }
+            >
+              { ingredient }
+              <input type="checkbox" id={ `${index}-ingredient-step` } />
+            </li>
+          </label>
         ))
       }
       <p data-testid="instructions">{ currentDrink.strInstructions }</p>
