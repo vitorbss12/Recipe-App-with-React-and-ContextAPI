@@ -50,7 +50,7 @@ function InProgressFoodRecipe() {
       />
       <h3 data-testid="recipe-title"><strong>{ currentFood.strMeal }</strong></h3>
       <ShareButton />
-      <FavoriteButton id={ foodId } />
+      <FavoriteButton option="food" id={ foodId } />
       <h5 data-testid="recipe-category">{ currentFood.strCategory }</h5>
       {
         ingredients.map((ingredient, index) => (
