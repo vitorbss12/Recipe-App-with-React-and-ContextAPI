@@ -46,7 +46,7 @@ function DrinkRecipeDetails() {
       </h5>
       <ShareButton />
       <FavoriteButton option="drink" id={ drinkId } />
-      <IngredientList />
+      <IngredientList option="drink" />
       <p data-testid="instructions">{ currentDrink.strInstructions }</p>
       {
         !doneRecipe && (
