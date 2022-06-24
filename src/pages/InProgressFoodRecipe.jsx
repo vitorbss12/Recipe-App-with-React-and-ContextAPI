@@ -46,7 +46,7 @@ function InProgressFoodRecipe() {
       <h5 data-testid="recipe-category">{ currentFood.strCategory }</h5>
       <ShareButton />
       <FavoriteButton option="food" id={ foodId } />
-      <IngredientList option="food" />
+      <IngredientList option="food" id={ foodId } />
       <p data-testid="instructions">{ currentFood.strInstructions }</p>
       {
         !doneRecipe && (
