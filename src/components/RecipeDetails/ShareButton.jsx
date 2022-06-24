@@ -24,6 +24,8 @@ function ShareButton() {
     };
   }, [show]);
 
+  // const replaceSpace = (str) => str.replace(' ', '_');
+  // console.log(replaceSpace('ordinary drink'));
   function writeText() {
     const textToCopy = window.location.href;
     if (textToCopy.includes('/in-progress')) {
