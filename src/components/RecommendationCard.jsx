@@ -6,7 +6,6 @@ import Card from 'react-bootstrap/Card';
 function RecommendationCard({ option, recipe, index }) {
   let recipeName = 'unknown';
   let recipeImg = 'unknown';
-  console.log(index);
 
   if (option === 'foods') {
     recipeName = recipe.strMeal;

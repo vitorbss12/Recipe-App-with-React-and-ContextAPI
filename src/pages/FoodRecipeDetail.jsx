@@ -54,7 +54,7 @@ function FoodRecipeDetail() {
       <h3 data-testid="recipe-title"><strong>{ currentFood.strMeal }</strong></h3>
       <h5 data-testid="recipe-category">{ currentFood.strCategory }</h5>
       <ShareButton />
-      <FavoriteButton id={ foodId } />
+      <FavoriteButton option="food" id={ foodId } />
       {
         ingredients.map((ingredient, index) => (
           <li

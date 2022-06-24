@@ -58,7 +58,7 @@ function DrinkRecipeDetails() {
         }
       </h5>
       <ShareButton />
-      <FavoriteButton id={ drinkId } />
+      <FavoriteButton option="drink" id={ drinkId } />
       {
         ingredients.map((ingredient, index) => (
           <li
