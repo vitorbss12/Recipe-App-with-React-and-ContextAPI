@@ -24,8 +24,15 @@ function ShareButton() {
     };
   }, [show]);
 
+  // const replaceSpace = (str) => str.replace(' ', '_');
+  // console.log(replaceSpace('ordinary drink'));
   function writeText() {
-    copy(window.location.href);
+    const textToCopy = window.location.href;
+    if (textToCopy.includes('/in-progress')) {
+      copy(textToCopy.replace('/in-progress', ''));
+    } else {
+      copy(textToCopy);
+    }
   }
 
   function handleClick() {
