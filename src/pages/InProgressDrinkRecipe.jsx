@@ -5,11 +5,11 @@ import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
 import useRecommendations from '../hooks/useRecommendations';
-import useGetIngredients from '../hooks/useGetIngredients';
 import useGetDoneRecipe from '../hooks/useGetDoneRecipe';
 import DrinksContext from '../context/DrinksContext';
 import ShareButton from '../components/RecipeDetails/ShareButton';
 import FavoriteButton from '../components/RecipeDetails/FavoriteButton';
+import IngredientList from '../components/IngredientList';
 
 function DrinkRecipeDetails() {
   const { currentDrink } = useContext(DrinksContext);
@@ -18,23 +18,19 @@ function DrinkRecipeDetails() {
   useFetchCurrentRecipe('drinks', drinkId);
   useRecommendations('foods');
   const doneRecipe = useGetDoneRecipe(drinkId);
+
   const imgStyle = {
     borderRadius: '25px',
     width: '100%',
     padding: '10px',
   };
-  const buttonStyle = {
-    margin: '5px',
-    width: '100%',
-  };
+
   const fixedBottom = {
     bottom: 0,
     left: 0,
     position: 'fixed',
     width: '100%',
   };
-
-  const ingredients = useGetIngredients(currentDrink);
 
   return (
     <Container fluid style={ { marginBottom: '25px' } }>
@@ -50,19 +46,7 @@ function DrinkRecipeDetails() {
       </h5>
       <ShareButton />
       <FavoriteButton id={ drinkId } />
-      {
-        ingredients.map((ingredient, index) => (
-          <label key={ index } htmlFor={ `${index}-ingredient-step` }>
-            <li
-              style={ buttonStyle }
-              data-testid={ `${index}-ingredient-step` }
-            >
-              { ingredient }
-              <input type="checkbox" id={ `${index}-ingredient-step` } />
-            </li>
-          </label>
-        ))
-      }
+      <IngredientList />
       <p data-testid="instructions">{ currentDrink.strInstructions }</p>
       {
         !doneRecipe && (
