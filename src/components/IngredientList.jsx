@@ -127,7 +127,7 @@ function IngredientList({ option, id }) {
         alcoholicOrNot: currentAlcoholicOrNot,
         name: currentRecipe[currentName],
         image: currentRecipe[currentImg],
-        date: new Date(),
+        doneDate: new Date().toLocaleDateString(),
         tags: currentRecipe.strTags,
       };
       const pastLocalStore = JSON.parse(localStorage.getItem('doneRecipes')) || [];

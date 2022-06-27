@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Header from '../components/Header';
 import DoneFoodCard from '../components/DoneRecipes/DoneFoodCard';
+import DoneDrinkCard from '../components/DoneRecipes/DoneDrinkCard';
 
 function DoneRecipes() {
   const [filter, setFilter] = useState('all');
@@ -61,7 +62,11 @@ function DoneRecipes() {
               index={ index }
             />
           ) : (
-            null
+            <DoneDrinkCard
+              key={ recipe.name }
+              recipe={ recipe }
+              index={ index }
+            />
           )
         ))
       }
