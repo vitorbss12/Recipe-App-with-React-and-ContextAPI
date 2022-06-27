@@ -1,10 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
-import useGetDoneRecipe from '../hooks/useGetDoneRecipe';
 import DrinksContext from '../context/DrinksContext';
 import FilterContext from '../context/FilterContext';
 import ShareButton from '../components/RecipeDetails/ShareButton';
@@ -13,21 +12,11 @@ import IngredientList from '../components/IngredientList';
 
 function DrinkRecipeDetails() {
   const { currentDrink } = useContext(DrinksContext);
-  const { doneRecipes } = useContext(FilterContext);
-  const [showBtn, setShowBtn] = useState(false);
+  const { doneRecipes, disabledBtn } = useContext(FilterContext);
   const location = useLocation();
   const history = useHistory();
   const drinkId = parseInt(location.pathname.split('/')[2], 10);
   useFetchCurrentRecipe('drinks', drinkId);
-  const doneRecipe = useGetDoneRecipe(drinkId);
-
-  useEffect(() => {
-    if (doneRecipe) {
-      setShowBtn(true);
-    } else {
-      setShowBtn(false);
-    }
-  }, [doneRecipe, doneRecipes]);
 
   const imgStyle = {
     borderRadius: '25px',
@@ -40,6 +29,11 @@ function DrinkRecipeDetails() {
     left: 0,
     position: 'fixed',
     width: '100%',
+  };
+
+  const handleClick = () => {
+    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    history.push('/done-recipes');
   };
 
   return (
@@ -63,8 +57,8 @@ function DrinkRecipeDetails() {
           type="submit"
           data-testid="finish-recipe-btn"
           style={ fixedBottom }
-          disabled={ !showBtn }
-          onClick={ () => { history.push('/done-recipes'); } }
+          disabled={ disabledBtn }
+          onClick={ handleClick }
         >
           Finalizar Receita
         </Button>

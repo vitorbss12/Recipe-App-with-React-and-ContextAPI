@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import ShareButtonImg from '../../images/shareIcon.svg';
 
 const MAGIC_NUMBER = 3000;
 
-function ShareButton() {
+function ShareButton({ datatest }) {
   const [show, setShow] = useState(false);
 
   const buttonStyle = {
@@ -44,7 +45,7 @@ function ShareButton() {
         type="image"
         src={ ShareButtonImg }
         alt="Share"
-        data-testid="share-btn"
+        data-testid={ datatest }
         style={ buttonStyle }
         onClick={ handleClick }
       />
@@ -56,5 +57,13 @@ function ShareButton() {
     </div>
   );
 }
+
+ShareButton.defaultProps = {
+  datatest: 'share-btn',
+};
+
+ShareButton.propTypes = {
+  datatest: PropTypes.string,
+};
 
 export default ShareButton;
