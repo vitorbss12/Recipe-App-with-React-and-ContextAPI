@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,26 +8,15 @@ import FilterContext from '../context/FilterContext';
 import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
 import ShareButton from '../components/RecipeDetails/ShareButton';
 import FavoriteButton from '../components/RecipeDetails/FavoriteButton';
-import useGetDoneRecipe from '../hooks/useGetDoneRecipe';
 import IngredientList from '../components/IngredientList';
 
 function InProgressFoodRecipe() {
   const { currentFood } = useContext(FoodsContext);
-  const { doneRecipes } = useContext(FilterContext);
-  const [showBtn, setShowBtn] = useState(false);
+  const { doneRecipes, disabledBtn } = useContext(FilterContext);
   const location = useLocation();
   const history = useHistory();
   const foodId = parseInt(location.pathname.split('/')[2], 10);
   useFetchCurrentRecipe('foods', foodId);
-  const doneRecipe = useGetDoneRecipe(foodId);
-
-  useEffect(() => {
-    if (doneRecipe) {
-      setShowBtn(true);
-    } else {
-      setShowBtn(false);
-    }
-  }, [doneRecipe, doneRecipes]);
 
   const imgStyle = {
     borderRadius: '25px',
@@ -40,6 +29,11 @@ function InProgressFoodRecipe() {
     left: 0,
     position: 'fixed',
     width: '100%',
+  };
+
+  const handleClick = () => {
+    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    history.push('/done-recipes');
   };
 
   return (
@@ -61,8 +55,8 @@ function InProgressFoodRecipe() {
           type="submit"
           data-testid="finish-recipe-btn"
           style={ fixedBottom }
-          disabled={ !showBtn }
-          onClick={ () => { history.push('/done-recipes'); } }
+          disabled={ disabledBtn }
+          onClick={ handleClick }
         >
           Finalizar Receita
         </Button>

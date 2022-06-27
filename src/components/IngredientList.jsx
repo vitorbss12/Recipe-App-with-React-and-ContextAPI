@@ -8,7 +8,7 @@ import FilterContext from '../context/FilterContext';
 function IngredientList({ option, id }) {
   const { currentDrink } = useContext(DrinksContext);
   const { currentFood } = useContext(FoodsContext);
-  const { setDoneRecipes } = useContext(FilterContext);
+  const { setDoneRecipes, setDisabledBtn } = useContext(FilterContext);
   const [currentRecipe, setCurrentRecipe] = useState('');
   const [currentId, setCurrentId] = useState(null);
   const [currentName, setCurrentName] = useState(null);
@@ -44,10 +44,12 @@ function IngredientList({ option, id }) {
     if (currentIngredients.length > 0
       && ingredients.length === currentIngredients.length) {
       setDoneRecipe(true);
+      setDisabledBtn(false);
     } else {
       setDoneRecipe(false);
+      setDisabledBtn(true);
     }
-  }, [ingredients, currentIngredients]);
+  }, [ingredients, currentIngredients, setDisabledBtn]);
 
   useEffect(() => {
     const pastLocalStore = JSON
@@ -125,10 +127,11 @@ function IngredientList({ option, id }) {
         alcoholicOrNot: currentAlcoholicOrNot,
         name: currentRecipe[currentName],
         image: currentRecipe[currentImg],
+        date: new Date(),
+        tags: currentRecipe.strTags,
       };
       const pastLocalStore = JSON.parse(localStorage.getItem('doneRecipes')) || [];
       const newLocalStore = [...pastLocalStore, newRecipe];
-      localStorage.setItem('doneRecipes', JSON.stringify(newLocalStore));
       setDoneRecipes(newLocalStore);
     }
     if (!doneRecipe) {

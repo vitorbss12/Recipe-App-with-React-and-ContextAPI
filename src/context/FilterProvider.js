@@ -5,6 +5,7 @@ import FilterContext from './FilterContext';
 function FilterProvider({ children }) {
   const [filterData, setFilterData] = useState([]);
   const [doneRecipes, setDoneRecipes] = useState([]);
+  const [disabledBtn, setDisabledBtn] = useState(true);
 
   // carrega as receitas assim que a tela carrega
 
@@ -30,6 +31,8 @@ function FilterProvider({ children }) {
     setFilterData,
     doneRecipes,
     setDoneRecipes,
+    disabledBtn,
+    setDisabledBtn,
   };
 
   return (
