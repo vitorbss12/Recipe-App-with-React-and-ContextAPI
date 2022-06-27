@@ -5,7 +5,7 @@ import ShareButtonImg from '../../images/shareIcon.svg';
 
 const MAGIC_NUMBER = 3000;
 
-function ShareButton({ datatest }) {
+function ShareButton({ datatest, url }) {
   const [show, setShow] = useState(false);
 
   const buttonStyle = {
@@ -29,6 +29,8 @@ function ShareButton({ datatest }) {
     const textToCopy = window.location.href;
     if (textToCopy.includes('/in-progress')) {
       copy(textToCopy.replace('/in-progress', ''));
+    } else if (textToCopy.includes('/done')) {
+      copy(textToCopy.replace('/done-recipes', `${url}`));
     } else {
       copy(textToCopy);
     }
@@ -60,10 +62,12 @@ function ShareButton({ datatest }) {
 
 ShareButton.defaultProps = {
   datatest: 'share-btn',
+  url: '',
 };
 
 ShareButton.propTypes = {
   datatest: PropTypes.string,
+  url: PropTypes.string,
 };
 
 export default ShareButton;

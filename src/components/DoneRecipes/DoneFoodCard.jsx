@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import ShareButton from '../RecipeDetails/ShareButton';
 
 function DoneFoodCard({ recipe, index }) {
+  const history = useHistory();
   const imageStyle = {
     width: '100%',
     padding: '10px',
@@ -10,11 +12,13 @@ function DoneFoodCard({ recipe, index }) {
 
   return (
     <div key={ recipe.name }>
-      <img
+      <input
+        type="image"
         src={ recipe.image }
         alt={ recipe.name }
         data-testid={ `${index}-horizontal-image` }
         style={ imageStyle }
+        onClick={ () => { history.push(`/foods/${recipe.id}`); } }
       />
       <p
         data-testid={ `${index}-horizontal-top-text` }
@@ -27,7 +31,10 @@ function DoneFoodCard({ recipe, index }) {
       >
         { `Done in: ${recipe.doneDate}` }
       </p>
-      <ShareButton datatest={ `${index}-horizontal-share-btn` } />
+      <ShareButton
+        datatest={ `${index}-horizontal-share-btn` }
+        url={ `/foods/${recipe.id}` }
+      />
       {recipe.tags.length > 0
         && (recipe.tags.map((tag) => (
           <p
@@ -43,6 +50,7 @@ function DoneFoodCard({ recipe, index }) {
 
 DoneFoodCard.propTypes = {
   recipe: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
