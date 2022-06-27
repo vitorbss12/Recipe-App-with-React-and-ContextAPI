@@ -77,8 +77,7 @@ function ShareButton({ option, id }) {
   }, [favorite, favoriteRecipe,
     currentRecipe, currentId, currentImg, currentName, option, id]);
 
-  function handleClick(e) {
-    e.preventDefault();
+  function handleClick() {
     setFavorite(
       favoriteImage === WhiteFavoriteButtonImg,
     );

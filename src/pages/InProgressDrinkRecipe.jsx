@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
-import useRecommendations from '../hooks/useRecommendations';
 import useGetDoneRecipe from '../hooks/useGetDoneRecipe';
 import DrinksContext from '../context/DrinksContext';
 import ShareButton from '../components/RecipeDetails/ShareButton';
@@ -16,7 +15,6 @@ function DrinkRecipeDetails() {
   const location = useLocation();
   const drinkId = parseInt(location.pathname.split('/')[2], 10);
   useFetchCurrentRecipe('drinks', drinkId);
-  useRecommendations('foods');
   const doneRecipe = useGetDoneRecipe(drinkId);
 
   const imgStyle = {
@@ -46,7 +44,7 @@ function DrinkRecipeDetails() {
       </h5>
       <ShareButton />
       <FavoriteButton option="drink" id={ drinkId } />
-      <IngredientList option="drink" />
+      <IngredientList option="drink" id={ drinkId } />
       <p data-testid="instructions">{ currentDrink.strInstructions }</p>
       {
         !doneRecipe && (

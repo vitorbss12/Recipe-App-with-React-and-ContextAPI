@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -16,10 +16,6 @@ function InProgressFoodRecipe() {
   const foodId = parseInt(location.pathname.split('/')[2], 10);
   useFetchCurrentRecipe('foods', foodId);
   const doneRecipe = useGetDoneRecipe(foodId);
-
-  useEffect(() => {
-    console.log(currentFood);
-  }, [currentFood]);
 
   const imgStyle = {
     borderRadius: '25px',
@@ -46,7 +42,7 @@ function InProgressFoodRecipe() {
       <h5 data-testid="recipe-category">{ currentFood.strCategory }</h5>
       <ShareButton />
       <FavoriteButton option="food" id={ foodId } />
-      <IngredientList option="food" />
+      <IngredientList option="food" id={ foodId } />
       <p data-testid="instructions">{ currentFood.strInstructions }</p>
       {
         !doneRecipe && (
