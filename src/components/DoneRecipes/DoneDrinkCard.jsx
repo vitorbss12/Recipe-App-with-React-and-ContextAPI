@@ -21,7 +21,11 @@ function DoneDrinkCard({ recipe, index }) {
         data-testid={ `${index}-horizontal-image` }
         style={ imageStyle }
       />
-      <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.category }</p>
+      <p
+        data-testid={ `${index}-horizontal-top-text` }
+      >
+        { `${recipe.category} - ${recipe.alcoholicOrNot}` }
+      </p>
       <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p>
       <p
         data-testid={ `${index}-horizontal-done-date` }
@@ -45,6 +49,7 @@ DoneDrinkCard.propTypes = {
     image: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     doneDate: PropTypes.string.isRequired,
+    alcoholicOrNot: PropTypes.string.isRequired,
   }),
   index: PropTypes.number.isRequired,
 };

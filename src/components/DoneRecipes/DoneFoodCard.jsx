@@ -75,5 +75,3 @@ DoneFoodCard.propTypes = {
 };
 
 export default DoneFoodCard;
-
-// Invalid prop `recipe.tags` of type `array` supplied to `DoneFoodCard`, expected `string`
