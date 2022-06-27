@@ -2,8 +2,9 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import FilterContext from './FilterContext';
 
-function FoodsProvider({ children }) {
+function FilterProvider({ children }) {
   const [filterData, setFilterData] = useState([]);
+  const [doneRecipes, setDoneRecipes] = useState([]);
 
   // carrega as receitas assim que a tela carrega
 
@@ -27,6 +28,8 @@ function FoodsProvider({ children }) {
     fetchFilters,
     filterData,
     setFilterData,
+    doneRecipes,
+    setDoneRecipes,
   };
 
   return (
@@ -36,8 +39,8 @@ function FoodsProvider({ children }) {
   );
 }
 
-FoodsProvider.propTypes = {
+FilterProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default FoodsProvider;
+export default FilterProvider;

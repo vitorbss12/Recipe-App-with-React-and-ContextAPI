@@ -1,21 +1,33 @@
-import React, { useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
 import useGetDoneRecipe from '../hooks/useGetDoneRecipe';
 import DrinksContext from '../context/DrinksContext';
+import FilterContext from '../context/FilterContext';
 import ShareButton from '../components/RecipeDetails/ShareButton';
 import FavoriteButton from '../components/RecipeDetails/FavoriteButton';
 import IngredientList from '../components/IngredientList';
 
 function DrinkRecipeDetails() {
   const { currentDrink } = useContext(DrinksContext);
+  const { doneRecipes } = useContext(FilterContext);
+  const [showBtn, setShowBtn] = useState(false);
   const location = useLocation();
+  const history = useHistory();
   const drinkId = parseInt(location.pathname.split('/')[2], 10);
   useFetchCurrentRecipe('drinks', drinkId);
   const doneRecipe = useGetDoneRecipe(drinkId);
+
+  useEffect(() => {
+    if (doneRecipe) {
+      setShowBtn(true);
+    } else {
+      setShowBtn(false);
+    }
+  }, [doneRecipe, doneRecipes]);
 
   const imgStyle = {
     borderRadius: '25px',
@@ -46,19 +58,17 @@ function DrinkRecipeDetails() {
       <FavoriteButton option="drink" id={ drinkId } />
       <IngredientList option="drink" id={ drinkId } />
       <p data-testid="instructions">{ currentDrink.strInstructions }</p>
-      {
-        !doneRecipe && (
-          <Navbar fixed="bottom">
-            <Button
-              type="submit"
-              data-testid="finish-recipe-btn"
-              style={ fixedBottom }
-            >
-              Finalizar Receita
-            </Button>
-          </Navbar>
-        )
-      }
+      <Navbar fixed="bottom">
+        <Button
+          type="submit"
+          data-testid="finish-recipe-btn"
+          style={ fixedBottom }
+          disabled={ !showBtn }
+          onClick={ () => { history.push('/done-recipes'); } }
+        >
+          Finalizar Receita
+        </Button>
+      </Navbar>
     </Container>
   );
 }

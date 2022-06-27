@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import FoodsContext from '../context/FoodsContext';
+import FilterContext from '../context/FilterContext';
 import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
 import ShareButton from '../components/RecipeDetails/ShareButton';
 import FavoriteButton from '../components/RecipeDetails/FavoriteButton';
@@ -12,10 +13,21 @@ import IngredientList from '../components/IngredientList';
 
 function InProgressFoodRecipe() {
   const { currentFood } = useContext(FoodsContext);
+  const { doneRecipes } = useContext(FilterContext);
+  const [showBtn, setShowBtn] = useState(false);
   const location = useLocation();
+  const history = useHistory();
   const foodId = parseInt(location.pathname.split('/')[2], 10);
   useFetchCurrentRecipe('foods', foodId);
   const doneRecipe = useGetDoneRecipe(foodId);
+
+  useEffect(() => {
+    if (doneRecipe) {
+      setShowBtn(true);
+    } else {
+      setShowBtn(false);
+    }
+  }, [doneRecipe, doneRecipes]);
 
   const imgStyle = {
     borderRadius: '25px',
@@ -44,19 +56,17 @@ function InProgressFoodRecipe() {
       <FavoriteButton option="food" id={ foodId } />
       <IngredientList option="food" id={ foodId } />
       <p data-testid="instructions">{ currentFood.strInstructions }</p>
-      {
-        !doneRecipe && (
-          <Navbar fixed="bottom">
-            <Button
-              type="submit"
-              data-testid="finish-recipe-btn"
-              style={ fixedBottom }
-            >
-              Finalizar Receita
-            </Button>
-          </Navbar>
-        )
-      }
+      <Navbar fixed="bottom">
+        <Button
+          type="submit"
+          data-testid="finish-recipe-btn"
+          style={ fixedBottom }
+          disabled={ !showBtn }
+          onClick={ () => { history.push('/done-recipes'); } }
+        >
+          Finalizar Receita
+        </Button>
+      </Navbar>
     </Container>
   );
 }
