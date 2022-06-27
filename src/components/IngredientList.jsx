@@ -8,11 +8,24 @@ function IngredientList({ option, id }) {
   const { currentDrink } = useContext(DrinksContext);
   const { currentFood } = useContext(FoodsContext);
   const [currentRecipe, setCurrentRecipe] = useState('');
+  const [currentId, setCurrentId] = useState(null);
+  const [currentName, setCurrentName] = useState(null);
+  const [currentImg, setCurrentImg] = useState(null);
   const [currentIngredients, setCurrentIngredients] = useState([]);
   const [inProgress, setInProgress] = useState(false);
   const [doneRecipe, setDoneRecipe] = useState(false);
   const [key, setKey] = useState('');
   const ingredients = useGetIngredients(currentRecipe);
+  const [checked, setChecked] = useState(ingredients.map(() => false));
+
+  useEffect(() => {
+    const pastLocalStore = JSON
+      .parse(localStorage.getItem('inProgressRecipes')) || null;
+    if (pastLocalStore
+      && Object.keys(pastLocalStore).includes(key)) {
+      setCurrentIngredients(pastLocalStore[key][id] || []);
+    }
+  }, [key, id]);
 
   useEffect(() => {
     if (option === 'drink') {
@@ -25,17 +38,13 @@ function IngredientList({ option, id }) {
     }
   }, [currentDrink, currentFood, option]);
 
-  const buttonStyle = {
-    margin: '5px',
-    width: '100%',
-  };
+  // useEffect(() => {
+  //   console.log(doneRecipe);
+  // }, [doneRecipe]);
 
   useEffect(() => {
-    console.log(doneRecipe);
-  }, [doneRecipe]);
-
-  useEffect(() => {
-    if (ingredients.length === currentIngredients.length) {
+    if (currentIngredients.length > 0
+      && ingredients.length === currentIngredients.length) {
       setDoneRecipe(true);
     } else {
       setDoneRecipe(false);
@@ -46,7 +55,8 @@ function IngredientList({ option, id }) {
     const pastLocalStore = JSON
       .parse(localStorage.getItem('inProgressRecipes')) || {};
     if (inProgress) {
-      const newLocalStore = { ...pastLocalStore, [key]: { [id]: currentIngredients } };
+      const newLocalStore = { ...pastLocalStore,
+        [key]: { ...pastLocalStore[key], [id]: currentIngredients } };
       if (newLocalStore[key][id].length === 0) {
         delete newLocalStore[key][id];
       }
@@ -62,16 +72,9 @@ function IngredientList({ option, id }) {
     }
   }, [currentIngredients]);
 
-  const handleChange = ({ target }) => {
-    if (target.checked) {
-      target.parentNode.style.textDecorationLine = 'line-through';
-    } else {
-      target.parentNode.style.textDecorationLine = 'none';
-    }
+  const handleChange = () => {
+    setChecked(!checked);
   };
-
-  // const test = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
-  // console.log(test);
 
   const getCurrentIngredients = (currentIngredient) => {
     if (!currentIngredients.includes(currentIngredient)) {
@@ -83,13 +86,64 @@ function IngredientList({ option, id }) {
     }
   };
 
-  // const test = (el) => {
-  //   const test2 = JSON.parse(localStorage.getItem('inProgressRecipes')) || null;
-  //   if (test2 && test2[key][id].includes(el)) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
+  const labelStyle = (ingredient) => {
+    const normalStyle = {
+      margin: '5px',
+      width: '100%',
+    };
+    const markedStyle = {
+      margin: '5px',
+      width: '100%',
+      textDecoration: 'line-through',
+    };
+    if (currentIngredients.includes(ingredient)) {
+      return markedStyle;
+    }
+    return normalStyle;
+  };
+
+  const inputCheck = (ingredient) => {
+    if (currentIngredients.includes(ingredient)) {
+      return true;
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    setCurrentId(option === 'food' ? 'idMeal' : 'idDrink');
+    setCurrentName(option === 'food' ? 'strMeal' : 'strDrink');
+    setCurrentImg(option === 'food' ? 'strMealThumb' : 'strDrinkThumb');
+  }, [option]);
+
+  useEffect(() => {
+    if (doneRecipe) {
+      const currentAlcoholicOrNot = option === 'food' ? '' : currentRecipe.strAlcoholic;
+      const strArea = option === 'food' ? currentRecipe.strArea : '';
+      const newRecipe = {
+        id: currentRecipe[currentId],
+        type: option,
+        nationality: strArea,
+        category: currentRecipe.strCategory,
+        alcoholicOrNot: currentAlcoholicOrNot,
+        name: currentRecipe[currentName],
+        image: currentRecipe[currentImg],
+      };
+      const pastLocalStore = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+      const newLocalStore = [...pastLocalStore, newRecipe];
+      localStorage.setItem('doneRecipes', JSON.stringify(newLocalStore));
+    }
+    if (!doneRecipe) {
+      const pastLocalStore = JSON.parse(localStorage.getItem('doneRecipes')) || null;
+      if (pastLocalStore) {
+        const newLocalStore = pastLocalStore.filter((item) => Number(item.id) !== id);
+        localStorage.setItem('doneRecipes', JSON.stringify(newLocalStore));
+      }
+      if (pastLocalStore && pastLocalStore.length === 0) {
+        localStorage.removeItem('doneRecipes');
+      }
+    }
+  }, [doneRecipe,
+    id, option, currentRecipe, currentId, currentName, currentImg]);
 
   return (
     <div>
@@ -98,15 +152,15 @@ function IngredientList({ option, id }) {
           <label
             key={ index }
             htmlFor={ `${index}-ingredient-step` }
-            style={ buttonStyle }
             data-testid={ `${index}-ingredient-step` }
+            style={ labelStyle(ingredient) }
             onChange={ () => getCurrentIngredients(ingredient) }
           >
             <input
               type="checkbox"
               id={ `${index}-ingredient-step` }
               onChange={ handleChange }
-              // checked={ test(ingredient) }
+              checked={ inputCheck(ingredient) }
             />
             {ingredient}
           </label>
