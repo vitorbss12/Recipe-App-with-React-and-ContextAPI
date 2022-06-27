@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import useGetIngredients from '../hooks/useGetIngredients';
 import DrinksContext from '../context/DrinksContext';
 import FoodsContext from '../context/FoodsContext';
+import FilterContext from '../context/FilterContext';
 
 function IngredientList({ option, id }) {
   const { currentDrink } = useContext(DrinksContext);
   const { currentFood } = useContext(FoodsContext);
+  const { setDoneRecipes } = useContext(FilterContext);
   const [currentRecipe, setCurrentRecipe] = useState('');
   const [currentId, setCurrentId] = useState(null);
   const [currentName, setCurrentName] = useState(null);
@@ -37,10 +39,6 @@ function IngredientList({ option, id }) {
       setKey('meals');
     }
   }, [currentDrink, currentFood, option]);
-
-  // useEffect(() => {
-  //   console.log(doneRecipe);
-  // }, [doneRecipe]);
 
   useEffect(() => {
     if (currentIngredients.length > 0
@@ -131,18 +129,21 @@ function IngredientList({ option, id }) {
       const pastLocalStore = JSON.parse(localStorage.getItem('doneRecipes')) || [];
       const newLocalStore = [...pastLocalStore, newRecipe];
       localStorage.setItem('doneRecipes', JSON.stringify(newLocalStore));
+      setDoneRecipes(newLocalStore);
     }
     if (!doneRecipe) {
       const pastLocalStore = JSON.parse(localStorage.getItem('doneRecipes')) || null;
       if (pastLocalStore) {
         const newLocalStore = pastLocalStore.filter((item) => Number(item.id) !== id);
         localStorage.setItem('doneRecipes', JSON.stringify(newLocalStore));
+        setDoneRecipes(newLocalStore);
       }
       if (pastLocalStore && pastLocalStore.length === 0) {
         localStorage.removeItem('doneRecipes');
+        setDoneRecipes([]);
       }
     }
-  }, [doneRecipe,
+  }, [doneRecipe, setDoneRecipes,
     id, option, currentRecipe, currentId, currentName, currentImg]);
 
   return (
