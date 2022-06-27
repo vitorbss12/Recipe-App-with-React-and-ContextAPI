@@ -37,12 +37,6 @@ function DoneDrinkCard({ recipe, index }) {
   );
 }
 
-DoneDrinkCard.defaultProps = {
-  recipe: {
-    tags: '',
-  },
-};
-
 DoneDrinkCard.propTypes = {
   recipe: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -50,7 +44,7 @@ DoneDrinkCard.propTypes = {
     category: PropTypes.string.isRequired,
     doneDate: PropTypes.string.isRequired,
     alcoholicOrNot: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
   index: PropTypes.number.isRequired,
 };
 
