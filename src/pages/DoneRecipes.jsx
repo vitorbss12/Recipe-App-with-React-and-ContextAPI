@@ -53,8 +53,8 @@ function DoneRecipes() {
       >
         Drinks
       </Button>
-      {
-        currentRecipes.map((recipe, index) => (
+      { currentRecipes
+        && currentRecipes.map((recipe, index) => (
           recipe.type === 'food' ? (
             <DoneFoodCard
               key={ recipe.name }
@@ -68,8 +68,7 @@ function DoneRecipes() {
               index={ index }
             />
           )
-        ))
-      }
+        ))}
     </div>
   );
 }

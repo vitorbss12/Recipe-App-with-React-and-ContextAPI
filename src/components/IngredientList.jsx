@@ -13,6 +13,7 @@ function IngredientList({ option, id }) {
   const [currentId, setCurrentId] = useState(null);
   const [currentName, setCurrentName] = useState(null);
   const [currentImg, setCurrentImg] = useState(null);
+  const [currentTags, setCurrentTags] = useState(null);
   const [currentIngredients, setCurrentIngredients] = useState([]);
   const [inProgress, setInProgress] = useState(false);
   const [doneRecipe, setDoneRecipe] = useState(false);
@@ -110,10 +111,22 @@ function IngredientList({ option, id }) {
   };
 
   useEffect(() => {
+    const getTags = () => {
+      let tags = [];
+      if (currentRecipe.strTags) {
+        if (currentRecipe.strTags.includes(',')) {
+          tags = currentRecipe.strTags.split(',');
+        } else {
+          tags = [currentRecipe.strTags];
+        }
+      }
+      return tags;
+    };
     setCurrentId(option === 'food' ? 'idMeal' : 'idDrink');
     setCurrentName(option === 'food' ? 'strMeal' : 'strDrink');
     setCurrentImg(option === 'food' ? 'strMealThumb' : 'strDrinkThumb');
-  }, [option]);
+    setCurrentTags(option === 'food' ? getTags() : '');
+  }, [option, currentRecipe]);
 
   useEffect(() => {
     if (doneRecipe) {
@@ -128,7 +141,8 @@ function IngredientList({ option, id }) {
         name: currentRecipe[currentName],
         image: currentRecipe[currentImg],
         doneDate: new Date().toLocaleDateString(),
-        tags: currentRecipe.strTags,
+        tags: currentTags,
+        url: window.location.href,
       };
       const pastLocalStore = JSON.parse(localStorage.getItem('doneRecipes')) || [];
       const newLocalStore = [...pastLocalStore, newRecipe];
@@ -146,8 +160,8 @@ function IngredientList({ option, id }) {
         setDoneRecipes([]);
       }
     }
-  }, [doneRecipe, setDoneRecipes,
-    id, option, currentRecipe, currentId, currentName, currentImg]);
+  }, [doneRecipe, setDoneRecipes, id, option,
+    currentRecipe, currentId, currentName, currentImg, currentTags]);
 
   return (
     <div>

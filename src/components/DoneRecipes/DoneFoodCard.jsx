@@ -1,31 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ShareButton from '../RecipeDetails/ShareButton';
 
 function DoneFoodCard({ recipe, index }) {
-  const [tags, setTags] = useState([]);
-  const [tagGet, setTagGet] = useState(false);
   const imageStyle = {
     width: '100%',
     padding: '10px',
   };
-
-  console.log(recipe.tags);
-
-  useEffect(() => {
-    if (recipe.tags.includes(',')) {
-      setTags(recipe.tags.split(','));
-      setTagGet(true);
-    } else {
-      setTags(recipe.tags);
-      setTagGet(true);
-    }
-  }, [recipe.tags]);
-
-  // useEffect(() => {
-  //   console.log(tags);
-  //   console.log(tags.length);
-  // }, [tags]);
 
   return (
     <div key={ recipe.name }>
@@ -47,17 +28,15 @@ function DoneFoodCard({ recipe, index }) {
         { `Done in: ${recipe.doneDate}` }
       </p>
       <ShareButton datatest={ `${index}-horizontal-share-btn` } />
-      {tagGet && tags.length > 0
-        ? (tags.map((tag) => (
+      {recipe.tags.length > 0
+        && (recipe.tags.map((tag) => (
           <p
             key={ tag }
             data-testid={ `${index}-${tag}-horizontal-tag` }
           >
             { tag }
           </p>
-        ))) : (
-          <p data-testid={ `${index}-${recipe.tags}-horizontal-tag` }>{ recipe.tags }</p>
-        )}
+        )))}
     </div>
   );
 }
