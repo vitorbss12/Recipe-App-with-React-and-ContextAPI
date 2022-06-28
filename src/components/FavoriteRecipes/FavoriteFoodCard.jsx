@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
 import ShareButton from '../RecipeDetails/ShareButton';
-import FavoriteButton from '../RecipeDetails/FavoriteButton';
+import FavoriteButton from './FavoriteButton';
 
 function FavoriteFoodCard({ recipe, index }) {
   const history = useHistory();
@@ -26,7 +26,6 @@ function FavoriteFoodCard({ recipe, index }) {
       >
         { `${recipe.nationality} - ${recipe.category}` }
       </p>
-      {/* <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p> */}
       <Link
         data-testid={ `${index}-horizontal-name` }
         to={ `/foods/${recipe.id}` }
@@ -38,8 +37,7 @@ function FavoriteFoodCard({ recipe, index }) {
         url={ `/foods/${recipe.id}` }
       />
       <FavoriteButton
-        option="food"
-        id={ recipe.id }
+        recipe={ recipe }
         datatest={ `${index}-horizontal-favorite-btn` }
       />
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
 import ShareButton from '../RecipeDetails/ShareButton';
-import FavoriteButton from '../RecipeDetails/FavoriteButton';
+import FavoriteButton from './FavoriteButton';
 
 function FavoriteDrinkCard({ recipe, index }) {
   const history = useHistory();
@@ -24,9 +24,8 @@ function FavoriteDrinkCard({ recipe, index }) {
       <p
         data-testid={ `${index}-horizontal-top-text` }
       >
-        { `${recipe.nationality} - ${recipe.category}` }
+        { `${recipe.alcoholicOrNot} - ${recipe.category}` }
       </p>
-      {/* <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p> */}
       <Link
         data-testid={ `${index}-horizontal-name` }
         to={ `/foods/${recipe.id}` }
@@ -38,8 +37,7 @@ function FavoriteDrinkCard({ recipe, index }) {
         url={ `/foods/${recipe.id}` }
       />
       <FavoriteButton
-        option="drink"
-        id={ recipe.id }
+        recipe={ recipe }
         datatest={ `${index}-horizontal-favorite-btn` }
       />
     </div>
@@ -53,6 +51,7 @@ FavoriteDrinkCard.propTypes = {
     image: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     nationality: PropTypes.string.isRequired,
+    alcoholicOrNot: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
 };
