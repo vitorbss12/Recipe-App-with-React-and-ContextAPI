@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import ShareButton from '../RecipeDetails/ShareButton';
 
 function DoneFoodCard({ recipe, index }) {
@@ -25,7 +25,13 @@ function DoneFoodCard({ recipe, index }) {
       >
         { `${recipe.nationality} - ${recipe.category}` }
       </p>
-      <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p>
+      {/* <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p> */}
+      <Link
+        data-testid={ `${index}-horizontal-name` }
+        to={ `/foods/${recipe.id}` }
+      >
+        { recipe.name }
+      </Link>
       <p
         data-testid={ `${index}-horizontal-done-date` }
       >
