@@ -5,6 +5,7 @@ import WhiteFavoriteButtonImg from '../../images/whiteHeartIcon.svg';
 import BlackFavoriteButtonImg from '../../images/blackHeartIcon.svg';
 import DrinksContext from '../../context/DrinksContext';
 import FoodsContext from '../../context/FoodsContext';
+import FilterContext from '../../context/FilterContext';
 
 function FavoriteButton({ option, id }) {
   const [favoriteImage, setFavoriteImage] = useState(WhiteFavoriteButtonImg);
@@ -16,6 +17,7 @@ function FavoriteButton({ option, id }) {
   const [currentImg, setCurrentImg] = useState(null);
   const { currentDrink } = useContext(DrinksContext);
   const { currentFood } = useContext(FoodsContext);
+  const { favoriteRecipes, setFavoriteRecipes } = useContext(FilterContext);
 
   useEffect(() => {
     if (favoriteRecipe) {
@@ -62,20 +64,27 @@ function FavoriteButton({ option, id }) {
       };
       const pastLocalStore = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
       const newLocalStore = [...pastLocalStore, newRecipe];
-      localStorage.setItem('favoriteRecipes', JSON.stringify(newLocalStore));
+      console.log('1');
+      setFavoriteRecipes(newLocalStore);
+      setFavoriteImage(BlackFavoriteButtonImg);
     }
     if (!favorite) {
       const pastLocalStore = JSON.parse(localStorage.getItem('favoriteRecipes')) || null;
       if (pastLocalStore) {
-        const newLocalStore = pastLocalStore.filter((item) => Number(item.id) !== id);
-        localStorage.setItem('favoriteRecipes', JSON.stringify(newLocalStore));
+        const newLocalStore = pastLocalStore
+          .filter((item) => Number(item.id) !== id);
+        setFavoriteRecipes(newLocalStore);
+        setFavoriteImage(WhiteFavoriteButtonImg);
+        console.log('2');
       }
       if (pastLocalStore && pastLocalStore.length === 0) {
         localStorage.removeItem('favoriteRecipes');
+        setFavoriteRecipes([]);
+        console.log('3');
       }
     }
   }, [favorite, favoriteRecipe,
-    currentRecipe, currentId, currentImg, currentName, option, id]);
+    currentRecipe, currentId, currentImg, currentName, option, id, setFavoriteRecipes]);
 
   function handleClick() {
     setFavorite(
@@ -86,6 +95,12 @@ function FavoriteButton({ option, id }) {
         ? BlackFavoriteButtonImg : WhiteFavoriteButtonImg,
     );
   }
+
+  useEffect(() => {
+    if (favoriteRecipes) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+    }
+  }, [favoriteRecipes]);
 
   return (
     <div>

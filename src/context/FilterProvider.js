@@ -5,7 +5,10 @@ import FilterContext from './FilterContext';
 function FilterProvider({ children }) {
   const [filterData, setFilterData] = useState([]);
   const [doneRecipes, setDoneRecipes] = useState([]);
+  const lastLocalStore = JSON.parse(localStorage.getItem('favoriteRecipes')) || null;
+  const [favoriteRecipes, setFavoriteRecipes] = useState(lastLocalStore);
   const [disabledBtn, setDisabledBtn] = useState(true);
+  console.log(favoriteRecipes);
 
   // carrega as receitas assim que a tela carrega
 
@@ -33,6 +36,8 @@ function FilterProvider({ children }) {
     setDoneRecipes,
     disabledBtn,
     setDisabledBtn,
+    favoriteRecipes,
+    setFavoriteRecipes,
   };
 
   return (

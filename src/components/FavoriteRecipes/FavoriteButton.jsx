@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import useGetFavoritesRecipe from '../../hooks/useGetFavoritesRecipes';
 import WhiteFavoriteButtonImg from '../../images/whiteHeartIcon.svg';
 import BlackFavoriteButtonImg from '../../images/blackHeartIcon.svg';
+import FilterContext from '../../context/FilterContext';
 
 function FavoriteButton({ recipe, datatest }) {
   const [favoriteImage, setFavoriteImage] = useState(WhiteFavoriteButtonImg);
   const favoriteRecipe = useGetFavoritesRecipe(Number(recipe.id));
   const [favorite, setFavorite] = useState(favoriteRecipe);
-  const [currentRecipe] = useState(null);
+  const { favoriteRecipes, setFavoriteRecipes } = useContext(FilterContext);
 
   useEffect(() => {
     if (favoriteRecipe) {
@@ -27,7 +28,6 @@ function FavoriteButton({ recipe, datatest }) {
 
   useEffect(() => {
     if (favorite && !favoriteRecipe) {
-      console.log('favorite');
       const newRecipe = {
         id: recipe.id,
         type: recipe.type,
@@ -39,22 +39,28 @@ function FavoriteButton({ recipe, datatest }) {
       };
       const pastLocalStore = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
       const newLocalStore = [...pastLocalStore, newRecipe];
-      localStorage.setItem('favoriteRecipes', JSON.stringify(newLocalStore));
+      console.log('1');
+      setFavoriteRecipes(newLocalStore);
+      setFavoriteImage(BlackFavoriteButtonImg);
     }
     if (!favorite) {
       const pastLocalStore = JSON.parse(localStorage.getItem('favoriteRecipes')) || null;
       if (pastLocalStore) {
         const newLocalStore = pastLocalStore
           .filter((item) => Number(item.id) !== Number(recipe.id));
-        localStorage.setItem('favoriteRecipes', JSON.stringify(newLocalStore));
+        setFavoriteRecipes(newLocalStore);
+        setFavoriteImage(WhiteFavoriteButtonImg);
+        console.log('2');
       }
       if (pastLocalStore && pastLocalStore.length === 0) {
         localStorage.removeItem('favoriteRecipes');
+        setFavoriteRecipes([]);
+        console.log('3');
       }
     }
-  }, [favorite, favoriteRecipe, currentRecipe, recipe.id, recipe.type,
+  }, [favorite, favoriteRecipe, recipe.id, recipe.type,
     recipe.category, recipe.alcoholicOrNot, recipe.name, recipe.image,
-    recipe.nationality]);
+    recipe.nationality, setFavoriteRecipes]);
 
   function handleClick() {
     setFavorite(
@@ -65,6 +71,12 @@ function FavoriteButton({ recipe, datatest }) {
         ? BlackFavoriteButtonImg : WhiteFavoriteButtonImg,
     );
   }
+
+  useEffect(() => {
+    if (favoriteRecipes) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+    }
+  }, [favoriteRecipes]);
 
   return (
     <div>
