@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import ShareButton from '../RecipeDetails/ShareButton';
 
 function DoneDrinkCard({ recipe, index }) {
@@ -9,11 +9,6 @@ function DoneDrinkCard({ recipe, index }) {
     width: '100%',
     padding: '10px',
   };
-
-  // useEffect(() => {
-  //   console.log(tags);
-  //   console.log(tags.length);
-  // }, [tags]);
 
   return (
     <div key={ recipe.name }>
@@ -30,7 +25,13 @@ function DoneDrinkCard({ recipe, index }) {
       >
         { `${recipe.category} - ${recipe.alcoholicOrNot}` }
       </p>
-      <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p>
+      {/* <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p> */}
+      <Link
+        data-testid={ `${index}-horizontal-name` }
+        to={ `/drinks/${recipe.id}` }
+      >
+        { recipe.name }
+      </Link>
       <p
         data-testid={ `${index}-horizontal-done-date` }
       >
