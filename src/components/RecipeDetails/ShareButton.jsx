@@ -27,15 +27,17 @@ function ShareButton({ datatest, url }) {
 
   function writeText() {
     const currentUrl = window.location.href;
-    const urlToCopy = currentUrl.split('/')[3];
-    switch (urlToCopy) {
+    const urlToCopy = currentUrl.split('/');
+    const lastUrl = urlToCopy[urlToCopy.length - 1];
+    console.log(lastUrl);
+    switch (lastUrl) {
     case 'in-progress':
       copy(currentUrl.replace('/in-progress', ''));
       break;
     case 'favorite-recipes':
       copy(currentUrl.replace('/favorite-recipes', `${url}`));
       break;
-    case 'done':
+    case 'done-recipes':
       copy(currentUrl.replace('/done-recipes', `${url}`));
       break;
     default:

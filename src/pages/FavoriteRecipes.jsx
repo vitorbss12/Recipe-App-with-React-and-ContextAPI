@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Header from '../components/Header';
 import FavoriteFoodCard from '../components/FavoriteRecipes/FavoriteFoodCard';
 import FavoriteDrinkCard from '../components/FavoriteRecipes/FavoriteDrinkCard';
+import FilterContext from '../context/FilterContext';
 
 function FavoriteRecipes() {
   const [filter, setFilter] = useState('all');
   const [currentRecipes, setCurrentRecipes] = useState([]);
+  const { favoriteRecipes } = useContext(FilterContext);
+
+  console.log(favoriteRecipes);
 
   useEffect(() => {
-    const doneRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    console.log(favoriteRecipes);
     if (filter !== 'all') {
-      const recipes = doneRecipes.filter((recipe) => recipe.type === filter);
+      const recipes = favoriteRecipes.filter((recipe) => recipe.type === filter);
       setCurrentRecipes(recipes);
     } else {
-      setCurrentRecipes(doneRecipes);
+      setCurrentRecipes(favoriteRecipes);
     }
-  }, [filter]);
-
-  // useEffect(() => {
-  //   console.log(currentRecipes);
-  // }, [currentRecipes]);
+  }, [filter, favoriteRecipes]);
 
   const handleClick = ({ target }) => {
     setFilter(target.name);
