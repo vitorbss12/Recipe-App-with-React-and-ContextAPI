@@ -6,7 +6,7 @@ import BlackFavoriteButtonImg from '../../images/blackHeartIcon.svg';
 import DrinksContext from '../../context/DrinksContext';
 import FoodsContext from '../../context/FoodsContext';
 
-function ShareButton({ option, id }) {
+function FavoriteButton({ option, id, datatest }) {
   const [favoriteImage, setFavoriteImage] = useState(WhiteFavoriteButtonImg);
   const favoriteRecipe = useGetFavoritesRecipe(id);
   const [favorite, setFavorite] = useState(favoriteRecipe);
@@ -93,7 +93,7 @@ function ShareButton({ option, id }) {
         type="image"
         src={ favoriteImage }
         alt="Favorite"
-        data-testid="favorite-btn"
+        data-testid={ datatest }
         style={ buttonStyle }
         onClick={ handleClick }
       />
@@ -101,9 +101,14 @@ function ShareButton({ option, id }) {
   );
 }
 
-ShareButton.propTypes = {
-  id: PropTypes.number.isRequired,
-  option: PropTypes.string.isRequired,
+FavoriteButton.defaultProps = {
+  datatest: 'favorite-btn',
 };
 
-export default ShareButton;
+FavoriteButton.propTypes = {
+  id: PropTypes.number.isRequired,
+  option: PropTypes.string.isRequired,
+  datatest: PropTypes.string,
+};
+
+export default FavoriteButton;
