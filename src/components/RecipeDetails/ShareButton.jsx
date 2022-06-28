@@ -26,14 +26,29 @@ function ShareButton({ datatest, url }) {
   }, [show]);
 
   function writeText() {
-    const textToCopy = window.location.href;
-    if (textToCopy.includes('/in-progress')) {
-      copy(textToCopy.replace('/in-progress', ''));
-    } else if (textToCopy.includes('/done')) {
-      copy(textToCopy.replace('/done-recipes', `${url}`));
-    } else {
-      copy(textToCopy);
+    const currentUrl = window.location.href;
+    const urlToCopy = currentUrl.split('/')[3];
+    switch (urlToCopy) {
+    case 'in-progress':
+      copy(currentUrl.replace('/in-progress', ''));
+      break;
+    case 'favorite-recipes':
+      copy(currentUrl.replace('/favorite-recipes', `${url}`));
+      break;
+    case 'done':
+      copy(currentUrl.replace('/done-recipes', `${url}`));
+      break;
+    default:
+      copy(currentUrl);
+      break;
     }
+    // if (textToCopy.includes('/in-progress')) {
+    //   copy(textToCopy.replace('/in-progress', ''));
+    // } else if (textToCopy.includes('/done')) {
+    //   copy(textToCopy.replace('/done-recipes', `${url}`));
+    // } else {
+    //   copy(textToCopy);
+    // }
   }
 
   function handleClick() {
