@@ -34,7 +34,7 @@ function FavoriteDrinkCard({ recipe, index }) {
       </Link>
       <ShareButton
         datatest={ `${index}-horizontal-share-btn` }
-        url={ `/foods/${recipe.id}` }
+        url={ `/drinks/${recipe.id}` }
       />
       <FavoriteButton
         recipe={ recipe }
