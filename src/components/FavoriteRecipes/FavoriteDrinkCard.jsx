@@ -28,7 +28,7 @@ function FavoriteDrinkCard({ recipe, index }) {
       </p>
       <Link
         data-testid={ `${index}-horizontal-name` }
-        to={ `/foods/${recipe.id}` }
+        to={ `/drinks/${recipe.id}` }
       >
         { recipe.name }
       </Link>
