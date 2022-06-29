@@ -18,10 +18,6 @@ function DoneRecipes() {
     }
   }, [filter]);
 
-  useEffect(() => {
-    console.log(currentRecipes);
-  }, [currentRecipes]);
-
   const handleClick = ({ target }) => {
     setFilter(target.name);
   };

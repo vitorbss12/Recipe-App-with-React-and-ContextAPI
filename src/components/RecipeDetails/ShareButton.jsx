@@ -29,7 +29,6 @@ function ShareButton({ datatest, url }) {
     const currentUrl = window.location.href;
     const urlToCopy = currentUrl.split('/');
     const lastUrl = urlToCopy[urlToCopy.length - 1];
-    console.log(lastUrl);
     switch (lastUrl) {
     case 'in-progress':
       copy(currentUrl.replace('/in-progress', ''));
@@ -44,13 +43,6 @@ function ShareButton({ datatest, url }) {
       copy(currentUrl);
       break;
     }
-    // if (textToCopy.includes('/in-progress')) {
-    //   copy(textToCopy.replace('/in-progress', ''));
-    // } else if (textToCopy.includes('/done')) {
-    //   copy(textToCopy.replace('/done-recipes', `${url}`));
-    // } else {
-    //   copy(textToCopy);
-    // }
   }
 
   function handleClick() {

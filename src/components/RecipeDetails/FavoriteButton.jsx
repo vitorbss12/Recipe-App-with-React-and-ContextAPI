@@ -64,7 +64,6 @@ function FavoriteButton({ option, id }) {
       };
       const pastLocalStore = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
       const newLocalStore = [...pastLocalStore, newRecipe];
-      console.log('1');
       setFavoriteRecipes(newLocalStore);
       setFavoriteImage(BlackFavoriteButtonImg);
     }
@@ -75,12 +74,10 @@ function FavoriteButton({ option, id }) {
           .filter((item) => Number(item.id) !== id);
         setFavoriteRecipes(newLocalStore);
         setFavoriteImage(WhiteFavoriteButtonImg);
-        console.log('2');
       }
       if (pastLocalStore && pastLocalStore.length === 0) {
         localStorage.removeItem('favoriteRecipes');
         setFavoriteRecipes([]);
-        console.log('3');
       }
     }
   }, [favorite, favoriteRecipe,

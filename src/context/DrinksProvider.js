@@ -31,7 +31,6 @@ function DrinksProvider({ children }) {
         break;
       }
       case 'First letter': {
-        console.log(inputSearch);
         if (inputSearch.length > 1) {
           global.alert('Your search must have only 1 (one) character');
         }
@@ -56,7 +55,6 @@ function DrinksProvider({ children }) {
       url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
     }
     try {
-      console.log(url);
       const response = await fetch(url);
       const drinksData = await response.json();
       if (drinksData.drinks) {

@@ -8,7 +8,6 @@ function FilterProvider({ children }) {
   const lastLocalStore = JSON.parse(localStorage.getItem('favoriteRecipes')) || null;
   const [favoriteRecipes, setFavoriteRecipes] = useState(lastLocalStore);
   const [disabledBtn, setDisabledBtn] = useState(true);
-  console.log(favoriteRecipes);
 
   // carrega as receitas assim que a tela carrega
 

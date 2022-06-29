@@ -25,7 +25,6 @@ function DoneDrinkCard({ recipe, index }) {
       >
         { `${recipe.category} - ${recipe.alcoholicOrNot}` }
       </p>
-      {/* <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p> */}
       <Link
         data-testid={ `${index}-horizontal-name` }
         to={ `/drinks/${recipe.id}` }

@@ -30,7 +30,6 @@ function FoodsProvider({ children }) {
       case 'Name': {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputSearch}`);
         const foodsData = await response.json();
-        console.log(foodsData);
         if (foodsData.meals) {
           setFoodData(foodsData.meals);
         } else {
@@ -66,7 +65,6 @@ function FoodsProvider({ children }) {
       url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
     }
     try {
-      console.log(url);
       const response = await fetch(url);
       const foodsData = await response.json();
       if (foodsData.meals) {

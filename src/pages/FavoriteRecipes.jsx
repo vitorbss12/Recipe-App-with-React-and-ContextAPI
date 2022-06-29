@@ -10,10 +10,7 @@ function FavoriteRecipes() {
   const [currentRecipes, setCurrentRecipes] = useState([]);
   const { favoriteRecipes } = useContext(FilterContext);
 
-  console.log(favoriteRecipes);
-
   useEffect(() => {
-    console.log(favoriteRecipes);
     if (filter !== 'all') {
       const recipes = favoriteRecipes.filter((recipe) => recipe.type === filter);
       setCurrentRecipes(recipes);

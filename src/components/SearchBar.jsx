@@ -81,7 +81,6 @@ function SearchBar({ title }) {
             fetchDrinks(searchType, searchInput);
             setSearchInput('');
           }
-          console.log('cliquei');
         } }
       >
         Search
