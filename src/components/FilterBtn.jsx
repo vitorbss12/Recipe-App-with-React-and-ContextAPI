@@ -14,7 +14,6 @@ function FilterBtn({ name }) {
   const drinkFilters = filterData.map((filter) => filter.strCategory);
 
   useEffect(() => {
-    console.log(clicked);
     if (!clicked) {
       setSelectedDrinkFilter('All');
       setSelectedFoodFilter('All');
@@ -23,7 +22,6 @@ function FilterBtn({ name }) {
 
   const handleClick = (selectedFilter) => {
     setClicked(!clicked);
-    console.log(selectedFilter);
     if (drinkFilters.includes(selectedFilter)) {
       setSelectedDrinkFilter(selectedFilter);
     }

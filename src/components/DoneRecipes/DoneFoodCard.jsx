@@ -25,7 +25,6 @@ function DoneFoodCard({ recipe, index }) {
       >
         { `${recipe.nationality} - ${recipe.category}` }
       </p>
-      {/* <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p> */}
       <Link
         data-testid={ `${index}-horizontal-name` }
         to={ `/foods/${recipe.id}` }

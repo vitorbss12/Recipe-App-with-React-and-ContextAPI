@@ -19,7 +19,7 @@ function IngredientList({ option, id }) {
   const [doneRecipe, setDoneRecipe] = useState(false);
   const [key, setKey] = useState('');
   const ingredients = useGetIngredients(currentRecipe);
-  const [checked, setChecked] = useState(ingredients.map(() => false));
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     const pastLocalStore = JSON

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-// import Carousel from 'react-bootstrap/Carousel';
 
 function RecommendationCard({ option, recipe, index }) {
   let recipeName = 'unknown';
@@ -24,21 +23,7 @@ function RecommendationCard({ option, recipe, index }) {
     width: '145px',
   };
 
-  // const recommendationStyle = {
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  // };
-
   return (
-    // <img
-    //   className="d-block w-50"
-    //   src={ recipeImg }
-    //   alt={ recipeName }
-    //   style={ imgStyle }
-    //   data-testid={ `${index}-recommendation-photo` }
-    // />
-    // <Carousel>
-    //   <Carousel.Item>
     <Card style={ cardStyle }>
       <Card.Img
         variant="top"
@@ -53,18 +38,6 @@ function RecommendationCard({ option, recipe, index }) {
         </Card.Title>
       </Card.Body>
     </Card>
-    //   </Carousel.Item>
-    // </Carousel>
-    // <div style={ cardStyle }>
-    //   <div style={ recommendationStyle }>
-    //     <img src={ recipeImg } alt={ recipeName } style={ imgStyle } />
-    //     <p
-    //       data-testid={ `${index}-recomendation-card` }
-    //     >
-    //       {recipeName}
-    //     </p>
-    //   </div>
-    // </div>
   );
 }
 
