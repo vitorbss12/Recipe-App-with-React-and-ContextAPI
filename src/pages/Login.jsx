@@ -25,6 +25,7 @@ function Login({ history }) {
     <div>
       <form onSubmit={ saveTokensToLocalStorage }>
         <label htmlFor="email">
+          Email:
           <input
             type="email"
             id="email"
@@ -32,9 +33,9 @@ function Login({ history }) {
             data-testid="email-input"
             onChange={ ({ target }) => setUserEmailInput(target.value) }
           />
-          Email:
         </label>
         <label htmlFor="password">
+          Senha:
           <input
             type="password"
             id="password"
@@ -42,7 +43,6 @@ function Login({ history }) {
             data-testid="password-input"
             onChange={ ({ target }) => setUserPasswordInput(target.value) }
           />
-          Senha:
         </label>
         <button
           type="submit"
