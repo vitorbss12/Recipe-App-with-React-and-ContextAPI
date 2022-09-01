@@ -3,20 +3,20 @@ import Header from '../components/Header';
 // import Footer from '../components/Footer';
 import FoodsContext from '../context/FoodsContext';
 import RecipeCard from '../components/RecipeCard';
-import FilterBtn from '../components/FilterBtn';
+// import FilterBtn from '../components/FilterBtn';
 import FilterContext from '../context/FilterContext';
+import Categories from '../components/Categories';
 
 function Foods() {
   const RECIPES_PER_VISUALIZATION = 12;
-  const FILTERS_PER_VISUALIZATION = 5;
+  // const FILTERS_PER_VISUALIZATION = 5;
 
   // const { foodData,
   //   fetchFoodsAPI, selectedFoodFilter, setSelectedFoodFilter } = useContext(FoodsContext);
   // const { fetchFilters, filterData } = useContext(FilterContext);
 
-  const { foodData, fetchFoodsAPI, selectedFoodFilter,
-    setSelectedFoodFilter } = useContext(FoodsContext);
-  const { fetchFilters, filterData } = useContext(FilterContext);
+  const { foodData, fetchFoodsAPI, selectedFoodFilter } = useContext(FoodsContext);
+  const { fetchFilters } = useContext(FilterContext);
 
   const fetchFoodsOnLoad = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
@@ -39,7 +39,7 @@ function Foods() {
     <div>
       <Header title="Foods" showSearchBar />
       {/* <Footer /> */}
-      <button
+      {/* <button
         type="button"
         data-testid="All-category-filter"
         onClick={ () => setSelectedFoodFilter('All') }
@@ -55,7 +55,8 @@ function Foods() {
             />
           )
         ))
-      ) }
+      ) } */}
+      <Categories type="food" />
       { foodData.length > 1 || selectedFoodFilter === 'Goat' ? (
         foodData.map((recipe, index) => (
           index < RECIPES_PER_VISUALIZATION && (
