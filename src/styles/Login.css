@@ -1,32 +1,31 @@
 .login-forms {
-  /* border: 1px solid #000; */
+  background-color: white;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 30px;
-  background-color: white;
 }
 
 .login-title {
+  color: rgb(255, 132, 0);
   font-size: 30px;
   font-weight: 700;
-  color: rgb(255, 132, 0);
 }
 
 .login-subtitle {
+  color: rgb(249, 181, 22);
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 40px;
-  color: rgb(249, 181, 22);
 }
 
 .login-btn {
-  width: 100%;
   background-color: rgb(255, 179, 0);
-  color: white;
-  border-radius: 5px;
   border: none;
+  border-radius: 5px;
+  color: white;
   padding: 10px 20px;
   transition: 0.5s;
+  width: 100%;
 }
 
 .login-btn:hover {

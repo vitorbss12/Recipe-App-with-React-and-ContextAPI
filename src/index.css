@@ -13,10 +13,10 @@ code {
 }
 
 .Container-Mobile {
-  border: 1px solid #000;
   background-color: #f8f8f8;
+  border: 1px solid #000;
   display: flex;
-  width: 360px;
   height: 640px;
   margin: auto;
+  width: 360px;
 }

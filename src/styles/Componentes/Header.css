@@ -2,31 +2,31 @@
   background-color: rgb(255, 179, 0);
   border-end-end-radius: 20px;
   border-end-start-radius: 20px;
-  padding: 10px;
   margin-bottom: 10px;
+  padding: 10px;
 }
 
 .header-row-title {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 10px;
 }
 
 .page-title {
+  color: white;
   font-size: 30px;
   font-weight: 700;
-  color: white;
 }
 
 .header-btn {
   background-color: white;
-  color: rgb(255, 179, 0);
-  border-radius: 5px;
   border: none;
+  border-radius: 5px;
+  color: rgb(255, 179, 0);
+  font-weight: 700;
   padding: 5px 15px;
   transition: 0.5s;
-  font-weight: 700;
 }
 
 .header-btn:hover {
