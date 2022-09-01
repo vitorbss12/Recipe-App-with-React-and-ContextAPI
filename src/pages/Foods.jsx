@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import FoodsContext from '../context/FoodsContext';
 import RecipeCard from '../components/RecipeCard';
 import FilterBtn from '../components/FilterBtn';
@@ -10,8 +10,12 @@ function Foods() {
   const RECIPES_PER_VISUALIZATION = 12;
   const FILTERS_PER_VISUALIZATION = 5;
 
-  const { foodData,
-    fetchFoodsAPI, selectedFoodFilter, setSelectedFoodFilter } = useContext(FoodsContext);
+  // const { foodData,
+  //   fetchFoodsAPI, selectedFoodFilter, setSelectedFoodFilter } = useContext(FoodsContext);
+  // const { fetchFilters, filterData } = useContext(FilterContext);
+
+  const { foodData, fetchFoodsAPI, selectedFoodFilter,
+    setSelectedFoodFilter } = useContext(FoodsContext);
   const { fetchFilters, filterData } = useContext(FilterContext);
 
   const fetchFoodsOnLoad = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -33,8 +37,8 @@ function Foods() {
 
   return (
     <div>
-      <Header title="Foods" showBtn />
-      <Footer />
+      <Header title="Foods" showSearchBar />
+      {/* <Footer /> */}
       <button
         type="button"
         data-testid="All-category-filter"

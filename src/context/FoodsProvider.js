@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FoodsContext from './FoodsContext';
 
 function FoodsProvider({ children }) {
-  const [searchType, setSearchType] = useState('');
+  const [searchType, setSearchType] = useState('Name');
   const [searchInput, setSearchInput] = useState('');
   const [foodData, setFoodData] = useState([]);
   const [currentFood, setCurrentFood] = useState([]);

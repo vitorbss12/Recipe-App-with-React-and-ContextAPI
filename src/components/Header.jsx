@@ -14,7 +14,7 @@ function Header({ title, showSearchBar }) {
 
   return (
     <header>
-      <Container fluid className="header">
+      <Container className="header">
         <Row className="d-flex mb-2">
           <Col className="d-flex justify-content-start align-self-center">
             <h1 className="page-title">
