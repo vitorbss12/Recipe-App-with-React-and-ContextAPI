@@ -1,56 +1,53 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import searchIcon from '../images/searchIcon.svg';
-import profileIcon from '../images/profileIcon.svg';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import SearchBar from './SearchBar';
+import '../styles/Componentes/Header.css';
 
-function Header({ title, showBtn }) {
-  const [showSearchInput, setShowSearchInput] = useState(false);
+function Header({ title, showSearchBar }) {
   const history = useHistory();
+  console.log(showSearchBar);
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={ () => history.push('/profile') }
-      >
-        <img
-          data-testid="profile-top-btn"
-          alt="imagem do avatar de perfil"
-          src={ profileIcon }
-          type="submit"
-        />
-      </button>
-      <h1 data-testid="page-title">
-        {title}
-      </h1>
-      {showBtn && (
-        <button
-          type="button"
-          onClick={ () => setShowSearchInput(!showSearchInput) }
-        >
-          <img
-            src={ searchIcon }
-            alt="imagem do botão de busca"
-            data-testid="search-top-btn"
-          />
-        </button>
-      )}
-      {showSearchInput && (
-        <SearchBar title={ title } />
-      )}
-    </div>
+    <header>
+      <Container fluid className="header">
+        <Row className="d-flex mb-2">
+          <Col className="d-flex justify-content-start align-self-center">
+            <h1 className="page-title">
+              {title}
+            </h1>
+          </Col>
+          <Col className="d-flex justify-content-end align-self-center">
+            <Button
+              type="button"
+              bsPrefix="header-btn"
+              onClick={ () => history.push('/profile') }
+            >
+              Profile
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          {showSearchBar && (
+            <SearchBar title={ title } />
+          )}
+        </Row>
+      </Container>
+    </header>
   );
 }
 
 Header.defaultProps = {
-  showBtn: false,
+  showSearchBar: false,
 };
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  showBtn: PropTypes.bool,
+  showSearchBar: PropTypes.bool,
 };
 
 export default Header;
