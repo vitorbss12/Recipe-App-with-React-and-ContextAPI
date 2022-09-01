@@ -1,7 +1,5 @@
 import React from 'react';
-import './App.css';
 import { Switch, Route } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login';
 import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
