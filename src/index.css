@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Container-Mobile {
+  border: 1px solid #000;
+  background-color: #f8f8f8;
+  display: flex;
+  width: 360px;
+  height: 640px;
+  margin: auto;
+}
