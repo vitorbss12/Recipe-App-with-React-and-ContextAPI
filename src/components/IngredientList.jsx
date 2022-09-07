@@ -19,7 +19,6 @@ function IngredientList({ option, id }) {
   const [doneRecipe, setDoneRecipe] = useState(false);
   const [key, setKey] = useState('');
   const ingredients = useGetIngredients(currentRecipe);
-  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     const pastLocalStore = JSON
@@ -72,10 +71,6 @@ function IngredientList({ option, id }) {
       setInProgress(false);
     }
   }, [currentIngredients]);
-
-  const handleChange = () => {
-    setChecked(!checked);
-  };
 
   const getCurrentIngredients = (currentIngredient) => {
     if (!currentIngredients.includes(currentIngredient)) {
@@ -177,7 +172,7 @@ function IngredientList({ option, id }) {
             <input
               type="checkbox"
               id={ `${index}-ingredient-step` }
-              onChange={ handleChange }
+              // onChange={ handleChange }
               checked={ inputCheck(ingredient) }
             />
             {ingredient}
