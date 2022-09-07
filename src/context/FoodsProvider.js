@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import FoodsContext from './FoodsContext';
 
@@ -60,20 +60,20 @@ function FoodsProvider({ children }) {
   };
 
   // carrega as receitas assim que a tela carrega
-  const fetchFoodsAPI = useCallback(async (url) => {
-    if (url.includes('All')) {
-      url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-    }
-    try {
-      const response = await fetch(url);
-      const foodsData = await response.json();
-      if (foodsData.meals) {
-        setFoodData(foodsData.meals);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  // const fetchFoodsAPI = useCallback(async (url) => {
+  //   if (url.includes('All')) {
+  //     url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  //   }
+  //   try {
+  //     const response = await fetch(url);
+  //     const foodsData = await response.json();
+  //     if (foodsData.meals) {
+  //       setFoodData(foodsData.meals);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
   const foodsContextValue = {
     searchType,
@@ -87,7 +87,7 @@ function FoodsProvider({ children }) {
     setCurrentFood,
     foodsRecommendations,
     setFoodsRecommendations,
-    fetchFoodsAPI,
+    // fetchFoodsAPI,
     selectedFoodFilter,
     setSelectedFoodFilter,
   };

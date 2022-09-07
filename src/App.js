@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Foods from './pages/Foods';
+import Login from './pages/Login/Login';
+import Foods from './pages/Homes/Foods';
 import Drinks from './pages/Drinks';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';

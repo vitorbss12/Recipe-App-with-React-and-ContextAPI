@@ -2,14 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { useHistory } from 'react-router-dom';
+import '../styles/components/RecipeCard.css';
 
 function RecipeCard({ id, img, name, option, urlId }) {
-  const imgStyle = {
-    borderRadius: '25px',
-    width: '100%',
-    padding: '10px',
-  };
-
   const history = useHistory();
 
   const handleClick = (url) => {
@@ -23,14 +18,13 @@ function RecipeCard({ id, img, name, option, urlId }) {
 
   return (
     <Card
-      data-testid={ `${id}-recipe-card` }
+      // className="recipe-card"
       onClick={ () => handleClick(urlId) }
     >
       <Card.Img
-        data-testid={ `${id}-card-img` }
         src={ img }
         alt={ `${name}` }
-        style={ imgStyle }
+        variant="top"
       />
       <Card.Title data-testid={ `${id}-card-name` }>{ name }</Card.Title>
     </Card>

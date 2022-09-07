@@ -6,19 +6,19 @@ import Nav from 'react-bootstrap/Nav';
 import FoodsContext from '../context/FoodsContext';
 import DrinksContext from '../context/DrinksContext';
 import FilterContext from '../context/FilterContext';
-import '../styles/Componentes/Categories.css';
+import '../styles/components/Categories.css';
 
 function Categories({ type }) {
-  console.log(type);
   const { setSelectedFoodFilter } = useContext(FoodsContext);
   const { setSelectedDrinkFilter } = useContext(DrinksContext);
   const { filterData } = useContext(FilterContext);
+  console.log(filterData);
   const FILTERS_PER_VISUALIZATION = 6;
 
   useEffect(() => {
     setSelectedDrinkFilter('All');
     setSelectedFoodFilter('All');
-  }, []);
+  }, [setSelectedDrinkFilter, setSelectedFoodFilter]);
 
   const handleClick = (selectedFilter) => {
     console.log(selectedFilter);
