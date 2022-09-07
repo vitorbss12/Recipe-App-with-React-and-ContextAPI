@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import '../../styles/Login.css';
-//
 
 function Login() {
   const [userEmail, setUserEmail] = useState('');
