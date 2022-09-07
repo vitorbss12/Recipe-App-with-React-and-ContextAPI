@@ -15,6 +15,8 @@ function Foods() {
   const { setFilterData } = useContext(FilterContext);
   console.log(foodData);
 
+
+  
   // const { foodData,
   //   fetchFoodsAPI, selectedFoodFilter, setSelectedFoodFilter } = useContext(FoodsContext);
   // const { fetchFilters, filterData } = useContext(FilterContext);
