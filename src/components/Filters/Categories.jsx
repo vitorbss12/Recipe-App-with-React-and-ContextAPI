@@ -11,7 +11,6 @@ function Categories({ type }) {
   const { setSelectedFoodFilter } = useContext(FoodsContext);
   const { setSelectedDrinkFilter } = useContext(DrinksContext);
   const { filterData } = useContext(FilterContext);
-  console.log(filterData);
   const FILTERS_PER_VISUALIZATION = 6;
 
   useEffect(() => {
@@ -20,7 +19,6 @@ function Categories({ type }) {
   }, [setSelectedDrinkFilter, setSelectedFoodFilter]);
 
   const handleClick = (selectedFilter) => {
-    console.log(selectedFilter);
     if (type === 'food') {
       setSelectedFoodFilter(selectedFilter);
     }
@@ -41,7 +39,6 @@ function Categories({ type }) {
             <Nav.Link
               onClick={ () => handleClick('All') }
               href="#All"
-              className="categories-nav-item"
             >
               All
             </Nav.Link>
@@ -55,7 +52,6 @@ function Categories({ type }) {
                   <Nav.Link
                     onClick={ () => handleClick(filter.strCategory) }
                     href={ `#${filter.strCategory}` }
-                    className="categories-nav-item"
                   >
                     {filter.strCategory}
                   </Nav.Link>

@@ -1,43 +1,37 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory, useLocation } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import FoodsContext from '../../context/FoodsContext';
-import DrinksContext from '../../context/DrinksContext';
+import fetchFoodsBySearch from '../../hooks-utils/Foods-fetch/fetchFoodsBySearch';
+// import DrinksContext from '../../context/DrinksContext';
 
 function SearchBar({ title }) {
   const { searchType,
     setSearchType,
-    fetchFoods,
     searchInput,
-    setSearchInput,
-    foodData,
-    setFoodData } = useContext(FoodsContext);
+    setSearchInput, setFoodData } = useContext(FoodsContext);
 
-  const { drinkData, setDrinkData, fetchDrinks } = useContext(DrinksContext);
-
-  const history = useHistory();
-  const location = useLocation();
-
-  useEffect(() => {
-    if (foodData && foodData.length === 1) {
-      history.push(`${location.pathname}/${foodData[0].idMeal}`);
+  const handleSearch = async () => {
+    if (title === 'Foods') {
+      const foods = await fetchFoodsBySearch(searchType, searchInput);
+      setFoodData(foods);
+      setSearchInput('');
     }
-    if (drinkData && drinkData.length === 1) {
-      history.push(`${location.pathname}/${drinkData[0].idDrink}`);
-    }
-  }, [foodData, setFoodData, drinkData, setDrinkData, history, location]);
+    // if (title === 'Drinks') {
+    //   fetchDrinks(searchType, searchInput);
+    //   setSearchInput('');
+    // }
+  };
 
   return (
     <Container>
-      <Row md="auto">
-        <Col className="d-flex justify-content-start mb-2">
+      <Row>
+        <Col>
           <input
             type="text"
-            className="search-input"
             value={ searchInput }
             placeholder={ `Search by ${searchType}` }
             onChange={ ({ target }) => setSearchInput(target.value) }
@@ -45,25 +39,15 @@ function SearchBar({ title }) {
           <Button
             type="button"
             bsPrefix="search-btn"
-            onClick={ () => {
-              if (title === 'Foods') {
-                fetchFoods(searchType, searchInput);
-                setSearchInput('');
-              }
-              if (title === 'Drinks') {
-                fetchDrinks(searchType, searchInput);
-                setSearchInput('');
-              }
-            } }
+            onClick={ () => handleSearch() }
           >
             Search
           </Button>
         </Col>
       </Row>
-      <Row md="auto" className="d-flex justify-content-center align-self-center p-0">
-        <label className="search-radio-label" htmlFor="name">
+      <Row>
+        <label htmlFor="name">
           <input
-            className="search-radio"
             type="radio"
             name="search-type"
             value="Name"
@@ -73,9 +57,8 @@ function SearchBar({ title }) {
           />
           Name
         </label>
-        <label className="search-radio-label" htmlFor="ingredient">
+        <label htmlFor="ingredient">
           <input
-            className="search-radio"
             type="radio"
             name="search-type"
             value="Ingredient"
@@ -84,9 +67,8 @@ function SearchBar({ title }) {
           />
           Ingredient
         </label>
-        <label className="search-radio-label" htmlFor="first-letter">
+        <label htmlFor="first-letter">
           <input
-            className="search-radio"
             type="radio"
             name="search-type"
             value="First letter"
