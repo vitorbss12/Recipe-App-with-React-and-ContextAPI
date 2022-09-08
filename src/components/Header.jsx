@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import SearchBar from './SearchBar';
+import SearchBar from './Filters/SearchBar';
 import '../styles/components/Header.css';
 
 function Header({ title, showSearchBar }) {

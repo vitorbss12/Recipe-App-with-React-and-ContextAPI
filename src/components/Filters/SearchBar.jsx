@@ -5,9 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import FoodsContext from '../context/FoodsContext';
-import DrinksContext from '../context/DrinksContext';
-import '../styles/components/SearchBar.css';
+import FoodsContext from '../../context/FoodsContext';
+import DrinksContext from '../../context/DrinksContext';
 
 function SearchBar({ title }) {
   const { searchType,

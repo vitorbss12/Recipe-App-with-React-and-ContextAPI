@@ -11,7 +11,7 @@ import useGetDoneRecipe from '../../hooks-utils/useGetDoneRecipe';
 import useGetInProgressRecipe from '../../hooks-utils/useGetInProgressRecipe';
 import FoodsContext from '../../context/FoodsContext';
 import DrinksContext from '../../context/DrinksContext';
-import RecommendationCard from '../../components/RecommendationCard';
+import RecommendationCard from '../../components/RecipeDetails/RecommendationCard';
 import ShareButton from '../../components/RecipeDetails/ShareButton';
 import FavoriteButton from '../../components/RecipeDetails/FavoriteButton';
 

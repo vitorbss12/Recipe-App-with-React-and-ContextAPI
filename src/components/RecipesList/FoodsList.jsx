@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
-import RecipeCard from '../RecipeCard';
+import RecipeCard from '../RecipeDetails/RecipeCard';
 import FoodsContext from '../../context/FoodsContext';
-import '../../styles/components/RecipeLists.css';
 
 function FoodsLists() {
   const { foodData } = useContext(FoodsContext);

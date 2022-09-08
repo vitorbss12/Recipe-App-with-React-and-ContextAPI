@@ -6,7 +6,6 @@ import Nav from 'react-bootstrap/Nav';
 import FoodsContext from '../../context/FoodsContext';
 import DrinksContext from '../../context/DrinksContext';
 import FilterContext from '../../context/FilterContext';
-import '../styles/components/Categories.css';
 
 function Categories({ type }) {
   const { setSelectedFoodFilter } = useContext(FoodsContext);

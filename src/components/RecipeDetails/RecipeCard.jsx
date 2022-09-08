@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { useHistory } from 'react-router-dom';
-import '../styles/components/RecipeCard.css';
 
 function RecipeCard({ id, img, name, option, urlId }) {
   const history = useHistory();

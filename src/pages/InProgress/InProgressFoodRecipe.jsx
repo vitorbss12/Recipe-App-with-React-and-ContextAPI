@@ -8,7 +8,7 @@ import FilterContext from '../../context/FilterContext';
 import useFetchCurrentRecipe from '../../hooks-utils/useFetchCurrentRecipe';
 import ShareButton from '../../components/RecipeDetails/ShareButton';
 import FavoriteButton from '../../components/RecipeDetails/FavoriteButton';
-import IngredientList from '../../components/IngredientList';
+import IngredientList from '../../components/RecipeDetails/IngredientList';
 
 function InProgressFoodRecipe() {
   const { currentFood } = useContext(FoodsContext);

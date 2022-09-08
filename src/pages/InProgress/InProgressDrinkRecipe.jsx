@@ -8,7 +8,7 @@ import DrinksContext from '../../context/DrinksContext';
 import FilterContext from '../../context/FilterContext';
 import ShareButton from '../../components/RecipeDetails/ShareButton';
 import FavoriteButton from '../../components/RecipeDetails/FavoriteButton';
-import IngredientList from '../../components/IngredientList';
+import IngredientList from '../../components/RecipeDetails/IngredientList';
 
 function DrinkRecipeDetails() {
   const { currentDrink } = useContext(DrinksContext);

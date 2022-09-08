@@ -5,10 +5,10 @@ import FoodsContext from '../../context/FoodsContext';
 // import RecipeCard from '../../components/RecipeCard';
 // import FilterBtn from '../components/FilterBtn';
 import FilterContext from '../../context/FilterContext';
-import Categories from '../../components/Categories';
+import Categories from '../../components/Filters/Categories';
 import FoodsList from '../../components/RecipesList/FoodsList';
-import fetchAllFoods from '../../hooks/Foods/fetchAllFoods';
-import fetchFoodsCategories from '../../hooks/Foods/fetchFoodsCategories';
+import fetchAllFoods from '../../hooks-utils/Foods-fetch/fetchAllFoods';
+import fetchFoodsCategories from '../../hooks-utils/Foods-fetch/fetchFoodsCategories';
 
 function Foods() {
   const { foodData, setFoodData } = useContext(FoodsContext);
