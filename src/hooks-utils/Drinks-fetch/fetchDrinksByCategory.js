@@ -1,5 +1,5 @@
 async function fetchDrinksByCategory(category) {
-  let url = `www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`;
+  let url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`;
 
   if (category === 'All') {
     url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';

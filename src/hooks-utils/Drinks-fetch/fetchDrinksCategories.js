@@ -1,5 +1,5 @@
 async function fetchDrinksCategories() {
-  const url = 'www.thecocktaildb.com/api/json/v1/1/filter.php?c=list';
+  const url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 
   try {
     const response = await fetch(url);

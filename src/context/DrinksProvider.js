@@ -6,7 +6,7 @@ function DrinksProvider({ children }) {
   const [drinkData, setDrinkData] = useState([]);
   const [currentDrink, setCurrentDrink] = useState([]);
   const [drinksRecommendations, setDrinksRecommendations] = useState([]);
-  const [selectedDrinkFilter, setSelectedDrinkFilter] = useState('');
+  const [selectedDrinkFilter, setSelectedDrinkFilter] = useState('All');
 
   const drinksContextValue = {
     drinkData,

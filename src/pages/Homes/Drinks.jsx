@@ -1,68 +1,45 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import DrinksContext from '../../context/DrinksContext';
-import RecipeCard from '../../components/RecipeDetails/RecipeCard';
 import FilterContext from '../../context/FilterContext';
+import Categories from '../../components/Filters/Categories';
+import fetchAllDrinks from '../../hooks-utils/Drinks-fetch/fetchAllDrinks';
+import fetchDrinksByCategory from '../../hooks-utils/Drinks-fetch/fetchDrinksByCategory';
+import fetchDrinksCategories from '../../hooks-utils/Drinks-fetch/fetchDrinksCategories';
 
 function Drinks() {
-  const RECIPES_PER_VISUALIZATION = 12;
-  // const FILTERS_PER_VISUALIZATION = 5;
+  const { setDrinkData, selectedDrinkFilter } = useContext(DrinksContext);
+  const history = useHistory();
 
-  const { drinkData, fetchDrinksAPI,
-    selectedDrinkFilter, setSelectedDrinkFilter } = useContext(DrinksContext);
-  const { fetchFilters } = useContext(FilterContext);
-
-  const fetchDrinksOnLoad = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-
-  const APIurlFilterByCategory = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=';
-  const fetchDrinkByCategory = `${APIurlFilterByCategory}${selectedDrinkFilter}`;
-
-  const drinkFiltersUrl = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+  const { setFilterData } = useContext(FilterContext);
 
   useEffect(() => {
-    fetchDrinksAPI(fetchDrinksOnLoad);
-    fetchFilters(drinkFiltersUrl);
-  }, [fetchDrinksAPI, fetchFilters]);
+    async function fetchAllDrinksAndCategories() {
+      const drinks = await fetchAllDrinks();
+      setDrinkData(drinks);
+      const categories = await fetchDrinksCategories();
+      setFilterData(categories);
+    }
+    fetchAllDrinksAndCategories();
+    history.push('/drinks#All');
+  }, [setDrinkData, setFilterData, history]);
 
   useEffect(() => {
-    if (selectedDrinkFilter.length !== 0) fetchDrinksAPI(fetchDrinkByCategory);
-  }, [selectedDrinkFilter, fetchDrinksAPI, fetchDrinkByCategory]);
+    async function fetchByCategory() {
+      const drinks = await fetchDrinksByCategory(selectedDrinkFilter);
+      setDrinkData(drinks);
+    }
+    fetchByCategory();
+  }, [setDrinkData, selectedDrinkFilter]);
 
   return (
     <div>
-      <Header title="Drinks" showBtn />
+      <Header title="Drinks" showSearchBar />
+      <Categories type="drink" />
+      {/* <DrinkList /> */}
       <Footer />
-      <button
-        type="button"
-        data-testid="All-category-filter"
-        onClick={ () => setSelectedDrinkFilter('All') }
-      >
-        All
-      </button>
-      {/* { filterData.length > 1 && (
-        filterData.map((filter, index) => (
-          index < FILTERS_PER_VISUALIZATION && (
-            <FilterBtn
-              key={ filter.strCategory }
-              name={ filter.strCategory }
-            />
-          )
-        ))
-      ) } */}
-      { drinkData.length > 1 && (
-        drinkData.map((recipe, index) => (
-          index < RECIPES_PER_VISUALIZATION && (
-            <RecipeCard
-              id={ index }
-              img={ recipe.strDrinkThumb }
-              name={ recipe.strDrink }
-              key={ recipe.idDrink }
-              urlId={ recipe.idDrink }
-              option="drink"
-            />)))
-
-      ) }
     </div>
   );
 }
