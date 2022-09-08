@@ -1,66 +1,44 @@
 import React, { useEffect, useContext } from 'react';
 import Header from '../../components/Header';
-// import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 import FoodsContext from '../../context/FoodsContext';
-// import RecipeCard from '../../components/RecipeCard';
-// import FilterBtn from '../components/FilterBtn';
 import FilterContext from '../../context/FilterContext';
 import Categories from '../../components/Filters/Categories';
 import FoodsList from '../../components/RecipesList/FoodsList';
 import fetchAllFoods from '../../hooks-utils/Foods-fetch/fetchAllFoods';
+import fetchFoodsByCategory from '../../hooks-utils/Foods-fetch/fetchFoodsByCategory';
 import fetchFoodsCategories from '../../hooks-utils/Foods-fetch/fetchFoodsCategories';
 
 function Foods() {
-  const { foodData, setFoodData } = useContext(FoodsContext);
+  const { foodData, setFoodData, selectedFoodFilter } = useContext(FoodsContext);
+
   const { setFilterData } = useContext(FilterContext);
   console.log(foodData);
 
-  // const { foodData,
-  //   fetchFoodsAPI, selectedFoodFilter, setSelectedFoodFilter } = useContext(FoodsContext);
-  // const { fetchFilters, filterData } = useContext(FilterContext);
-
-  // const { fetchFoodsAPI, selectedFoodFilter } = useContext(FoodsContext);
-  // const { fetchFilters } = useContext(FilterContext);
-
-  // const fetchFoodsOnLoad = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-
-  // problema com linha de string grande:
-  // const APIurlFilterByCategory = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
-  // const fetchFoodByCategory = `${APIurlFilterByCategory}${selectedFoodFilter}`;
-
-  // const foodFiltersURL = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
-
-  // useEffect(() => {
-  //   // fetchFoodsAPI(fetchFoodsOnLoad);
-  //   fetchFilters(foodFiltersURL);
-  // }, [fetchFoodsAPI, fetchFilters]);
-
-  // useEffect(() => {
-  //   if (selectedFoodFilter.length !== 0) fetchFoodsAPI(fetchFoodByCategory);
-  // }, [fetchFoodByCategory, fetchFoodsAPI, selectedFoodFilter]);
-
   useEffect(() => {
-    async function fetchFoods() {
+    async function fetchAllFoodsAndCategories() {
       const foods = await fetchAllFoods();
       setFoodData(foods);
-    }
-    fetchFoods();
-  }, [setFoodData]);
-
-  useEffect(() => {
-    async function fetchCategories() {
       const categories = await fetchFoodsCategories();
       setFilterData(categories);
     }
-    fetchCategories();
-  }, [setFilterData]);
+    fetchAllFoodsAndCategories();
+  }, [setFoodData, setFilterData]);
+
+  useEffect(() => {
+    async function fetchByCategory() {
+      const foods = await fetchFoodsByCategory(selectedFoodFilter);
+      setFoodData(foods);
+    }
+    fetchByCategory();
+  }, [setFoodData, selectedFoodFilter]);
 
   return (
     <div>
       <Header title="Foods" showSearchBar />
       <Categories type="food" />
       <FoodsList />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
