@@ -17,13 +17,11 @@ function SearchBar({ title }) {
   const handleSearch = async () => {
     if (title === 'Foods') {
       const foods = await fetchFoodsBySearch(searchType, searchInput);
-      setFoodData(foods);
+      if (foods) {
+        setFoodData(foods);
+      }
       setSearchInput('');
     }
-    // if (title === 'Drinks') {
-    //   fetchDrinks(searchType, searchInput);
-    //   setSearchInput('');
-    // }
   };
 
   return (
