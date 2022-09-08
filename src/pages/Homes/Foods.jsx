@@ -10,7 +10,10 @@ import fetchFoodsByCategory from '../../hooks-utils/Foods-fetch/fetchFoodsByCate
 import fetchFoodsCategories from '../../hooks-utils/Foods-fetch/fetchFoodsCategories';
 
 function Foods() {
-  const { setFoodData, selectedFoodFilter } = useContext(FoodsContext);
+  const {
+    setFoodData,
+    selectedFoodFilter,
+  } = useContext(FoodsContext);
 
   const { setFilterData, setCategory } = useContext(FilterContext);
 
