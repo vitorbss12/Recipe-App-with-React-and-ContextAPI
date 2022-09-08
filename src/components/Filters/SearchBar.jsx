@@ -5,14 +5,20 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import FoodsContext from '../../context/FoodsContext';
+import DrinksContext from '../../context/DrinksContext';
+import FilterContext from '../../context/FilterContext';
 import fetchFoodsBySearch from '../../hooks-utils/Foods-fetch/fetchFoodsBySearch';
-// import DrinksContext from '../../context/DrinksContext';
+import fetchDrinksBySearch from '../../hooks-utils/Drinks-fetch/fetchDrinksBySearch';
 
 function SearchBar({ title }) {
-  const { searchType,
+  const {
+    searchType,
     setSearchType,
     searchInput,
-    setSearchInput, setFoodData } = useContext(FoodsContext);
+    setSearchInput,
+  } = useContext(FilterContext);
+  const { setFoodData } = useContext(FoodsContext);
+  const { setDrinkData } = useContext(DrinksContext);
 
   const handleSearch = async () => {
     if (title === 'Foods') {
@@ -20,8 +26,14 @@ function SearchBar({ title }) {
       if (foods) {
         setFoodData(foods);
       }
-      setSearchInput('');
     }
+    if (title === 'Drinks') {
+      const drinks = await fetchDrinksBySearch(searchType, searchInput);
+      if (drinks) {
+        setDrinkData(drinks);
+      }
+    }
+    setSearchInput('');
   };
 
   return (
