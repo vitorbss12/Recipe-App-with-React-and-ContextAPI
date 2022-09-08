@@ -4,16 +4,16 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
-import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
-import useRecommendations from '../hooks/useRecommendations';
-import useGetIngredients from '../hooks/useGetIngredients';
-import useGetDoneRecipe from '../hooks/useGetDoneRecipe';
-import useGetInProgressRecipe from '../hooks/useGetInProgressRecipe';
-import FoodsContext from '../context/FoodsContext';
-import DrinksContext from '../context/DrinksContext';
-import RecommendationCard from '../components/RecommendationCard';
-import ShareButton from '../components/RecipeDetails/ShareButton';
-import FavoriteButton from '../components/RecipeDetails/FavoriteButton';
+import useFetchCurrentRecipe from '../../hooks-utils/useFetchCurrentRecipe';
+import useRecommendations from '../../hooks-utils/useRecommendations';
+import useGetIngredients from '../../hooks-utils/useGetIngredients';
+import useGetDoneRecipe from '../../hooks-utils/useGetDoneRecipe';
+import useGetInProgressRecipe from '../../hooks-utils/useGetInProgressRecipe';
+import FoodsContext from '../../context/FoodsContext';
+import DrinksContext from '../../context/DrinksContext';
+import RecommendationCard from '../../components/RecommendationCard';
+import ShareButton from '../../components/RecipeDetails/ShareButton';
+import FavoriteButton from '../../components/RecipeDetails/FavoriteButton';
 
 function FoodRecipeDetail() {
   const { currentFood } = useContext(FoodsContext);

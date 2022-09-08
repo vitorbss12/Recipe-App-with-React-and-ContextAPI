@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
-import Header from '../components/Header';
-import DoneFoodCard from '../components/DoneRecipes/DoneFoodCard';
-import DoneDrinkCard from '../components/DoneRecipes/DoneDrinkCard';
+import Header from '../../components/Header';
+import FavoriteFoodCard from '../../components/FavoriteRecipes/FavoriteFoodCard';
+import FavoriteDrinkCard from '../../components/FavoriteRecipes/FavoriteDrinkCard';
+import FilterContext from '../../context/FilterContext';
 
-function DoneRecipes() {
+function FavoriteRecipes() {
   const [filter, setFilter] = useState('all');
   const [currentRecipes, setCurrentRecipes] = useState([]);
+  const { favoriteRecipes } = useContext(FilterContext);
 
   useEffect(() => {
-    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
     if (filter !== 'all') {
-      const recipes = doneRecipes.filter((recipe) => recipe.type === filter);
+      const recipes = favoriteRecipes.filter((recipe) => recipe.type === filter);
       setCurrentRecipes(recipes);
     } else {
-      setCurrentRecipes(doneRecipes);
+      setCurrentRecipes(favoriteRecipes);
     }
-  }, [filter]);
+  }, [filter, favoriteRecipes]);
 
   const handleClick = ({ target }) => {
     setFilter(target.name);
@@ -24,7 +25,7 @@ function DoneRecipes() {
 
   return (
     <div>
-      <Header title="Done Recipes" />
+      <Header title="Favorite Recipes" />
       <Button
         variant="primary"
         data-testid="filter-by-all-btn"
@@ -52,13 +53,13 @@ function DoneRecipes() {
       { currentRecipes
         && currentRecipes.map((recipe, index) => (
           recipe.type === 'food' ? (
-            <DoneFoodCard
+            <FavoriteFoodCard
               key={ recipe.name }
               recipe={ recipe }
               index={ index }
             />
           ) : (
-            <DoneDrinkCard
+            <FavoriteDrinkCard
               key={ recipe.name }
               recipe={ recipe }
               index={ index }
@@ -69,4 +70,4 @@ function DoneRecipes() {
   );
 }
 
-export default DoneRecipes;
+export default FavoriteRecipes;

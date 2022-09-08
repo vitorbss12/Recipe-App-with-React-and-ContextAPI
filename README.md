@@ -1,4 +1,5 @@
 # 🚧 README em construção 🚧
+Esse App está sendo refatorado.
 
 <!-- Olá, Tryber!
 

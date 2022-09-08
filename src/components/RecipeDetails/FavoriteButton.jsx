@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import useGetFavoritesRecipe from '../../hooks/useGetFavoritesRecipes';
+import useGetFavoritesRecipe from '../../hooks-utils/useGetFavoritesRecipes';
 import WhiteFavoriteButtonImg from '../../images/whiteHeartIcon.svg';
 import BlackFavoriteButtonImg from '../../images/blackHeartIcon.svg';
 import DrinksContext from '../../context/DrinksContext';

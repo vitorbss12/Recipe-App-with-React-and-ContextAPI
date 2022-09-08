@@ -3,9 +3,9 @@ import Container from 'react-bootstrap/Container';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Nav from 'react-bootstrap/Nav';
-import FoodsContext from '../context/FoodsContext';
-import DrinksContext from '../context/DrinksContext';
-import FilterContext from '../context/FilterContext';
+import FoodsContext from '../../context/FoodsContext';
+import DrinksContext from '../../context/DrinksContext';
+import FilterContext from '../../context/FilterContext';
 import '../styles/components/Categories.css';
 
 function Categories({ type }) {

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import DrinksContext from '../context/DrinksContext';
-import RecipeCard from '../components/RecipeCard';
-import FilterContext from '../context/FilterContext';
-import FilterBtn from '../components/FilterBtn';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import DrinksContext from '../../context/DrinksContext';
+import RecipeCard from '../../components/RecipeCard';
+import FilterContext from '../../context/FilterContext';
+import FilterBtn from '../../components/FilterBtn';
 
 function Drinks() {
   const RECIPES_PER_VISUALIZATION = 12;

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import useGetIngredients from '../hooks/useGetIngredients';
+import useGetIngredients from '../hooks-utils/useGetIngredients';
 import DrinksContext from '../context/DrinksContext';
 import FoodsContext from '../context/FoodsContext';
 import FilterContext from '../context/FilterContext';

@@ -1,22 +1,22 @@
 import React, { useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
-import useFetchCurrentRecipe from '../hooks/useFetchCurrentRecipe';
-import DrinksContext from '../context/DrinksContext';
-import FilterContext from '../context/FilterContext';
-import ShareButton from '../components/RecipeDetails/ShareButton';
-import FavoriteButton from '../components/RecipeDetails/FavoriteButton';
-import IngredientList from '../components/IngredientList';
+import Button from 'react-bootstrap/Button';
+import FoodsContext from '../../context/FoodsContext';
+import FilterContext from '../../context/FilterContext';
+import useFetchCurrentRecipe from '../../hooks-utils/useFetchCurrentRecipe';
+import ShareButton from '../../components/RecipeDetails/ShareButton';
+import FavoriteButton from '../../components/RecipeDetails/FavoriteButton';
+import IngredientList from '../../components/IngredientList';
 
-function DrinkRecipeDetails() {
-  const { currentDrink } = useContext(DrinksContext);
+function InProgressFoodRecipe() {
+  const { currentFood } = useContext(FoodsContext);
   const { doneRecipes, disabledBtn } = useContext(FilterContext);
   const location = useLocation();
   const history = useHistory();
-  const drinkId = parseInt(location.pathname.split('/')[2], 10);
-  useFetchCurrentRecipe('drinks', drinkId);
+  const foodId = parseInt(location.pathname.split('/')[2], 10);
+  useFetchCurrentRecipe('foods', foodId);
 
   const imgStyle = {
     borderRadius: '25px',
@@ -39,19 +39,17 @@ function DrinkRecipeDetails() {
   return (
     <Container fluid style={ { marginBottom: '25px' } }>
       <img
-        src={ currentDrink.strDrinkThumb }
-        alt={ currentDrink.strDrink }
+        src={ currentFood.strMealThumb }
+        alt={ currentFood.strMeal }
         style={ imgStyle }
         data-testid="recipe-photo"
       />
-      <h3 data-testid="recipe-title"><strong>{ currentDrink.strDrink }</strong></h3>
-      <h5 data-testid="recipe-category">
-        {currentDrink.strCategory}
-      </h5>
+      <h3 data-testid="recipe-title"><strong>{ currentFood.strMeal }</strong></h3>
+      <h5 data-testid="recipe-category">{ currentFood.strCategory }</h5>
       <ShareButton />
-      <FavoriteButton option="drink" id={ drinkId } />
-      <IngredientList option="drink" id={ drinkId } />
-      <p data-testid="instructions">{ currentDrink.strInstructions }</p>
+      <FavoriteButton option="food" id={ foodId } />
+      <IngredientList option="food" id={ foodId } />
+      <p data-testid="instructions">{ currentFood.strInstructions }</p>
       <Navbar fixed="bottom">
         <Button
           type="submit"
@@ -67,4 +65,4 @@ function DrinkRecipeDetails() {
   );
 }
 
-export default DrinkRecipeDetails;
+export default InProgressFoodRecipe;

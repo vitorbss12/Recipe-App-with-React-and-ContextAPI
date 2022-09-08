@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import FoodsContext from '../context/FoodsContext';
-import DrinksContext from '../context/DrinksContext';
-import FilterContext from '../context/FilterContext';
+import FoodsContext from '../../context/FoodsContext';
+import DrinksContext from '../../context/DrinksContext';
+import FilterContext from '../../context/FilterContext';
 
 function FilterBtn({ name }) {
   const { setSelectedFoodFilter } = useContext(FoodsContext);
