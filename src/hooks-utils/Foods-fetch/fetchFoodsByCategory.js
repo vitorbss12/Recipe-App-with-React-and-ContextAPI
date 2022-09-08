@@ -1,7 +1,9 @@
+async function fetchFoodsByCategory(category) {
+  let url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
 
-
-async function fetchAllFoods() {
-  const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  if (category === 'All') {
+    url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  }
 
   try {
     const response = await fetch(url);
@@ -14,4 +16,4 @@ async function fetchAllFoods() {
   }
 }
 
-export default fetchAllFoods;
+export default fetchFoodsByCategory;
