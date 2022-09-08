@@ -41,7 +41,7 @@ jobs:
         run: npm install
 
       - name: Run stylelint
-        run: lint:styles
+        run: npm run lint:styles
 
       - if: ${{ failure() }}
         name: Comment on PR
