@@ -5,6 +5,7 @@ import Footer from '../../components/Footer';
 import DrinksContext from '../../context/DrinksContext';
 import FilterContext from '../../context/FilterContext';
 import Categories from '../../components/Filters/Categories';
+import DrinkList from '../../components/RecipesList/DrinksList';
 import fetchAllDrinks from '../../hooks-utils/Drinks-fetch/fetchAllDrinks';
 import fetchDrinksByCategory from '../../hooks-utils/Drinks-fetch/fetchDrinksByCategory';
 import fetchDrinksCategories from '../../hooks-utils/Drinks-fetch/fetchDrinksCategories';
@@ -38,7 +39,7 @@ function Drinks() {
     <div>
       <Header title="Drinks" showSearchBar />
       <Categories type="drink" />
-      {/* <DrinkList /> */}
+      <DrinkList />
       <Footer />
     </div>
   );
