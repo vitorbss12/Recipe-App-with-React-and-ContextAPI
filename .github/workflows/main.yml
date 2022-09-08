@@ -18,8 +18,8 @@ jobs:
       - name: run linter
         id: eslint
         run: |
-          npm run lint
-          echo "::set-output name=LINT_RESULT::$(npm run lint -- --format=json)"
+          VAR=$((npm run lint) 2>&1)
+          echo "::set-output name=LINT_RESULT::$VAR"
 
       - if: ${{ failure() }}
         name: Comment on PR
