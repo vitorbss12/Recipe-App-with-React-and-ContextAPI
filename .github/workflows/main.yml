@@ -17,7 +17,9 @@ jobs:
 
       - name: run linter
         id: eslint
-        run: npm run lint
+        run: |
+          npm run lint
+          echo "::set-output name=eslint::$(npm run lint -- --format=json)"
 
       - if: ${{ failure() }}
         name: Comment on PR
@@ -25,7 +27,7 @@ jobs:
         with:
           message: |
             Lint failed with the following errors:
-            ${{ steps.eslint.outputs.stdout }}
+            ${{ steps.eslint.outputs.eslint }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   stylelint:
