@@ -1,4 +1,4 @@
-on: [push, pull_request]
+on: pull_request
 
 jobs:
   eslint:
@@ -19,7 +19,7 @@ jobs:
         id: eslint
         run: |
           npm run lint
-          echo "::set-output name=eslint::$(npm run lint -- --format=json)"
+          echo "::set-output name=LINT_RESULT::$(npm run lint -- --format=json)"
 
       - if: ${{ failure() }}
         name: Comment on PR
@@ -27,22 +27,25 @@ jobs:
         with:
           message: |
             Lint failed with the following errors:
-            ${{ steps.eslint.outputs.eslint }}
+            ${{ steps.eslint.outputs.LINT_RESULT }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  stylelint:
-    name: Stylelint
-    runs-on: ubuntu-latest
+      - name: Echo message
+        run: echo ${{ steps.eslint.outputs.LINT_RESULT }}
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - name: Install dependencies
-        run: npm install
+  # stylelint:
+  #   name: Stylelint
+  #   runs-on: ubuntu-latest
 
-      - name: run linter
-        run: npm run lint:styles
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 16
+  #     - name: Install dependencies
+  #       run: npm install
+
+  #     - name: run linter
+  #       run: npm run lint:styles
