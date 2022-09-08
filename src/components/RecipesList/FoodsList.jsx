@@ -7,12 +7,10 @@ function FoodsLists() {
   const { foodData } = useContext(FoodsContext);
   const RECIPES_PER_VISUALIZATION = 12;
 
-  console.log(foodData);
-
   return (
     <Container className="recipe-container overflow-auto">
-      {
-        foodData.map((recipe, index) => (
+      { foodData
+        && foodData.map((recipe, index) => (
           index < RECIPES_PER_VISUALIZATION && (
             <RecipeCard
               id={ index }
@@ -23,8 +21,7 @@ function FoodsLists() {
               urlId={ recipe.idMeal }
               option="food"
             />)
-        ))
-      }
+        ))}
     </Container>
   );
 }
