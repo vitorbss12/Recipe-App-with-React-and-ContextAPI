@@ -9,7 +9,6 @@ import SearchBar from './Filters/SearchBar';
 
 function Header({ title, showSearchBar }) {
   const history = useHistory();
-  console.log(showSearchBar);
 
   return (
     <header>

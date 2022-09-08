@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import FilterContext from './FilterContext';
 
 function FilterProvider({ children }) {
+  const [searchType, setSearchType] = useState('Name');
+  const [searchInput, setSearchInput] = useState('');
+
   const [filterData, setFilterData] = useState([]);
   const [doneRecipes, setDoneRecipes] = useState([]);
   const lastLocalStore = JSON.parse(localStorage.getItem('favoriteRecipes')) || null;
@@ -37,6 +40,10 @@ function FilterProvider({ children }) {
     setDisabledBtn,
     favoriteRecipes,
     setFavoriteRecipes,
+    searchType,
+    setSearchType,
+    searchInput,
+    setSearchInput,
   };
 
   return (

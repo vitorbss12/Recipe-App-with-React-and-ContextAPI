@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
@@ -11,37 +11,33 @@ function Categories({ type }) {
   const { setSelectedFoodFilter } = useContext(FoodsContext);
   const { setSelectedDrinkFilter } = useContext(DrinksContext);
   const { filterData } = useContext(FilterContext);
-  console.log(filterData);
+  const [selected, setSelected] = useState('All');
   const FILTERS_PER_VISUALIZATION = 6;
 
-  useEffect(() => {
-    setSelectedDrinkFilter('All');
-    setSelectedFoodFilter('All');
-  }, [setSelectedDrinkFilter, setSelectedFoodFilter]);
-
-  const handleClick = (selectedFilter) => {
-    console.log(selectedFilter);
+  const setCategory = (selectedFilter) => {
     if (type === 'food') {
       setSelectedFoodFilter(selectedFilter);
+      setSelected(selectedFilter);
     }
     if (type === 'drink') {
       setSelectedDrinkFilter(selectedFilter);
+      setSelected(selectedFilter);
     }
     if (selectedFilter === 'All') {
       setSelectedDrinkFilter(selectedFilter);
       setSelectedFoodFilter(selectedFilter);
+      setSelected(selectedFilter);
     }
   };
 
   return (
     <Container>
       <Row>
-        <Nav justify variant="tabs" defaultActiveKey="#All">
+        <Nav justify variant="tabs" defaultActiveKey={ `#${selected}` }>
           <Nav.Item>
             <Nav.Link
-              onClick={ () => handleClick('All') }
+              onClick={ () => setCategory('All') }
               href="#All"
-              className="categories-nav-item"
             >
               All
             </Nav.Link>
@@ -53,9 +49,8 @@ function Categories({ type }) {
                   key={ filter.strCategory }
                 >
                   <Nav.Link
-                    onClick={ () => handleClick(filter.strCategory) }
+                    onClick={ () => setCategory(filter.strCategory) }
                     href={ `#${filter.strCategory}` }
-                    className="categories-nav-item"
                   >
                     {filter.strCategory}
                   </Nav.Link>
