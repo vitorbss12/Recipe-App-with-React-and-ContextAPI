@@ -29,24 +29,24 @@ jobs:
     stylelint:
       name: Stylelint
       runs-on: ubuntu-latest
+      
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Setup Node.js
+          uses: actions/setup-node@v1
+          with:
+            node-version: 16
+        - name: Install dependencies
+          run: npm install
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - name: Install dependencies
-        run: npm install
+        - name: Run stylelint
+          run: lint:styles
 
-      - name: Run stylelint
-        run: lint:styles
-
-      - if: ${{ failure() }}
-        name: Comment on PR
-        uses: thollander/actions-comment-pull-request@v1
-        with:
-          message: |
-            Stylelint failed          
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - if: ${{ failure() }}
+          name: Comment on PR
+          uses: thollander/actions-comment-pull-request@v1
+          with:
+            message: |
+              Stylelint failed          
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
