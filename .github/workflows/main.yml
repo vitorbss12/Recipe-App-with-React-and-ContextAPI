@@ -18,7 +18,7 @@ jobs:
       - name: run linter
         id: eslint
         run: |
-          LINT=$(((npm run lint) 2>&1) || true)
+          LINT=$(((eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js,.jsx) 2>&1) || true)
           LINT="${LINT//'%'/'%25'}"
           LINT="${LINT//$'\n'/'%0A'}"
           LINT="${LINT//$'\r'/'%0D'}"
