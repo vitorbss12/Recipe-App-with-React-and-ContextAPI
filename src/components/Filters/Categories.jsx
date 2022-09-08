@@ -1,65 +1,65 @@
-import React, { useContext, useState } from 'react';
-import Container from 'react-bootstrap/Container';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Row from 'react-bootstrap/Row';
-import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import FoodsContext from '../../context/FoodsContext';
 import DrinksContext from '../../context/DrinksContext';
 import FilterContext from '../../context/FilterContext';
+import '../../styles/components/Filters/Categories.css';
 
 function Categories({ type }) {
   const { setSelectedFoodFilter } = useContext(FoodsContext);
   const { setSelectedDrinkFilter } = useContext(DrinksContext);
-  const { filterData } = useContext(FilterContext);
-  const [selected, setSelected] = useState('All');
-  const FILTERS_PER_VISUALIZATION = 6;
+  const { filterData, category, setCategory } = useContext(FilterContext);
+  const [filtersNumber, setFiltersNumber] = useState(0);
+  const SIX = 6;
+  const FIVE = 5;
 
-  const setCategory = (selectedFilter) => {
+  useEffect(() => {
     if (type === 'food') {
-      setSelectedFoodFilter(selectedFilter);
-      setSelected(selectedFilter);
+      setFiltersNumber(SIX);
     }
     if (type === 'drink') {
-      setSelectedDrinkFilter(selectedFilter);
-      setSelected(selectedFilter);
+      setFiltersNumber(FIVE);
     }
-    if (selectedFilter === 'All') {
-      setSelectedDrinkFilter(selectedFilter);
-      setSelectedFoodFilter(selectedFilter);
-      setSelected(selectedFilter);
+  }, [type]);
+
+  useEffect(() => {
+    if (type === 'food') {
+      setSelectedFoodFilter(category);
     }
-  };
+    if (type === 'drink') {
+      setSelectedDrinkFilter(category);
+    }
+    if (category === 'All') {
+      setSelectedDrinkFilter(category);
+      setSelectedFoodFilter(category);
+    }
+  }, [category, type, setSelectedFoodFilter, setSelectedDrinkFilter]);
 
   return (
     <Container>
-      <Row>
-        <Nav justify variant="tabs" defaultActiveKey={ `#${selected}` }>
-          <Nav.Item>
-            <Nav.Link
-              onClick={ () => setCategory('All') }
-              href="#All"
-            >
-              All
-            </Nav.Link>
-          </Nav.Item>
-          { filterData.length > 1 && (
-            filterData.map((filter, index) => (
-              index < FILTERS_PER_VISUALIZATION && (
-                <Nav.Item
-                  key={ filter.strCategory }
-                >
-                  <Nav.Link
-                    onClick={ () => setCategory(filter.strCategory) }
-                    href={ `#${filter.strCategory}` }
-                  >
-                    {filter.strCategory}
-                  </Nav.Link>
-                </Nav.Item>
-              )
-            ))
-          ) }
-        </Nav>
-      </Row>
+      <Tabs
+        className="categories-tabs"
+        onSelect={ (k) => setCategory(k) }
+        justify
+        variant="pills"
+        activeKey={ category }
+      >
+        <Tab eventKey="All" title="All" />
+        { filterData.length > 1 && (
+          filterData.map((filter, index) => (
+            index < filtersNumber && (
+              <Tab
+                key={ filter.strCategory }
+                eventKey={ filter.strCategory }
+                title={ filter.strCategory }
+              />
+            )
+          ))
+        ) }
+      </Tabs>
     </Container>
   );
 }

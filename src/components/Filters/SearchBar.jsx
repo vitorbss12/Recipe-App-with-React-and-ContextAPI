@@ -17,6 +17,7 @@ function SearchBar({ title }) {
     setSearchType,
     searchInput,
     setSearchInput,
+    setCategory,
   } = useContext(FilterContext);
   const { setFoodData } = useContext(FoodsContext);
   const { setDrinkData } = useContext(DrinksContext);
@@ -35,6 +36,7 @@ function SearchBar({ title }) {
       }
     }
     setSearchInput('');
+    setCategory('All');
   };
 
   return (

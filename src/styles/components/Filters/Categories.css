@@ -1,0 +1,22 @@
+/* .categories-tabs {
+  background-color: aquamarine;
+} */
+
+.nav.nav-pills .nav-item{
+  color: rgb(255, 132, 0);
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+  transition: 0.5s;
+  margin: 3px;
+}
+
+.nav.nav-pills .nav-item:hover{
+  background-color: rgb(255, 179, 0);
+  color: white;
+}
+
+.nav.nav-pills .nav-link.active {
+  background-color: rgb(255, 132, 0);
+  font-weight: 600;
+}
