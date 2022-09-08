@@ -4,15 +4,14 @@ import Footer from '../../components/Footer';
 import DrinksContext from '../../context/DrinksContext';
 import RecipeCard from '../../components/RecipeDetails/RecipeCard';
 import FilterContext from '../../context/FilterContext';
-import FilterBtn from '../../components/Filters/FilterBtn';
 
 function Drinks() {
   const RECIPES_PER_VISUALIZATION = 12;
-  const FILTERS_PER_VISUALIZATION = 5;
+  // const FILTERS_PER_VISUALIZATION = 5;
 
   const { drinkData, fetchDrinksAPI,
     selectedDrinkFilter, setSelectedDrinkFilter } = useContext(DrinksContext);
-  const { fetchFilters, filterData } = useContext(FilterContext);
+  const { fetchFilters } = useContext(FilterContext);
 
   const fetchDrinksOnLoad = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
@@ -41,7 +40,7 @@ function Drinks() {
       >
         All
       </button>
-      { filterData.length > 1 && (
+      {/* { filterData.length > 1 && (
         filterData.map((filter, index) => (
           index < FILTERS_PER_VISUALIZATION && (
             <FilterBtn
@@ -50,7 +49,7 @@ function Drinks() {
             />
           )
         ))
-      ) }
+      ) } */}
       { drinkData.length > 1 && (
         drinkData.map((recipe, index) => (
           index < RECIPES_PER_VISUALIZATION && (

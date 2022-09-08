@@ -1,5 +1,5 @@
 async function fetchFoodsBySearch(type, input) {
-  const alertMessage = 'Sinto muito, não encontramos nenhuma receita para essa busca.';
+  const alertMessage = 'No results found. Please try again.';
 
   try {
     switch (type) {
@@ -22,7 +22,7 @@ async function fetchFoodsBySearch(type, input) {
       break;
     }
     case 'First letter': {
-      if (input.length > 1) {
+      if (input.length > 1 || input.length === 0) {
         return global.alert('Your search must have only 1 (one) character');
       }
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${input}`);

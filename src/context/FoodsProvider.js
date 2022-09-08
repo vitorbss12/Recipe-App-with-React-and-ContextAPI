@@ -6,7 +6,7 @@ function FoodsProvider({ children }) {
   const [searchType, setSearchType] = useState('Name');
   const [searchInput, setSearchInput] = useState('');
 
-  const [selectedFoodFilter, setSelectedFoodFilter] = useState('');
+  const [selectedFoodFilter, setSelectedFoodFilter] = useState('All');
 
   const [foodData, setFoodData] = useState([]);
   const [currentFood, setCurrentFood] = useState([]);
