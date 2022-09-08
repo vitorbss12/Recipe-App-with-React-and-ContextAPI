@@ -1,14 +1,10 @@
-/* .categories-tabs {
-  background-color: aquamarine;
-} */
-
 .nav.nav-pills .nav-item{
+  align-items: center; 
   color: rgb(255, 132, 0);
   display: flex; 
   justify-content: center;
-  align-items: center; 
-  transition: 0.5s;
   margin: 3px;
+  transition: 0.5s;
 }
 
 .nav.nav-pills .nav-item:hover{
