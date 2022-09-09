@@ -20,19 +20,16 @@ jobs:
           npm run lint 2>&1 | tee test.log
           result_code=${PIPESTATUS[0]}
           echo "::set-output name=test::$(cat test.log)"
+          exit $result_code
         id: eslint
 
-      - name: Test echo
-        run: |
-          echo ${{steps.eslint.outputs.test}}
-
-      # - if: ${{ failure() }}
-      #   name: Comment on PR
-      #   uses: thollander/actions-comment-pull-request@v1
-      #   with:
-      #     message: |
-      #       Lint failed            
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - if: ${{ failure() }}
+        name: Comment on PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            ${{steps.eslint.outputs.test}}            
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # stylelint:
   #   name: Stylelint
