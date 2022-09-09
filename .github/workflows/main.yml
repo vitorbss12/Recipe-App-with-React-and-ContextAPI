@@ -18,10 +18,12 @@ jobs:
       - name: Run linter
         run: |
           echo "::set-output name=lint-test::$(npm run lint)\n"
+          echo ${{join(steps.eslint.outputs.*, '\n')}}
         id: eslint
 
       - name: Test echo
-        run: echo ${{join(steps.eslint.outputs.*, '\n')}}
+        run: |
+          echo ${{join(steps.eslint.outputs.*, '\n')}}
 
       # - if: ${{ failure() }}
       #   name: Comment on PR
