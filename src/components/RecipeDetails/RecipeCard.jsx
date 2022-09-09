@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { useHistory } from 'react-router-dom';
+import '../../styles/components/RecipeCard.css';
 
 function RecipeCard({ id, img, name, option, urlId }) {
   const history = useHistory();
@@ -17,7 +18,7 @@ function RecipeCard({ id, img, name, option, urlId }) {
 
   return (
     <Card
-      // className="recipe-card"
+      className="recipe-card"
       onClick={ () => handleClick(urlId) }
     >
       <Card.Img
