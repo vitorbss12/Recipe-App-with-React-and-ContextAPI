@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import '../../styles/Login/Login.css';
 
 function Login() {
   const [userEmail, setUserEmail] = useState('');
@@ -43,10 +44,10 @@ function Login() {
         <h2 className="login-title">Let&apos;s Cook!</h2>
       </Row>
       <Row className="justify-content-center">
-        <h3 className="login-subtitle">An app for those who like to cook</h3>
+        <h3 className="login-subtitle mb-4">An app for those who like to cook</h3>
       </Row>
       <Row className="justify-content-center">
-        <Form className="login-forms" onSubmit={ loginFormsSubmit }>
+        <Form className="login-forms p-4" onSubmit={ loginFormsSubmit }>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
@@ -65,7 +66,6 @@ function Login() {
           </Form.Group>
           <Button
             bsPrefix="login-btn"
-            className="md-auto"
             type="submit"
             disabled={ !isBtnEnabled }
           >
