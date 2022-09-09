@@ -21,7 +21,7 @@ jobs:
         id: eslint
 
       - name: Test echo
-        run: echo ${{ steps.eslint.outputs.lint-test }}
+        run: ${{ steps.eslint.outputs.lint-test }}
 
       # - if: ${{ failure() }}
       #   name: Comment on PR
