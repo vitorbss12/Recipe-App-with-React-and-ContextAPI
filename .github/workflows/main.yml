@@ -20,7 +20,6 @@ jobs:
           npm run lint 2>&1 | tee test.log
           result_code=${PIPESTATUS[0]}
           echo "::set-output name=test::$(cat test.log)"
-          exit $result_code
         id: eslint
 
       - name: Test echo
