@@ -16,19 +16,18 @@ jobs:
         run: npm install
 
       - name: Run linter
-        run: |
-          npm run lint 2>&1 | tee test.log
-          result_code=${PIPESTATUS[0]}
-          echo "::set-output name=test::$(cat test.log)"
-          exit $result_code
+        uses: mathiasvr/command-output@v1
         id: eslint
-
+        with: 
+          run: |
+            npm run lint
+            
       - if: ${{ failure() }}
         name: Comment on PR
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
-            ${{steps.eslint.outputs.test}}            
+            ${{ steps.eslint.outputs.stdout }}            
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # stylelint:
