@@ -24,17 +24,17 @@ function Footer() {
             type="button"
             className="mr-2 ml-2"
             bsPrefix="footer-btn"
-            onClick={ () => history.push('/drinks') }
+            onClick={ () => history.push('/explore') }
           >
-            Drinks
+            Explore
           </Button>
           <Button
             type="button"
             className="mr-2 ml-2"
             bsPrefix="footer-btn"
-            onClick={ () => history.push('/explore') }
+            onClick={ () => history.push('/drinks') }
           >
-            Explore
+            Drinks
           </Button>
         </Row>
       </Container>
