@@ -21,6 +21,7 @@
   flex-flow: row wrap;
   height: 390px;
   justify-content: center;
+  padding-bottom: 65px;
 }
 
 .recipe-container-drinks {
@@ -29,4 +30,5 @@
   flex-flow: row wrap;
   height: 365px;
   justify-content: center;
+  padding-bottom: 65px;
 }
