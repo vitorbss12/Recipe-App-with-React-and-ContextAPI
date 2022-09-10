@@ -31,29 +31,29 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   stylelint:
-     name: Stylelint
-     runs-on: ubuntu-latest
-   
-     steps:
-       - name: Checkout
-         uses: actions/checkout@v2
-       - name: Setup Node.js
-         uses: actions/setup-node@v1
-         with:
-           node-version: 16
-       - name: Install dependencies
-         run: npm install
-       - name: Run linter
-         uses: mathiasvr/command-output@v1
-         id: stylelint
-         with: 
-           run: |
-             npm run lint:styles
+    name: Stylelint
+    runs-on: ubuntu-latest
 
-       - if: ${{ failure() }}
-         name: Comment on PR
-         uses: thollander/actions-comment-pull-request@v1
-         with:
-           message: |
-             ${{ steps.eslint.outputs.stdout }}          
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm install
+      - name: Run linter
+        uses: mathiasvr/command-output@v1
+        id: stylelint
+        with: 
+          run: |
+            npm run lint:styles
+
+      - if: ${{ failure() }}
+        name: Comment on PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            ${{ steps.stylelint.outputs.stdout }}          
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

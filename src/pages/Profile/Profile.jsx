@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-
 function Profile({ history }) {
   const user = JSON.parse(localStorage.getItem('user'));
   const loginRoute = () => {
