@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import DrinksContext from '../../context/DrinksContext';
@@ -12,9 +11,8 @@ import fetchDrinksCategories from '../../hooks-utils/Drinks-fetch/fetchDrinksCat
 
 function Drinks() {
   const { setDrinkData, selectedDrinkFilter } = useContext(DrinksContext);
-  const history = useHistory();
 
-  const { setFilterData } = useContext(FilterContext);
+  const { setFilterData, setCategory } = useContext(FilterContext);
 
   useEffect(() => {
     async function fetchAllDrinksAndCategories() {
@@ -24,8 +22,8 @@ function Drinks() {
       setFilterData(categories);
     }
     fetchAllDrinksAndCategories();
-    history.push('/drinks#All');
-  }, [setDrinkData, setFilterData, history]);
+    setCategory('All');
+  }, [setDrinkData, setFilterData, setCategory]);
 
   useEffect(() => {
     async function fetchByCategory() {

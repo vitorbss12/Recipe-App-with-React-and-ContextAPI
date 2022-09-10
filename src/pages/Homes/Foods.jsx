@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import FoodsContext from '../../context/FoodsContext';
@@ -11,10 +10,12 @@ import fetchFoodsByCategory from '../../hooks-utils/Foods-fetch/fetchFoodsByCate
 import fetchFoodsCategories from '../../hooks-utils/Foods-fetch/fetchFoodsCategories';
 
 function Foods() {
-  const { setFoodData, selectedFoodFilter } = useContext(FoodsContext);
-  const history = useHistory();
+  const {
+    setFoodData,
+    selectedFoodFilter,
+  } = useContext(FoodsContext);
 
-  const { setFilterData } = useContext(FilterContext);
+  const { setFilterData, setCategory } = useContext(FilterContext);
 
   useEffect(() => {
     async function fetchAllFoodsAndCategories() {
@@ -24,8 +25,8 @@ function Foods() {
       setFilterData(categories);
     }
     fetchAllFoodsAndCategories();
-    history.push('/foods#All');
-  }, [setFoodData, setFilterData, history]);
+    setCategory('All');
+  }, [setFoodData, setFilterData, setCategory]);
 
   useEffect(() => {
     async function fetchByCategory() {

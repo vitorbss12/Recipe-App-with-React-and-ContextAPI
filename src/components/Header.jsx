@@ -6,15 +6,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import SearchBar from './Filters/SearchBar';
+import '../styles/components/Header.css';
 
 function Header({ title, showSearchBar }) {
   const history = useHistory();
 
   return (
     <header>
-      <Container className="header">
-        <Row className="d-flex mb-2">
-          <Col className="d-flex justify-content-start align-self-center">
+      <Container className="header mb-2 p-3">
+        <Row className="mb-2">
+          <Col>
             <h1 className="page-title">
               {title}
             </h1>

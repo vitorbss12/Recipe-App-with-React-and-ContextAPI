@@ -1,0 +1,18 @@
+.nav.nav-pills .nav-item {
+  align-items: center;
+  color: rgb(255, 132, 0);
+  display: flex;
+  justify-content: center;
+  margin: 3px;
+  transition: 0.5s;
+}
+
+.nav.nav-pills .nav-item:hover {
+  background-color: rgb(255, 179, 0);
+  color: white;
+}
+
+.nav.nav-pills .nav-link.active {
+  background-color: rgb(255, 132, 0);
+  font-weight: 600;
+}

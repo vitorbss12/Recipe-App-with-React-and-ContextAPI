@@ -9,6 +9,7 @@ import DrinksContext from '../../context/DrinksContext';
 import FilterContext from '../../context/FilterContext';
 import fetchFoodsBySearch from '../../hooks-utils/Foods-fetch/fetchFoodsBySearch';
 import fetchDrinksBySearch from '../../hooks-utils/Drinks-fetch/fetchDrinksBySearch';
+import '../../styles/components/Filters/SearchBar.css';
 
 function SearchBar({ title }) {
   const {
@@ -16,6 +17,7 @@ function SearchBar({ title }) {
     setSearchType,
     searchInput,
     setSearchInput,
+    setCategory,
   } = useContext(FilterContext);
   const { setFoodData } = useContext(FoodsContext);
   const { setDrinkData } = useContext(DrinksContext);
@@ -34,14 +36,16 @@ function SearchBar({ title }) {
       }
     }
     setSearchInput('');
+    setCategory('All');
   };
 
   return (
-    <Container>
+    <Container fluid>
       <Row>
-        <Col>
+        <Col className="d-flex">
           <input
             type="text"
+            className="w-100 search-input"
             value={ searchInput }
             placeholder={ `Search by ${searchType}` }
             onChange={ ({ target }) => setSearchInput(target.value) }
@@ -55,9 +59,10 @@ function SearchBar({ title }) {
           </Button>
         </Col>
       </Row>
-      <Row>
-        <label htmlFor="name">
+      <Row className="justify-content-center mt-2">
+        <label htmlFor="name" className="search-radio-label">
           <input
+            className="search-radio"
             type="radio"
             name="search-type"
             value="Name"
@@ -67,8 +72,9 @@ function SearchBar({ title }) {
           />
           Name
         </label>
-        <label htmlFor="ingredient">
+        <label htmlFor="ingredient" className="search-radio-label">
           <input
+            className="search-radio"
             type="radio"
             name="search-type"
             value="Ingredient"
@@ -77,8 +83,9 @@ function SearchBar({ title }) {
           />
           Ingredient
         </label>
-        <label htmlFor="first-letter">
+        <label htmlFor="first-letter" className="search-radio-label">
           <input
+            className="search-radio"
             type="radio"
             name="search-type"
             value="First letter"

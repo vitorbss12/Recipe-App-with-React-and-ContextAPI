@@ -6,7 +6,6 @@
   font-size: 15px;
   outline: none;
   padding: 5px 15px;
-  width: 100%;
 }
 
 .search-btn {
@@ -32,6 +31,7 @@
   color: white;
   font-size: 15px;
   font-weight: 600;
+  margin-bottom: 0;
   margin-right: 10px;
 }
 
