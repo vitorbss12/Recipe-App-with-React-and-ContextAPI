@@ -18,8 +18,7 @@
 .recipe-container-foods {
   align-items: stretch;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   height: 390px;
   justify-content: center;
 }
@@ -27,8 +26,7 @@
 .recipe-container-drinks {
   align-items: stretch;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   height: 365px;
   justify-content: center;
 }
