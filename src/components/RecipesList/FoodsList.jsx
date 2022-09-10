@@ -9,7 +9,7 @@ function FoodsLists() {
   const RECIPES_PER_VISUALIZATION = 12;
 
   return (
-    <Container className="recipe-container">
+    <Container className="recipe-container-foods overflow-auto">
       { foodData
         && foodData.map((recipe, index) => (
           index < RECIPES_PER_VISUALIZATION && (
