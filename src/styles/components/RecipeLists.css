@@ -15,11 +15,20 @@
   background: rgb(255, 132, 0);
 }
 
-.recipe-container {
-  align-items: center;
+.recipe-container-foods {
+  align-items: stretch;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   height: 390px;
+  justify-content: center;
+}
+
+.recipe-container-drinks {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 365px;
   justify-content: center;
 }
