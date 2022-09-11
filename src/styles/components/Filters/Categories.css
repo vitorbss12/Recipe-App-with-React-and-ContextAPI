@@ -11,16 +11,17 @@
   transition: 0.5s;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: rgb(255, 132, 0) ! important;
+  color: white;
+  font-weight: 600;
+}
+
 .nav.nav-pills .nav-link:hover {
   background-color: rgb(255, 179, 0);
   color: white;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-  color: #fff;
-  background-color: rgb(255, 132, 0) !important;
-  font-weight: 600;
-}
 
 .dropdown .dropdown-menu .dropdown-item {
   color: rgb(255, 132, 0);
