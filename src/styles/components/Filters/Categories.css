@@ -1,4 +1,8 @@
-.nav.nav-pills .nav-item {
+.nav {
+  justify-content: center;
+}
+
+.nav.nav-pills .nav-link {
   align-items: center;
   color: rgb(255, 132, 0);
   display: flex;
@@ -7,12 +11,29 @@
   transition: 0.5s;
 }
 
-.nav.nav-pills .nav-item:hover {
+.nav.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: rgb(255, 132, 0) ! important;
+  color: white;
+  font-weight: 600;
+}
+
+.nav.nav-pills .nav-link:hover {
   background-color: rgb(255, 179, 0);
   color: white;
 }
 
-.nav.nav-pills .nav-link.active {
+
+.dropdown .dropdown-menu .dropdown-item {
+  color: rgb(255, 132, 0);
+  transition: 0.5s;
+}
+
+.dropdown .dropdown-menu .dropdown-item.active {
   background-color: rgb(255, 132, 0);
-  font-weight: 600;
+  color: white;
+}
+
+.dropdown .dropdown-menu .dropdown-item:hover {
+  background-color: rgb(255, 179, 0);
+  color: white;
 }

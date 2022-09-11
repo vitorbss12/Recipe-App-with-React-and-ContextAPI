@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import Nav from 'react-bootstrap/Nav';
+import NavDropDown from 'react-bootstrap/NavDropdown';
 import FoodsContext from '../../context/FoodsContext';
 import DrinksContext from '../../context/DrinksContext';
 import FilterContext from '../../context/FilterContext';
@@ -12,18 +12,6 @@ function Categories({ type }) {
   const { setSelectedFoodFilter } = useContext(FoodsContext);
   const { setSelectedDrinkFilter } = useContext(DrinksContext);
   const { filterData, category, setCategory } = useContext(FilterContext);
-  const [filtersNumber, setFiltersNumber] = useState(0);
-  const SIX = 6;
-  const FIVE = 5;
-
-  useEffect(() => {
-    if (type === 'food') {
-      setFiltersNumber(SIX);
-    }
-    if (type === 'drink') {
-      setFiltersNumber(FIVE);
-    }
-  }, [type]);
 
   useEffect(() => {
     if (type === 'food') {
@@ -40,26 +28,31 @@ function Categories({ type }) {
 
   return (
     <Container>
-      <Tabs
-        className="categories-tabs"
-        onSelect={ (k) => setCategory(k) }
-        justify
+      <Nav
         variant="pills"
         activeKey={ category }
+        onSelect={ (k) => setCategory(k) }
+        justify
       >
-        <Tab eventKey="All" title="All" />
-        { filterData.length > 1 && (
-          filterData.map((filter, index) => (
-            index < filtersNumber && (
-              <Tab
-                key={ filter.strCategory }
-                eventKey={ filter.strCategory }
-                title={ filter.strCategory }
-              />
-            )
-          ))
-        ) }
-      </Tabs>
+        <Nav.Item>
+          <Nav.Link eventKey="All">All</Nav.Link>
+        </Nav.Item>
+        <NavDropDown title="+ Categories" id="nav-dropdown">
+          { filterData.length > 1 && (
+            filterData.map((filter) => (
+              filter.strCategory !== 'Goat' && (
+                <NavDropDown.Item
+                  eventKey={ filter.strCategory }
+                  key={ filter.strCategory }
+                  title={ filter.strCategory }
+                >
+                  { filter.strCategory }
+                </NavDropDown.Item>
+              )
+            ))
+          ) }
+        </NavDropDown>
+      </Nav>
     </Container>
   );
 }
