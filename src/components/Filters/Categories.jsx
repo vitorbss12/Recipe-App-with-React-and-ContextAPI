@@ -37,7 +37,7 @@ function Categories({ type }) {
         <Nav.Item>
           <Nav.Link eventKey="All">All</Nav.Link>
         </Nav.Item>
-        <NavDropDown title="More Categories" id="nav-dropdown">
+        <NavDropDown title="+ Categories" id="nav-dropdown">
           { filterData.length > 1 && (
             filterData.map((filter) => (
               filter.strCategory !== 'Goat' && (
