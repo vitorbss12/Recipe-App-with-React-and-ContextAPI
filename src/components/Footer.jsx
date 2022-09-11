@@ -10,7 +10,7 @@ function Footer() {
 
   return (
     <footer>
-      <Container className="footer p-3">
+      <Container className="p-3">
         <Row className="d-flex justify-content-center">
           <Button
             type="button"
