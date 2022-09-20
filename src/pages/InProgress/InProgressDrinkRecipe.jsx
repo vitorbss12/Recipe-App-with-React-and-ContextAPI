@@ -7,7 +7,7 @@ import useFetchCurrentRecipe from '../../hooks-utils/useFetchCurrentRecipe';
 import DrinksContext from '../../context/DrinksContext';
 import FilterContext from '../../context/FilterContext';
 import ShareButton from '../../components/RecipeDetails/ShareButton';
-import FavoriteButton from '../../components/RecipeDetails/FavoriteButton';
+import FavoriteButton from '../../components/FavoriteButtonInDetails/FavoriteButton';
 import IngredientList from '../../components/RecipeDetails/IngredientList';
 
 function DrinkRecipeDetails() {

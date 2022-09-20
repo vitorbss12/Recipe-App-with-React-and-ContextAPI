@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
 import ShareButton from '../RecipeDetails/ShareButton';
-import FavoriteButton from './FavoriteButton';
+import FavoriteButton from '../FavoriteButton/FavoriteButton';
 
 function FavoriteFoodCard({ recipe, index }) {
   const history = useHistory();

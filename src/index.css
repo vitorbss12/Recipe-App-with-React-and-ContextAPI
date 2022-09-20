@@ -1,21 +1,34 @@
+:root {
+  --cursive-font: 'Pacifico', cursive;
+  --inter-font: 'Inter', sans-serif;
+  --inter-weight-ligth: 200;
+  --inter-weight-regular: 400;
+  --inter-weight-bold: 600;
+  --background-color: white;
+  --primary-color: rgb(255, 179, 0);
+  --secondary-color: rgb(255, 132, 0);
+  --dark-color: rgb(183, 183, 183);
+  --white-color: white;
+  --font-size-xs: 2.5rem;
+  --font-size-lg: 2rem;
+  --font-size-md: 1rem;
+  --font-size-sm: 0.8rem;
+  --border-radius-lg: 1rem;
+  --border-radius-sm: 0.5rem;
+  --buttons-padding: 0.5rem 1rem;
+  --full-width: 100%;
+  --basic-transition: 0.5s
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 .Container-Mobile {
-  background-color: #f8f8f8;
+  background-color: var(--background-color);
   border: 1px solid #000;
-  display: flex;
   height: 640px;
   margin: auto;
   width: 360px;

@@ -1,16 +1,22 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 import * as serviceWorker from './serviceWorker';
-import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
+import App from './App';
 
 ReactDOM.render(
   <BrowserRouter>
-    <div className="Container-Mobile">
-      <App />
-    </div>
+    <Container
+      fluid="xxl"
+      className="d-flex align-items-center Container-Mobile"
+    >
+      <Container fluid="xxl" className="d-flex mx-auto my-auto">
+        <App />
+      </Container>
+    </Container>
   </BrowserRouter>,
   document.getElementById('root'),
 );

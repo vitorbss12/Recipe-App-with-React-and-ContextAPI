@@ -1,0 +1,9 @@
+.login-forms {
+  border-radius: var(--border-radius-lg);
+}
+
+.login-labels {
+  font-family: var(--inter-font);
+  font-size: var(--font-size-md);
+  font-weight: var(--inter-weight-regular);
+}

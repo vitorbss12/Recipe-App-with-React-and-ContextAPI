@@ -1,0 +1,18 @@
+.default-btn {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: var(--buttons-padding);
+  transition: var(--basic-transition);
+  width: var(--full-width);
+  font-family: var(--inter-font);
+  font-weight: var(--inter-weight-bold);
+}
+
+.default-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.default-btn:disabled {
+  background-color: var(--dark-color);
+  opacity: 1;
+}

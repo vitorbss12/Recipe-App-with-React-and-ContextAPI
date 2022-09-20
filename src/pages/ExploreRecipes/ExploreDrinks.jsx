@@ -3,28 +3,29 @@ import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 
-function Explore() {
+function ExploreDrinks() {
   const history = useHistory();
   return (
     <div>
-      <Header title="Explore" />
+      <Header title="Explore Drinks" />
       <button
+        className="ingredient-btn"
         type="button"
-        data-testid="explore-foods"
-        onClick={ () => history.push('/explore/foods') }
+        data-testid="explore-by-ingredient"
+        onClick={ () => history.push('/explore/drinks/ingredients') }
       >
-        Explore Foods
+        By Ingredient
       </button>
       <button
+        className="surprise-btn"
         type="button"
-        data-testid="explore-drinks"
-        onClick={ () => history.push('/explore/drinks') }
+        data-testid="explore-surprise"
       >
-        Explore Drinks
+        Surprise me!
       </button>
       <Footer />
     </div>
   );
 }
 
-export default Explore;
+export default ExploreDrinks;
