@@ -9,26 +9,3 @@
   font-family: var(--inter-font);
   font-size: var(--font-size-md);
 }
-
-
-
-/* .login-btn {
-  background-color: rgb(255, 179, 0);
-  border: none;
-  border-radius: 5px;
-  color: white;
-  padding: 10px 20px;
-  transition: 0.5s;
-  width: 100%;
-}
-
-.login-btn:hover {
-  background-color: rgb(255, 132, 0);
-  color: white;
-}
-
-.login-btn:disabled {
-  background-color: rgb(183, 183, 183);
-  color: white;
-  opacity: 1;
-} */

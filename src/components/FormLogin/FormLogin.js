@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { emailValidation, passwordValidation } from '../../utils/loginValidation';
 import './FormLogin.css';
 
 function FormLogin() {
@@ -10,16 +11,6 @@ function FormLogin() {
   const [userPassword, setUserPassword] = useState('');
   const [isBtnEnabled, setIsBtnEnabled] = useState(false);
   const history = useHistory();
-
-  const emailValidation = (email) => {
-    const pattern = /\S+@\S+.com/;
-    return pattern.test(email);
-  };
-
-  const passwordValidation = (password) => {
-    const MIN_PASSWORD_LENGTH = 6;
-    return password.length > MIN_PASSWORD_LENGTH;
-  };
 
   useEffect(() => {
     const btnStatus = emailValidation(userEmail)
