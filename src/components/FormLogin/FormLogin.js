@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { emailValidation, passwordValidation } from '../../utils/loginValidation';
+import saveLoginInLocalStorage from '../../utils/saveLoginInLocalStorage';
 import './FormLogin.css';
 
 function FormLogin() {
@@ -21,11 +22,8 @@ function FormLogin() {
 
   const loginFormsSubmit = (event) => {
     event.preventDefault();
-    localStorage.setItem('mealsToken', 1);
-    localStorage.setItem('cocktailsToken', 1);
-    localStorage.setItem('user', JSON.stringify({ email: userEmail }));
+    saveLoginInLocalStorage(userEmail);
     history.push('/foods');
-    console.log('submit');
   };
 
   return (
