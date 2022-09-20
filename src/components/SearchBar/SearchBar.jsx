@@ -4,12 +4,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import FoodsContext from '../../contexts/Recipes/RecipesContext';
-import DrinksContext from '../../contexts/Drinks/DrinksContext';
+import RecipesContext from '../../contexts/Recipes/RecipesContext';
 import FilterContext from '../../contexts/Filters/FilterContext';
-import fetchFoodsBySearch from '../../utils/Foods/fetchFoodsBySearch';
 import fetchDrinksBySearch from '../../utils/Drinks/fetchDrinksBySearch';
-import '../../styles/components/Filters/SearchBar.css';
+import callFoodsApi from '../../utils/Foods';
+import './SearchBar.css';
 
 function SearchBar({ title }) {
   const {
@@ -19,12 +18,11 @@ function SearchBar({ title }) {
     setSearchInput,
     setCategory,
   } = useContext(FilterContext);
-  const { setFoodData } = useContext(FoodsContext);
-  const { setDrinkData } = useContext(DrinksContext);
+  const { setFoodData, setDrinkData } = useContext(RecipesContext);
 
   const handleSearch = async () => {
     if (title === 'Foods') {
-      const foods = await fetchFoodsBySearch(searchType, searchInput);
+      const foods = await callFoodsApi.fetchBySearch(searchType, searchInput);
       if (foods) {
         setFoodData(foods);
       }
@@ -42,24 +40,25 @@ function SearchBar({ title }) {
   return (
     <Container fluid>
       <Row>
-        <Col className="d-flex">
+        <Col className="d-flex justify-content-between align-items-stretch">
           <input
             type="text"
-            className="w-100 search-input"
+            className="flex-fill ml-2 pl-3 border-0 rounded-left search-input"
             value={ searchInput }
             placeholder={ `Search by ${searchType}` }
             onChange={ ({ target }) => setSearchInput(target.value) }
           />
           <Button
             type="button"
-            bsPrefix="search-btn"
+            bsPrefix="header-footer-btn"
+            className="border-0 rounded-right"
             onClick={ () => handleSearch() }
           >
             Search
           </Button>
         </Col>
       </Row>
-      <Row className="justify-content-center mt-2">
+      <Row className="justify-content-center align-items-center mt-2">
         <label htmlFor="name" className="search-radio-label">
           <input
             className="search-radio"

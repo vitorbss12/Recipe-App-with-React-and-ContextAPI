@@ -1,4 +1,4 @@
-async function fetchFoodsByCategory(category) {
+async function fetchByCategory(category) {
   let url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
 
   if (category === 'All') {
@@ -16,4 +16,4 @@ async function fetchFoodsByCategory(category) {
   }
 }
 
-export default fetchFoodsByCategory;
+export default fetchByCategory;

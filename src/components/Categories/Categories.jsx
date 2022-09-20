@@ -1,16 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropDown from 'react-bootstrap/NavDropdown';
-import FoodsContext from '../../context/FoodsContext';
-import DrinksContext from '../../context/DrinksContext';
-import FilterContext from '../../context/FilterContext';
-import '../../styles/components/Filters/Categories.css';
+import RecipesContext from '../../contexts/Recipes/RecipesContext';
+import FilterContext from '../../contexts/Filters/FilterContext';
+import './Categories.css';
 
 function Categories({ type }) {
-  const { setSelectedFoodFilter } = useContext(FoodsContext);
-  const { setSelectedDrinkFilter } = useContext(DrinksContext);
+  const { setSelectedFoodFilter, setSelectedDrinkFilter } = useContext(RecipesContext);
   const { filterData, category, setCategory } = useContext(FilterContext);
 
   useEffect(() => {
@@ -27,7 +25,7 @@ function Categories({ type }) {
   }, [category, type, setSelectedFoodFilter, setSelectedDrinkFilter]);
 
   return (
-    <Container>
+    <Container fluid="sm">
       <Nav
         variant="pills"
         activeKey={ category }
@@ -37,7 +35,10 @@ function Categories({ type }) {
         <Nav.Item>
           <Nav.Link eventKey="All">All</Nav.Link>
         </Nav.Item>
-        <NavDropDown title="+ Categories" id="nav-dropdown">
+        <NavDropDown
+          title="+ Categories"
+          id="nav-dropdown"
+        >
           { filterData.length > 1 && (
             filterData.map((filter) => (
               filter.strCategory !== 'Goat' && (

@@ -4,7 +4,7 @@ import RecipesProvider from './contexts/Recipes/RecipesProvider';
 import FilterProvider from './contexts/Filters/FilterProvider';
 import Login from './pages/Login/Login';
 import './App.css';
-// import Foods from './pages/Homes/Foods';
+import FoodsHome from './pages/Homes/FoodsHome';
 // import Drinks from './pages/Homes/Drinks';
 // import Explore from './pages/Explore/Explore';
 // import ExploreFoods from './pages/Explore/ExploreFoods';
@@ -25,9 +25,17 @@ function App() {
     <FilterProvider>
       <RecipesProvider>
         <Switch>
-          <Route exact path="/" component={ Login } />
-          {/* <Route exact path="/foods" component={ Foods } />
-          <Route exact path="/drinks" component={ Drinks } />
+          <Route
+            exact
+            path="/"
+            component={ Login }
+          />
+          <Route
+            exact
+            path="/foods"
+            component={ FoodsHome }
+          />
+          {/* <Route exact path="/drinks" component={ Drinks } />
           <Route exact path="/explore" component={ Explore } />
           <Route exact path="/explore/drinks" component={ ExploreDrinks } />
           <Route exact path="/explore/foods" component={ ExploreFoods } />
