@@ -84,7 +84,7 @@ npm start
 
 ### **React**
 
-A aplicação foi componentizada utilizando `React`, divido em:
+A aplicação foi componentizada utilizando `React`.
 
 ### **React Hooks**
 
