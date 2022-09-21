@@ -92,7 +92,7 @@ Os principais hooks utilizados na aplicação foram `useState`, `useContext`, `u
 
 ### **Context API**
 
-`Context API` ficou responsável pelo estado global da aplicação para gerenciar alterações na busca, categorias receitas favoritas e prontas.
+`Context API` ficou responsável pelo estado global da aplicação para gerenciar alterações na busca, categorias, receitas favoritas e prontas.
 
 ### **Local Storage**
 
