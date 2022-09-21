@@ -1,4 +1,4 @@
-async function fetchDrinksByCategory(category) {
+async function fetchByCategory(category) {
   let url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`;
 
   if (category === 'All') {
@@ -16,4 +16,4 @@ async function fetchDrinksByCategory(category) {
   }
 }
 
-export default fetchDrinksByCategory;
+export default fetchByCategory;

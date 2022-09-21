@@ -25,7 +25,7 @@ function Categories({ type }) {
   }, [category, type, setSelectedFoodFilter, setSelectedDrinkFilter]);
 
   return (
-    <Container fluid="sm">
+    <Container fluid="sm" className="mb-2 mt-2">
       <Nav
         variant="pills"
         activeKey={ category }

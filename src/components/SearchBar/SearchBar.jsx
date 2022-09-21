@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import RecipesContext from '../../contexts/Recipes/RecipesContext';
 import FilterContext from '../../contexts/Filters/FilterContext';
-import fetchDrinksBySearch from '../../utils/Drinks/fetchDrinksBySearch';
+import fetchDrinksBySearch from '../../utils/Drinks/fetchBySearch';
 import callFoodsApi from '../../utils/Foods';
 import './SearchBar.css';
 

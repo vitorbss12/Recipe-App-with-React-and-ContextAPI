@@ -1,4 +1,4 @@
-async function fetchAllDrinks() {
+async function fetchAll() {
   const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
   try {
@@ -12,4 +12,4 @@ async function fetchAllDrinks() {
   }
 }
 
-export default fetchAllDrinks;
+export default fetchAll;

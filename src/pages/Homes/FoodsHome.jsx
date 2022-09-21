@@ -5,9 +5,8 @@ import FilterContext from '../../contexts/Filters/FilterContext';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Categories from '../../components/Categories/Categories';
-// import FoodsList from '../../components/RecipesList/FoodsList';
+import FoodsList from '../../components/RecipesList/FoodsList';
 import callFoodsApi from '../../utils/Foods';
-import './FoodsHome.css';
 
 function Foods() {
   const {
@@ -43,7 +42,7 @@ function Foods() {
     >
       <Header title="Foods" showSearchBar />
       <Categories type="food" />
-      {/* <FoodsList /> */}
+      <FoodsList />
       <Footer />
     </Container>
   );

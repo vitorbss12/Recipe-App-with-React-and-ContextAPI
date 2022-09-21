@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { useHistory } from 'react-router-dom';
-import '../../styles/components/RecipeCard.css';
+import './RecipeCard.css';
 
 function RecipeCard({ id, img, name, option, urlId }) {
   const history = useHistory();
@@ -18,13 +18,14 @@ function RecipeCard({ id, img, name, option, urlId }) {
 
   return (
     <Card
-      className="recipe-card"
+      className="recipe-card align-self-stretch"
       onClick={ () => handleClick(urlId) }
     >
       <Card.Img
         src={ img }
         alt={ `${name}` }
         variant="top"
+        className="rounded"
       />
       <Card.Title data-testid={ `${id}-card-name` }>{ name }</Card.Title>
     </Card>
