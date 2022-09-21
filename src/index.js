@@ -11,11 +11,9 @@ ReactDOM.render(
   <BrowserRouter>
     <Container
       fluid="xxl"
-      className="d-flex align-items-center Container-Mobile"
+      className="d-flex Container-Mobile"
     >
-      <Container fluid="xxl" className="d-flex mx-auto my-auto">
-        <App />
-      </Container>
+      <App />
     </Container>
   </BrowserRouter>,
   document.getElementById('root'),

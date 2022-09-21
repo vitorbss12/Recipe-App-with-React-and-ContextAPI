@@ -1,4 +1,4 @@
-async function fetchAllFoods() {
+async function fetchAll() {
   const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
   try {
@@ -12,4 +12,4 @@ async function fetchAllFoods() {
   }
 }
 
-export default fetchAllFoods;
+export default fetchAll;

@@ -16,3 +16,18 @@
   background-color: var(--dark-color);
   opacity: 1;
 }
+
+.header-footer-btn {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  padding: var(--buttons-padding);
+  transition: var(--basic-transition);
+  font-family: var(--inter-font);
+  font-weight: var(--inter-weight-bold);
+}
+
+.header-footer-btn:hover {
+  background-color: var(--white-color);
+  color: var(--secondary-color);
+  opacity: 1;
+}

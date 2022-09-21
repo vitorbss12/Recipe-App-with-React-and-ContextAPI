@@ -1,4 +1,4 @@
-async function fetchFoodsByCategory(category) {
+async function fetchByCategory(category) {
   let url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
 
   if (category === 'All') {
@@ -9,6 +9,8 @@ async function fetchFoodsByCategory(category) {
     const response = await fetch(url);
     const { meals } = await response.json();
     if (meals) {
+      console.log('meals');
+      console.log(meals);
       return meals;
     }
   } catch (error) {
@@ -16,4 +18,4 @@ async function fetchFoodsByCategory(category) {
   }
 }
 
-export default fetchFoodsByCategory;
+export default fetchByCategory;

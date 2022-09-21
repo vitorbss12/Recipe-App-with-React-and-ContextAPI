@@ -3,4 +3,27 @@
   margin: 5px;
   padding: 5px;
   width: 45%;
+  font-family: var(--inter-font);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.recipe-card:hover {
+  background-color: var(--light-color);
+}
+
+.recipe-card img {
+  transition: 0.5s;
+}
+
+.recipe-card:hover img,
+.recipe-card:focus img {
+  transform: scale(1.05);
+}
+
+.recipe-card div {
+  font-size: var(--font-size-md);
+  font-weight: var(--inter-weight-bold);
+  margin-bottom: 0;
+  padding-top: 10px;
 }

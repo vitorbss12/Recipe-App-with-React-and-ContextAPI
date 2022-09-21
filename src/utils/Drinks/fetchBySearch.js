@@ -1,4 +1,4 @@
-async function fetchDrinksBySearch(type, input) {
+async function fetchBySearch(type, input) {
   const alertMessage = 'No results found. Please try again.';
 
   try {
@@ -41,4 +41,4 @@ async function fetchDrinksBySearch(type, input) {
   }
 }
 
-export default fetchDrinksBySearch;
+export default fetchBySearch;

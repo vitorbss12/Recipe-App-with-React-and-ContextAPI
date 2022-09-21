@@ -1,34 +1,12 @@
 ::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(255, 179, 0);
-  border-radius: 10px;
+  background: var(--primary-color);
+  border-radius: var(--border-radius-lg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(255, 132, 0);
-}
-
-.recipe-container-foods {
-  align-items: stretch;
-  display: flex;
-  flex-flow: row wrap;
-  height: 390px;
-  justify-content: center;
-  padding-bottom: 65px;
-}
-
-.recipe-container-drinks {
-  align-items: stretch;
-  display: flex;
-  flex-flow: row wrap;
-  height: 365px;
-  justify-content: center;
-  padding-bottom: 65px;
+  background: var(--secondary-color);
 }

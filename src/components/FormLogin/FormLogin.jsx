@@ -29,7 +29,7 @@ function FormLogin() {
   return (
     <Container fluid>
       <Form
-        className="login-forms shadow p-4 mb-5 bg-white"
+        className="login-forms shadow p-4 bg-white"
         onSubmit={ loginFormsSubmit }
       >
         <Form.Group controlId="formBasicEmail" className="login-labels">
