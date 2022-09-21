@@ -104,8 +104,7 @@ A aplicação teve estilização principal com `Bootstrap`.
 
 ### **TheMealDB API e TheCocktailDB API**
 
-A API utilizada para as receitas de comidas é a [TheMealDB](https://www.themealdb.com/api.php).
-A API utilizada para as receitas de bebidas é a [TheCocktailDB](https://www.thecocktaildb.com/api.php).
+A API utilizada para as receitas de comidas é a [TheMealDB](https://www.themealdb.com/api.php). Já a API utilizada para as receitas de bebidas é a [TheCocktailDB](https://www.thecocktaildb.com/api.php).
 
 ### **Linter**
 
