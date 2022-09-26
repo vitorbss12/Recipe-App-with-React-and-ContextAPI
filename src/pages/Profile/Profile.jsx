@@ -1,51 +1,61 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 
-function Profile({ history }) {
+function Profile() {
   const user = JSON.parse(localStorage.getItem('user'));
+
+  const history = useHistory();
+
   const loginRoute = () => {
     localStorage.clear();
     history.push('/');
   };
 
   return (
-    <div>
-      <Header title="Profile" />
+    <Container
+      fluid="xxl"
+      className="d-flex flex-column justify-content-between flex-fill"
+    >
+      <Header title="Profile" recipeDetails />
+      <Container className="d-flex flex-column align-items-center">
+        <Row>
+          <p>{ user?.email }</p>
+        </Row>
+        <Row className="d-flex flex-column">
+          <Button
+            type="submit"
+            className="mt-2 mb-2 border-0 rounded"
+            bsPrefix="default-btn"
+            onClick={ () => history.push('/done-recipes') }
+          >
+            Done Recipes
+          </Button>
+          <Button
+            type="submit"
+            className="mt-2 mb-2 border-0 rounded"
+            bsPrefix="default-btn"
+            onClick={ () => history.push('/favorite-recipes') }
+          >
+            Favorite Recipes
+          </Button>
+          <Button
+            type="submit"
+            className="mt-2 mb-2 border-0 rounded"
+            bsPrefix="default-btn"
+            onClick={ loginRoute }
+          >
+            Logout
+          </Button>
+        </Row>
+      </Container>
       <Footer />
-      <div>
-        <p data-testid="profile-email">{ user?.email }</p>
-        <button
-          type="submit"
-          data-testid="profile-done-btn"
-          onClick={ () => history.push('/done-recipes') }
-        >
-          Done Recipes
-        </button>
-        <button
-          type="submit"
-          data-testid="profile-favorite-btn"
-          onClick={ () => history.push('/favorite-recipes') }
-        >
-          Favorite Recipes
-        </button>
-        <button
-          type="submit"
-          data-testid="profile-logout-btn"
-          onClick={ loginRoute }
-        >
-          Logout
-        </button>
-      </div>
-    </div>
+    </Container>
   );
 }
-
-Profile.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 export default Profile;
