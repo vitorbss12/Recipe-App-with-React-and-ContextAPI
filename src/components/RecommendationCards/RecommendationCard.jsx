@@ -16,7 +16,7 @@ function RecommendationCard({ option, recipe }) {
   }
 
   return (
-    <Card>
+    <Card className="recommendation-card">
       <Card.Img
         variant="top"
         src={ recipeImg }

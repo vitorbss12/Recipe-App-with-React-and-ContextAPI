@@ -11,8 +11,12 @@ function RecipeInstructions({ instructions }) {
   );
 }
 
+RecipeInstructions.defaultProps = {
+  instructions: 'Loading...',
+};
+
 RecipeInstructions.propTypes = {
-  instructions: PropTypes.string.isRequired,
+  instructions: PropTypes.string,
 };
 
 export default RecipeInstructions;

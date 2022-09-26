@@ -10,16 +10,21 @@ import RecipeInstructions from '../RecipeInstructions/RecipeInstructions';
 import Recommendations from '../Recommendations/Recommendations';
 
 function RecipeContent({ option, id }) {
-  const { loading, setLoading, currentFood } = useContext(RecipesContext);
+  const { loading, setLoading, currentFood, currentDrink } = useContext(RecipesContext);
   const [ingredients, setIngredients] = useState([]);
+  const [currentRecipe, setCurrentRecipe] = useState({});
 
   useEffect(() => {
-    if (currentFood) {
-      setLoading(false);
-      setIngredients(getIngredients(currentFood));
+    if (option === 'foods') {
+      setCurrentRecipe(currentFood);
+    } else {
+      setCurrentRecipe(currentDrink);
     }
-    console.log(currentFood);
-  }, [currentFood, setLoading]);
+    if (currentRecipe) {
+      setLoading(false);
+      setIngredients(getIngredients(currentRecipe));
+    }
+  }, [currentFood, currentDrink, currentRecipe, setLoading, option]);
 
   return (
     <Container fluid="xxl" className="overflow-auto">
@@ -27,15 +32,20 @@ function RecipeContent({ option, id }) {
         <>
           <RecipeDetailsTop
             option={ option }
-            title={ currentFood.strMeal }
-            category={ currentFood.strCategory }
-            image={ currentFood.strMealThumb }
+            title={ option === 'foods' ? currentRecipe.strMeal : currentRecipe.strDrink }
+            category={
+              option === 'foods' ? currentRecipe.strCategory : currentRecipe.strCategory
+            }
+            image={
+              option === 'foods'
+                ? currentRecipe.strMealThumb : currentRecipe.strDrinkThumb
+            }
             foodId={ id }
           />
           <RecipeIngredients ingredients={ ingredients } />
-          <RecipeInstructions instructions={ currentFood.strInstructions } />
+          <RecipeInstructions instructions={ currentRecipe.strInstructions } />
           {/* <RecipeVideo name={ currentFood.strMeal } url={ currentFood.strYoutube } /> */}
-          <Recommendations option="drinks" />
+          <Recommendations option={ option === 'foods' ? 'drinks' : 'foods' } />
         </>
       ) : (
         <div>Loading...</div>

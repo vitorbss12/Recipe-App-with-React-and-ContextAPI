@@ -7,7 +7,7 @@ import './App.css';
 import FoodsHome from './pages/Homes/FoodsHome';
 import DrinksHome from './pages/Homes/DrinksHome';
 import FoodRecipeDetail from './pages/RecipeDetails/FoodRecipeDetail';
-// import DrinkRecipeDetail from './pages/RecipeDetails/DrinkRecipeDetail';
+import DrinkRecipeDetail from './pages/RecipeDetails/DrinkRecipeDetail';
 // import Explore from './pages/Explore/Explore';
 // import ExploreFoods from './pages/Explore/ExploreFoods';
 // import ExploreDrinks from './pages/Explore/ExploreDrinks';
@@ -45,11 +45,11 @@ function App() {
             path="/foods/:id"
             component={ FoodRecipeDetail }
           />
-          {/* <Route
+          <Route
             exact
             path="/drinks/:id"
             component={ DrinkRecipeDetail }
-          /> */}
+          />
           {/* <Route exact path="/explore" component={ Explore } />
           <Route exact path="/explore/drinks" component={ ExploreDrinks } />
           <Route exact path="/explore/foods" component={ ExploreFoods } />

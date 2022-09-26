@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import RecipesContext from '../contexts/Recipes/RecipesContext';
 
-const SIX_NUMBER = 6;
+const SIX_NUMBER = 3;
 
 function useFetchDrinksRecommendations(options) {
   const {

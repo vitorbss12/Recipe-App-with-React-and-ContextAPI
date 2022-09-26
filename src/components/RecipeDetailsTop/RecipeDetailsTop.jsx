@@ -40,12 +40,19 @@ function RecipeDetailsTop({ option, title, category, image, foodId }) {
   );
 }
 
+RecipeDetailsTop.defaultProps = {
+  title: 'Title',
+  category: 'Category',
+  image: 'Loading...',
+  foodId: 0,
+};
+
 RecipeDetailsTop.propTypes = {
   option: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  foodId: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  category: PropTypes.string,
+  image: PropTypes.string,
+  foodId: PropTypes.number,
 };
 
 export default RecipeDetailsTop;
