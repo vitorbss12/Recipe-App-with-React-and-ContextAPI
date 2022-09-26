@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
-function RecommendationCard({ option, recipe, index }) {
+function RecommendationCard({ option, recipe }) {
   let recipeName = 'unknown';
   let recipeImg = 'unknown';
 
@@ -15,25 +15,14 @@ function RecommendationCard({ option, recipe, index }) {
     recipeImg = recipe.strDrinkThumb;
   }
 
-  const cardStyle = {
-    padding: '5px',
-  };
-
-  const imgStyle = {
-    width: '145px',
-  };
-
   return (
-    <Card style={ cardStyle }>
+    <Card>
       <Card.Img
         variant="top"
         src={ recipeImg }
-        style={ imgStyle }
       />
       <Card.Body>
-        <Card.Title
-          data-testid={ `${index}-recomendation-title` }
-        >
+        <Card.Title>
           { recipeName }
         </Card.Title>
       </Card.Body>
@@ -53,7 +42,6 @@ RecommendationCard.propTypes = {
     strMealThumb: PropTypes.string,
     strDrinkThumb: PropTypes.string,
   }),
-  index: PropTypes.number.isRequired,
   option: PropTypes.string,
 };
 

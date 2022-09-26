@@ -6,7 +6,8 @@ import Login from './pages/Login/Login';
 import './App.css';
 import FoodsHome from './pages/Homes/FoodsHome';
 import DrinksHome from './pages/Homes/DrinksHome';
-// import Drinks from './pages/Homes/Drinks';
+import FoodRecipeDetail from './pages/RecipeDetails/FoodRecipeDetail';
+// import DrinkRecipeDetail from './pages/RecipeDetails/DrinkRecipeDetail';
 // import Explore from './pages/Explore/Explore';
 // import ExploreFoods from './pages/Explore/ExploreFoods';
 // import ExploreDrinks from './pages/Explore/ExploreDrinks';
@@ -16,8 +17,6 @@ import DrinksHome from './pages/Homes/DrinksHome';
 // import Profile from './pages/Profile/Profile';
 // import DoneRecipes from './pages/Others/DoneRecipes';
 // import FavoriteRecipes from './pages/Others/FavoriteRecipes';
-// import DrinkRecipeDetail from './pages/Details/DrinkRecipeDetail';
-// import FoodRecipeDetail from './pages/Details/FoodRecipeDetail';
 // import inProgressFoodRecipe from './pages/InProgress/InProgressFoodRecipe';
 // import inProgressDrinkRecipe from './pages/InProgress/InProgressDrinkRecipe';
 
@@ -41,6 +40,16 @@ function App() {
             path="/drinks"
             component={ DrinksHome }
           />
+          <Route
+            exact
+            path="/foods/:id"
+            component={ FoodRecipeDetail }
+          />
+          {/* <Route
+            exact
+            path="/drinks/:id"
+            component={ DrinkRecipeDetail }
+          /> */}
           {/* <Route exact path="/explore" component={ Explore } />
           <Route exact path="/explore/drinks" component={ ExploreDrinks } />
           <Route exact path="/explore/foods" component={ ExploreFoods } />
@@ -73,17 +82,6 @@ function App() {
             exact
             path="/favorite-recipes"
             component={ FavoriteRecipes }
-          />
-          <Route
-            exact
-            path="/foods/:id"
-            component={ FoodRecipeDetail }
-          />
-          <Route
-            exact
-            path="/drinks/:id"
-            component={ DrinkRecipeDetail }
-          />
           <Route
             exact
             path="/foods/:id/in-progress"

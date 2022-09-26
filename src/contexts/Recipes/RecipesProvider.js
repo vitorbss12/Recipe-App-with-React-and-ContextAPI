@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
+  const [loading, setLoading] = useState(true);
+
   // Foods
   const [foodData, setFoodData] = useState([]);
   const [currentFood, setCurrentFood] = useState([]);
@@ -34,6 +36,8 @@ function RecipesProvider({ children }) {
     setDrinksRecommendations,
     selectedDrinkFilter,
     setSelectedDrinkFilter,
+    loading,
+    setLoading,
   };
 
   return (

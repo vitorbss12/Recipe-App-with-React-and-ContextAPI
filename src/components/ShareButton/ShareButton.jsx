@@ -5,13 +5,8 @@ import ShareButtonImg from '../../images/shareIcon.svg';
 
 const MAGIC_NUMBER = 3000;
 
-function ShareButton({ datatest, url }) {
+function ShareButton({ url }) {
   const [show, setShow] = useState(false);
-
-  const buttonStyle = {
-    margin: '5px',
-    width: '40px',
-  };
 
   useEffect(() => {
     function showMessage() {
@@ -51,13 +46,11 @@ function ShareButton({ datatest, url }) {
   }
 
   return (
-    <div>
+    <div className="pr-2 w-25">
       <input
         type="image"
         src={ ShareButtonImg }
         alt="Share"
-        data-testid={ datatest }
-        style={ buttonStyle }
         onClick={ handleClick }
       />
       {
@@ -70,12 +63,10 @@ function ShareButton({ datatest, url }) {
 }
 
 ShareButton.defaultProps = {
-  datatest: 'share-btn',
   url: '',
 };
 
 ShareButton.propTypes = {
-  datatest: PropTypes.string,
   url: PropTypes.string,
 };
 
