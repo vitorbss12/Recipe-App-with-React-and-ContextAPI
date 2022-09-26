@@ -22,7 +22,7 @@ function Recommendations({ option }) {
   }, [foodsRecommendations, drinksRecommendations, option]);
 
   return (
-    <Row className="m-0">
+    <Row className="m-0 mb-2">
       <h6 className="pl-4 mt-1">Drinks Recommendations:</h6>
       <Table className="m-0">
         <tbody>
