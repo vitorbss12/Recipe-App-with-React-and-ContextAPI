@@ -22,7 +22,7 @@
   color: var(--white-color);
 }
 
-.dropdown .dropdown-menu  {
+.dropdown .dropdown-menu {
   background-color: var(--white-color);
   border-radius: 5px;
   padding: 0;
