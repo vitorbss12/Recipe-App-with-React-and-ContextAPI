@@ -2,8 +2,4 @@ footer {
   background-color: var(--primary-color);
   border-start-end-radius: var(--border-radius-lg);
   border-start-start-radius: var(--border-radius-lg);
-  
-  /* position: fixed;
-  top: 579px;
-  width: 358px; */
 }
