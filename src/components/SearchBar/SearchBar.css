@@ -6,7 +6,7 @@
 }
 
 .search-input:focus {
-  border: none
+  border: none;
 }
 
 .search-radio-label {

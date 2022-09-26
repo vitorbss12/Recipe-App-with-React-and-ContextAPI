@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import useGetFavoritesRecipe from '../../utils/getFavoritesRecipes';
 import WhiteFavoriteButtonImg from '../../images/whiteHeartIcon.svg';
 import BlackFavoriteButtonImg from '../../images/blackHeartIcon.svg';
-import DrinksContext from '../../contexts/Drinks/DrinksContext';
-import FoodsContext from '../../contexts/Foods/FoodsContext';
+import RecipesContext from '../../contexts/Recipes/RecipesContext';
 import FilterContext from '../../contexts/Filters/FilterContext';
 
 function FavoriteButton({ option, id }) {
@@ -15,8 +14,7 @@ function FavoriteButton({ option, id }) {
   const [currentId, setCurrentId] = useState(null);
   const [currentName, setCurrentName] = useState(null);
   const [currentImg, setCurrentImg] = useState(null);
-  const { currentDrink } = useContext(DrinksContext);
-  const { currentFood } = useContext(FoodsContext);
+  const { currentDrink, currentFood } = useContext(RecipesContext);
   const { favoriteRecipes, setFavoriteRecipes } = useContext(FilterContext);
 
   useEffect(() => {
@@ -29,30 +27,24 @@ function FavoriteButton({ option, id }) {
   }, [favoriteRecipe]);
 
   useEffect(() => {
-    if (option === 'drink') {
+    if (option === 'drinks') {
       setCurrentRecipe(currentDrink);
     }
-    if (option === 'food') {
+    if (option === 'foods') {
       setCurrentRecipe(currentFood);
     }
   }, [currentDrink, currentFood, option]);
 
-  const buttonStyle = {
-    margin: '5px',
-    width: '40px',
-    fill: 'red',
-  };
-
   useEffect(() => {
-    setCurrentId(option === 'food' ? 'idMeal' : 'idDrink');
-    setCurrentName(option === 'food' ? 'strMeal' : 'strDrink');
-    setCurrentImg(option === 'food' ? 'strMealThumb' : 'strDrinkThumb');
+    setCurrentId(option === 'foods' ? 'idMeal' : 'idDrink');
+    setCurrentName(option === 'foods' ? 'strMeal' : 'strDrink');
+    setCurrentImg(option === 'foods' ? 'strMealThumb' : 'strDrinkThumb');
   }, [option]);
 
   useEffect(() => {
     if (favorite && !favoriteRecipe) {
-      const currentAlcoholicOrNot = option === 'food' ? '' : currentRecipe.strAlcoholic;
-      const strArea = option === 'food' ? currentRecipe.strArea : '';
+      const currentAlcoholicOrNot = option === 'foods' ? '' : currentRecipe.strAlcoholic;
+      const strArea = option === 'foods' ? currentRecipe.strArea : '';
       const newRecipe = {
         id: currentRecipe[currentId],
         type: option,
@@ -100,16 +92,13 @@ function FavoriteButton({ option, id }) {
   }, [favoriteRecipes]);
 
   return (
-    <div>
-      <input
-        type="image"
-        src={ favoriteImage }
-        alt="Favorite"
-        data-testid="favorite-btn"
-        style={ buttonStyle }
-        onClick={ handleClick }
-      />
-    </div>
+    <input
+      type="image"
+      src={ favoriteImage }
+      alt="Favorite"
+      onClick={ handleClick }
+      className="pl-2 w-25"
+    />
   );
 }
 

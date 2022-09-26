@@ -1,11 +1,11 @@
 .recipe-card {
   border: 1px solid #ccc;
+  cursor: pointer;
+  font-family: var(--inter-font);
   margin: 5px;
   padding: 5px;
-  width: 45%;
-  font-family: var(--inter-font);
-  cursor: pointer;
   transition: 0.5s;
+  width: 45%;
 }
 
 .recipe-card:hover {
@@ -16,8 +16,7 @@
   transition: 0.5s;
 }
 
-.recipe-card:hover img,
-.recipe-card:focus img {
+.recipe-card:hover img, .recipe-card:focus img {
   transform: scale(1.05);
 }
 

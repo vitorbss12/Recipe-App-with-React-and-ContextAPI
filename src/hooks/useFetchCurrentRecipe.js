@@ -1,12 +1,15 @@
 import { useEffect, useContext } from 'react';
-import DrinksContext from '../context/DrinksContext';
-import FoodsContext from '../context/FoodsContext';
+import RecipesContext from '../contexts/Recipes/RecipesContext';
 
 function useFetchCurrentRecipe(option, id) {
-  const { setCurrentDrink } = useContext(DrinksContext);
-  const { setCurrentFood } = useContext(FoodsContext);
+  const {
+    setCurrentFood,
+    setCurrentDrink,
+    setLoading,
+  } = useContext(RecipesContext);
 
   useEffect(() => {
+    setLoading(true);
     if (option === 'foods') {
       const fetchData = async () => {
         await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
@@ -23,6 +26,7 @@ function useFetchCurrentRecipe(option, id) {
       fetchData();
     }
     if (option === 'drinks') {
+      setLoading(true);
       const fetchData = async () => {
         await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
           .then((response) => response.json())
@@ -37,7 +41,7 @@ function useFetchCurrentRecipe(option, id) {
       };
       fetchData();
     }
-  }, [setCurrentDrink, setCurrentFood, option, id]);
+  }, [setCurrentDrink, setCurrentFood, setLoading, option, id]);
 }
 
 export default useFetchCurrentRecipe;

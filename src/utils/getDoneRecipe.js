@@ -1,4 +1,4 @@
-function useGetDoneRecipe(id) {
+function getDoneRecipe(id) {
   const storageDoneRecipes = localStorage.getItem('doneRecipes');
   if (storageDoneRecipes) {
     const doneRecipes = JSON.parse(storageDoneRecipes);
@@ -7,4 +7,4 @@ function useGetDoneRecipe(id) {
   return false;
 }
 
-export default useGetDoneRecipe;
+export default getDoneRecipe;

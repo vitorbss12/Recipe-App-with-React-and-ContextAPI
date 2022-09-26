@@ -1,11 +1,11 @@
 .default-btn {
   background-color: var(--primary-color);
   color: var(--white-color);
+  font-family: var(--inter-font);
+  font-weight: var(--inter-weight-bold);
   padding: var(--buttons-padding);
   transition: var(--basic-transition);
   width: var(--full-width);
-  font-family: var(--inter-font);
-  font-weight: var(--inter-weight-bold);
 }
 
 .default-btn:hover {
@@ -20,10 +20,10 @@
 .header-footer-btn {
   background-color: var(--secondary-color);
   color: var(--white-color);
-  padding: var(--buttons-padding);
-  transition: var(--basic-transition);
   font-family: var(--inter-font);
   font-weight: var(--inter-weight-bold);
+  padding: var(--buttons-padding);
+  transition: var(--basic-transition);
 }
 
 .header-footer-btn:hover {

@@ -1,12 +1,13 @@
 import { useEffect, useContext } from 'react';
-import FoodsContext from '../context/FoodsContext';
-import DrinksContext from '../context/DrinksContext';
+import RecipesContext from '../contexts/Recipes/RecipesContext';
 
-const SIX_NUMBER = 6;
+const SIX_NUMBER = 3;
 
 function useFetchDrinksRecommendations(options) {
-  const { setFoodsRecommendations } = useContext(FoodsContext);
-  const { setDrinksRecommendations } = useContext(DrinksContext);
+  const {
+    setFoodsRecommendations,
+    setDrinksRecommendations,
+  } = useContext(RecipesContext);
 
   useEffect(() => {
     if (options === 'foods') {

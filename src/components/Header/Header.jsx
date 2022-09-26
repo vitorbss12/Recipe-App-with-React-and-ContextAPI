@@ -8,14 +8,21 @@ import Button from 'react-bootstrap/Button';
 import SearchBar from '../SearchBar/SearchBar';
 import './Header.css';
 
-function Header({ title, showSearchBar }) {
+function Header({ title, showSearchBar, recipeDetails }) {
   const history = useHistory();
+
+  const bottomTag = () => {
+    if (recipeDetails) {
+      return 'pb-0';
+    }
+    return 'pb-3';
+  };
 
   return (
     <header className="d-flex">
-      <Container className="header d-flex flex-column pt-3 pb-3">
+      <Container className={ `header d-flex flex-column pt-3 ${bottomTag()}` }>
         <Row className="d-flex justify-content-between align-items-center mb-3">
-          <Col className="d-flex justify-content-start align-items-center">
+          <Col className="d-flex text-nowrap justify-content-start align-items-center">
             <h1 className="page-title text-white pl-4">
               {title}
             </h1>
@@ -43,11 +50,14 @@ function Header({ title, showSearchBar }) {
 
 Header.defaultProps = {
   showSearchBar: false,
+  recipeDetails: false,
+  title: 'Let\'s Cook!',
 };
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   showSearchBar: PropTypes.bool,
+  recipeDetails: PropTypes.bool,
 };
 
 export default Header;
