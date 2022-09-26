@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import useGetFavoritesRecipe from '../../hooks-utils/useGetFavoritesRecipes';
+import getFavoritesRecipe from '../../utils/getFavoritesRecipes';
 import WhiteFavoriteButtonImg from '../../images/whiteHeartIcon.svg';
 import BlackFavoriteButtonImg from '../../images/blackHeartIcon.svg';
-import FilterContext from '../../context/FilterContext';
+import FilterContext from '../../contexts/Filters/FilterContext';
 
-function FavoriteButton({ recipe, datatest }) {
+function FavoriteButton({ recipe }) {
   const [favoriteImage, setFavoriteImage] = useState(WhiteFavoriteButtonImg);
-  const favoriteRecipe = useGetFavoritesRecipe(Number(recipe.id));
+  const favoriteRecipe = getFavoritesRecipe(Number(recipe.id));
   const [favorite, setFavorite] = useState(favoriteRecipe);
   const { favoriteRecipes, setFavoriteRecipes } = useContext(FilterContext);
 
@@ -19,12 +19,6 @@ function FavoriteButton({ recipe, datatest }) {
       setFavoriteImage(WhiteFavoriteButtonImg);
     }
   }, [favoriteRecipe]);
-
-  const buttonStyle = {
-    margin: '5px',
-    width: '40px',
-    fill: 'red',
-  };
 
   useEffect(() => {
     if (favorite && !favoriteRecipe) {
@@ -76,16 +70,12 @@ function FavoriteButton({ recipe, datatest }) {
   }, [favoriteRecipes]);
 
   return (
-    <div>
-      <input
-        type="image"
-        src={ favoriteImage }
-        alt="Favorite"
-        data-testid={ datatest }
-        style={ buttonStyle }
-        onClick={ handleClick }
-      />
-    </div>
+    <input
+      type="image"
+      src={ favoriteImage }
+      alt="Favorite"
+      onClick={ handleClick }
+    />
   );
 }
 
@@ -99,7 +89,6 @@ FavoriteButton.propTypes = {
     nationality: PropTypes.string.isRequired,
     alcoholicOrNot: PropTypes.string.isRequired,
   }).isRequired,
-  datatest: PropTypes.string.isRequired,
 };
 
 export default FavoriteButton;
