@@ -1,4 +1,4 @@
-function useGetInProgressRecipe(option, id) {
+function getInProgressRecipe(option, id) {
   const storageInProgressRecipes = localStorage.getItem('inProgressRecipes');
   if (storageInProgressRecipes) {
     const inProgressRecipes = JSON.parse(storageInProgressRecipes);
@@ -14,4 +14,4 @@ function useGetInProgressRecipe(option, id) {
   return false;
 }
 
-export default useGetInProgressRecipe;
+export default getInProgressRecipe;
