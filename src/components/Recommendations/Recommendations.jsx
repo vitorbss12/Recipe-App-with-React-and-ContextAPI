@@ -23,13 +23,13 @@ function Recommendations({ option }) {
 
   return (
     <Row className="m-0">
-      <h6 className="pl-4 mt-3">Drinks Recommendations:</h6>
-      <Table responsive className="m-0">
+      <h6 className="pl-4 mt-1">Drinks Recommendations:</h6>
+      <Table className="m-0">
         <tbody>
-          <tr>
+          <tr className="d-flex">
             {
               recommendations.map((alternative, index) => (
-                <td key={ index }>
+                <td key={ index } className="d-flex p-1">
                   <RecommendationCard
                     option={ option }
                     recipe={ alternative }

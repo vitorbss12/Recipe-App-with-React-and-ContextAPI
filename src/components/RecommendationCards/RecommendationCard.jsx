@@ -16,12 +16,14 @@ function RecommendationCard({ option, recipe }) {
   }
 
   return (
-    <Card className="recommendation-card">
+    <Card>
       <Card.Img
         variant="top"
         src={ recipeImg }
       />
-      <Card.Body>
+      <Card.Body
+        className="pb-0 pt-2"
+      >
         <Card.Title>
           { recipeName }
         </Card.Title>
