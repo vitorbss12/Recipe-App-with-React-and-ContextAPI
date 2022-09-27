@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import Header from '../../components/Header/Header';
 import FavoriteFoodCard from '../../components/FavoriteRecipes/FavoriteFoodCard';
 import FavoriteDrinkCard from '../../components/FavoriteRecipes/FavoriteDrinkCard';
-import FilterContext from '../../context/FilterContext';
+import FilterContext from '../../contexts/Filters/FilterContext';
+import FavoriteCategories from '../../components/FavoriteCategories/FavoriteCategories';
 
 function FavoriteRecipes() {
   const [filter, setFilter] = useState('all');
@@ -24,49 +25,34 @@ function FavoriteRecipes() {
   };
 
   return (
-    <div>
-      <Header title="Favorite Recipes" />
-      <Button
-        variant="primary"
-        data-testid="filter-by-all-btn"
-        name="all"
-        onClick={ handleClick }
+    <Container
+      fluid="xxl"
+      className="d-flex flex-column flex-fill"
+    >
+      <Header title="Favorites" recipeDetails />
+      <FavoriteCategories handleClick={ handleClick } />
+      <Container
+        fluid="xxl"
+        className="d-flex flex-column overflow-auto"
       >
-        All
-      </Button>
-      <Button
-        variant="primary"
-        data-testid="filter-by-food-btn"
-        name="food"
-        onClick={ handleClick }
-      >
-        Foods
-      </Button>
-      <Button
-        variant="primary"
-        data-testid="filter-by-drink-btn"
-        name="drink"
-        onClick={ handleClick }
-      >
-        Drinks
-      </Button>
-      { currentRecipes
-        && currentRecipes.map((recipe, index) => (
-          recipe.type === 'food' ? (
-            <FavoriteFoodCard
-              key={ recipe.name }
-              recipe={ recipe }
-              index={ index }
-            />
-          ) : (
-            <FavoriteDrinkCard
-              key={ recipe.name }
-              recipe={ recipe }
-              index={ index }
-            />
-          )
-        ))}
-    </div>
+        { currentRecipes
+          && currentRecipes.map((recipe, index) => (
+            recipe.type === 'foods' ? (
+              <FavoriteFoodCard
+                key={ recipe.name }
+                recipe={ recipe }
+                index={ index }
+              />
+            ) : (
+              <FavoriteDrinkCard
+                key={ recipe.name }
+                recipe={ recipe }
+                index={ index }
+              />
+            )
+          ))}
+      </Container>
+    </Container>
   );
 }
 

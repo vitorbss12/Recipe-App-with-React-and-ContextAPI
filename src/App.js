@@ -15,8 +15,8 @@ import DrinkRecipeDetail from './pages/RecipeDetails/DrinkRecipeDetail';
 // import ExploreIngredientsFoods from './pages/Explore/ExploreIngredientsFoods';
 // import ExploreNationalitiesFoods from './pages/Explore/ExploreNationalitiesFoods';
 import Profile from './pages/Profile/Profile';
-// import DoneRecipes from './pages/Others/DoneRecipes';
-// import FavoriteRecipes from './pages/Others/FavoriteRecipes';
+// import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
+import FavoriteRecipes from './pages/FavoriteRecipes/FavoriteRecipes';
 // import inProgressFoodRecipe from './pages/InProgress/InProgressFoodRecipe';
 // import inProgressDrinkRecipe from './pages/InProgress/InProgressDrinkRecipe';
 
@@ -77,12 +77,13 @@ function App() {
             exact
             path="/done-recipes"
             component={ DoneRecipes }
-          />
+          /> */}
           <Route
             exact
             path="/favorite-recipes"
             component={ FavoriteRecipes }
-          <Route
+          />
+          {/* <Route
             exact
             path="/foods/:id/in-progress"
             component={ inProgressFoodRecipe }
