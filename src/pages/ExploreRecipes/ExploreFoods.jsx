@@ -20,7 +20,7 @@ function ExploreFoods() {
       fluid="xxl"
       className="d-flex flex-column justify-content-between flex-fill"
     >
-      <Header title="Explore Foods" />
+      <Header title="Foods" recipeDetails />
       <Container className="d-flex flex-column align-items-center">
         <Row className="d-flex flex-column">
           <Button
