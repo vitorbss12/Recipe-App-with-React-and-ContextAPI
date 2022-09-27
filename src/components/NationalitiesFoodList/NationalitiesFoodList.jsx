@@ -23,7 +23,7 @@ function NationalitiesFoodList({ nationalities }) {
 }
 
 NationalitiesFoodList.propTypes = {
-  nationalities: PropTypes.arrayOf(PropTypes.object).isRequired,
+  nationalities: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default NationalitiesFoodList;

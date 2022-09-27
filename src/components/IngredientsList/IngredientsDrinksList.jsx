@@ -24,7 +24,7 @@ function IngredientsFoodsList({ ingredients }) {
 }
 
 IngredientsFoodsList.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default IngredientsFoodsList;
