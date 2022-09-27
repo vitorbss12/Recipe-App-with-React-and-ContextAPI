@@ -16,7 +16,8 @@ import ExploreIngredientsFoods from './pages/ExploreIngredients/ExploreIngredien
 import ExploreNationalitiesFoods
 from './pages/ExploreNationalities/ExploreNationalitiesFoods';
 import ExploreDrinks from './pages/ExploreRecipes/ExploreDrinks';
-// import ExploreIngredientsDrinks from './pages/Explore/ExploreIngredientsDrinks';
+import ExploreIngredientsDrinks
+from './pages/ExploreIngredients/ExploreIngredientsDrinks';
 import Profile from './pages/Profile/Profile';
 import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes/FavoriteRecipes';
@@ -81,11 +82,11 @@ function App() {
             path="/explore/foods/ingredients"
             component={ ExploreIngredientsFoods }
           />
-          {/* <Route
+          <Route
             exact
             path="/explore/drinks/ingredients"
             component={ ExploreIngredientsDrinks }
-          /> */}
+          />
           <Route
             exact
             path="/explore/foods/nationalities"

@@ -26,7 +26,8 @@ function ExploreIngredientsFoods() {
       setAllIngredients(data);
     };
     fetch();
-  }, []);
+    setFilterByIngredient(null);
+  }, [setFilterByIngredient]);
 
   useEffect(() => {
     if (searchInput === '') {
