@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { useHistory } from 'react-router-dom';
 import './RecipeCard.css';
 
-function RecipeCard({ id, img, name, option, urlId }) {
+function RecipeCard({ img, name, option, urlId }) {
   const history = useHistory();
 
   const handleClick = (url) => {
@@ -33,7 +33,6 @@ function RecipeCard({ id, img, name, option, urlId }) {
 }
 
 RecipeCard.propTypes = {
-  id: PropTypes.number.isRequired,
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   option: PropTypes.string.isRequired,
