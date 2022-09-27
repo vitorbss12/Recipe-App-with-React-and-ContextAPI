@@ -10,8 +10,6 @@ import FilterContext from '../../contexts/Filters/FilterContext';
 function Profile() {
   const { favoriteRecipes, doneRecipes } = useContext(FilterContext);
 
-  console.log(doneRecipes);
-
   const user = JSON.parse(localStorage.getItem('user'));
 
   const history = useHistory();

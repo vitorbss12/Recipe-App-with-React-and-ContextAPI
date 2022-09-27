@@ -15,8 +15,6 @@ function DrinkRecipeDetails() {
 
   useFetchCurrentRecipe('drinks', drinkId);
 
-  console.log(drinkId);
-
   const handleClick = () => {
     localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
     history.push('/done-recipes');
