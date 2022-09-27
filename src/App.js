@@ -12,9 +12,9 @@ import inProgressFoodRecipe from './pages/InProgress/InProgressFoodRecipe';
 import inProgressDrinkRecipe from './pages/InProgress/InProgressDrinkRecipe';
 import Explore from './pages/Explore/Explore';
 import ExploreFoods from './pages/ExploreRecipes/ExploreFoods';
+import ExploreIngredientsFoods from './pages/ExploreIngredients/ExploreIngredientsFoods';
 // import ExploreDrinks from './pages/Explore/ExploreDrinks';
 // import ExploreIngredientsDrinks from './pages/Explore/ExploreIngredientsDrinks';
-// import ExploreIngredientsFoods from './pages/Explore/ExploreIngredientsFoods';
 // import ExploreNationalitiesFoods from './pages/Explore/ExploreNationalitiesFoods';
 import Profile from './pages/Profile/Profile';
 import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
@@ -70,13 +70,13 @@ function App() {
             path="/explore/foods"
             component={ ExploreFoods }
           />
-          {/* <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+          {/* <Route exact path="/explore/drinks" component={ ExploreDrinks } /> */}
           <Route
             exact
             path="/explore/foods/ingredients"
             component={ ExploreIngredientsFoods }
           />
-          <Route
+          {/* <Route
             exact
             path="/explore/drinks/ingredients"
             component={ ExploreIngredientsDrinks }
