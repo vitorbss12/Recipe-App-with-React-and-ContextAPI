@@ -5,7 +5,6 @@ async function fetchCategories() {
     const response = await fetch(url);
     const { drinks } = await response.json();
     if (drinks) {
-      console.log(drinks);
       return drinks;
     }
   } catch (error) {

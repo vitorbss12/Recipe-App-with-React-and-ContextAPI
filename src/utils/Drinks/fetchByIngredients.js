@@ -4,12 +4,10 @@ async function fetchByIngredient(ingredient) {
   try {
     const response = await fetch(url);
     const { drinks } = await response.json();
-    console.log(drinks);
     if (drinks) {
       return drinks;
     }
   } catch (error) {
-    console.log('entrei');
     console.log(error);
   }
 }

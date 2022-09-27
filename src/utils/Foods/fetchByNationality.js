@@ -5,8 +5,6 @@ async function fetchByNationality(nationality) {
     const response = await fetch(url);
     const { meals } = await response.json();
     if (meals) {
-      console.log('meals');
-      console.log(meals);
       return meals;
     }
   } catch (error) {
