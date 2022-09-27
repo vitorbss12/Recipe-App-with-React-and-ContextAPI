@@ -37,7 +37,7 @@ function FavoriteFoodCard({ recipe }) {
         </Row>
         <Row>
           <Link
-            to={ `/foods/${recipe.id}` }
+            to={ `/Recipe-App-with-React-and-ContextAPI/foods/${recipe.id}` }
             className="mb-2"
           >
             { recipe.name }
