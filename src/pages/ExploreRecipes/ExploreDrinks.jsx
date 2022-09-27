@@ -12,7 +12,7 @@ function ExploreDrinks() {
 
   const handleSurpriseMe = async () => {
     const [drink] = await fetchRandomRecipe();
-    history.push(`/drinks/${drink.idDrink}`);
+    history.push(`/Recipe-App-with-React-and-ContextAPI/drinks/${drink.idDrink}`);
   };
 
   return (
@@ -27,7 +27,9 @@ function ExploreDrinks() {
             className="mt-2 mb-2 border-0 rounded"
             bsPrefix="default-btn"
             type="button"
-            onClick={ () => history.push('/explore/drinks/ingredients') }
+            onClick={ () => history.push(
+              '/Recipe-App-with-React-and-ContextAPI/explore/drinks/ingredients',
+            ) }
           >
             By Ingredient
           </Button>

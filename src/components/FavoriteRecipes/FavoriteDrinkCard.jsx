@@ -22,7 +22,11 @@ function FavoriteDrinkCard({ recipe }) {
           src={ recipe.image }
           alt={ recipe.name }
           className="w-75 rounded"
-          onClick={ () => { history.push(`/drinks/${recipe.id}`); } }
+          onClick={ () => {
+            history.push(
+              `/Recipe-App-with-React-and-ContextAPI/drinks/${recipe.id}`,
+            );
+          } }
         />
       </Col>
       <Col className="d-flex flex-column">

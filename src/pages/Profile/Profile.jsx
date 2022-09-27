@@ -16,7 +16,7 @@ function Profile() {
 
   const loginRoute = () => {
     localStorage.clear();
-    history.push('/');
+    history.push('/Recipe-App-with-React-and-ContextAPI/');
   };
 
   return (
@@ -34,7 +34,9 @@ function Profile() {
             type="submit"
             className="mt-2 mb-2 border-0 rounded"
             bsPrefix="default-btn"
-            onClick={ () => history.push('/done-recipes') }
+            onClick={ () => history.push(
+              '/Recipe-App-with-React-and-ContextAPI/done-recipes',
+            ) }
             disabled={ !doneRecipes || doneRecipes.length === 0 }
           >
             Done Recipes
@@ -43,7 +45,9 @@ function Profile() {
             type="submit"
             className="mt-2 mb-2 border-0 rounded"
             bsPrefix="default-btn"
-            onClick={ () => history.push('/favorite-recipes') }
+            onClick={ () => history.push(
+              '/Recipe-App-with-React-and-ContextAPI/favorite-recipes',
+            ) }
             disabled={ !favoriteRecipes || favoriteRecipes.length === 0 }
           >
             Favorite Recipes
