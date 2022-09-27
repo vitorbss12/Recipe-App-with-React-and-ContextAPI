@@ -31,3 +31,8 @@
   color: var(--secondary-color);
   opacity: 1;
 }
+
+.header-footer-btn:disabled {
+  background-color: var(--dark-color);
+  opacity: 1;
+}

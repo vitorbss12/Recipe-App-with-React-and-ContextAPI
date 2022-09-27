@@ -4,12 +4,12 @@ import Container from 'react-bootstrap/Container';
 import getIngredients from '../../utils/getIngredients';
 import RecipesContext from '../../contexts/Recipes/RecipesContext';
 import RecipeDetailsTop from '../RecipeDetailsTop/RecipeDetailsTop';
-import RecipeIngredients from '../RecipeDetailsIngredients/RecipeIngredients';
+import Ingredients from '../Ingredients/Ingredients';
 import RecipeInstructions from '../RecipeInstructions/RecipeInstructions';
 // import RecipeVideo from '../RecipeVideo/RecipeVideo';
 import Recommendations from '../Recommendations/Recommendations';
 
-function RecipeContent({ option, id }) {
+function RecipeContent({ option, page, id }) {
   const { loading, setLoading, currentFood, currentDrink } = useContext(RecipesContext);
   const [ingredients, setIngredients] = useState([]);
   const [currentRecipe, setCurrentRecipe] = useState({});
@@ -42,7 +42,12 @@ function RecipeContent({ option, id }) {
             }
             foodId={ id }
           />
-          <RecipeIngredients ingredients={ ingredients } />
+          <Ingredients
+            option={ option }
+            page={ page }
+            id={ id }
+            ingredients={ ingredients }
+          />
           <RecipeInstructions instructions={ currentRecipe.strInstructions } />
           {/* <RecipeVideo name={ currentFood.strMeal } url={ currentFood.strYoutube } /> */}
           <Recommendations option={ option === 'foods' ? 'drinks' : 'foods' } />
@@ -56,6 +61,7 @@ function RecipeContent({ option, id }) {
 
 RecipeContent.propTypes = {
   option: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
 };
 
