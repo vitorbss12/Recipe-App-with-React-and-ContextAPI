@@ -32,16 +32,14 @@
 }
 
 .checkmark:after {
-  content: "";
+  content: '';
   display: none;
   position: absolute;
 }
 
-.check-container .input-ingredients:checked:checked ~ .checkmark:after {
-  display: block;
-}
-
 .check-container .checkmark:after {
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
   border: solid white;
   border-width: 0 3px 3px 0;
   height: 10px;
@@ -49,6 +47,8 @@
   top: 5px;
   transform: rotate(45deg);
   width: 5px;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
+}
+
+.check-container .input-ingredients:checked:checked ~ .checkmark:after {
+  display: block;
 }
