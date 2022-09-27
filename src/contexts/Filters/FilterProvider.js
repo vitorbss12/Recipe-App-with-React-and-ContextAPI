@@ -13,6 +13,9 @@ function FilterProvider({ children }) {
   const [favoriteRecipes, setFavoriteRecipes] = useState(lastLocalStore);
   const [disabledBtn, setDisabledBtn] = useState(true);
 
+  const [filterByIngredient, setFilterByIngredient] = useState(null);
+  const [filterByNationality, setFilterByNationality] = useState(null);
+
   // carrega as receitas assim que a tela carrega
 
   // faz o fetch dos filtros
@@ -47,6 +50,10 @@ function FilterProvider({ children }) {
     setSearchInput,
     category,
     setCategory,
+    filterByIngredient,
+    setFilterByIngredient,
+    filterByNationality,
+    setFilterByNationality,
   };
 
   return (

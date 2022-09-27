@@ -1,29 +1,41 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 
 function Explore() {
   const history = useHistory();
   return (
-    <div>
-      <Header title="Explore" />
-      <button
-        type="button"
-        data-testid="explore-foods"
-        onClick={ () => history.push('/explore/foods') }
-      >
-        Explore Foods
-      </button>
-      <button
-        type="button"
-        data-testid="explore-drinks"
-        onClick={ () => history.push('/explore/drinks') }
-      >
-        Explore Drinks
-      </button>
+    <Container
+      fluid="xxl"
+      className="d-flex flex-column justify-content-between flex-fill"
+    >
+      <Header title="Explore" recipeDetails />
+      <Container className="d-flex flex-column align-items-center">
+        <Row className="d-flex flex-column">
+          <Button
+            type="button"
+            className="mt-2 mb-2 border-0 rounded"
+            bsPrefix="default-btn"
+            onClick={ () => history.push('/explore/foods') }
+          >
+            Explore Foods
+          </Button>
+          <Button
+            type="button"
+            className="mt-2 mb-2 border-0 rounded"
+            bsPrefix="default-btn"
+            onClick={ () => history.push('/explore/drinks') }
+          >
+            Explore Drinks
+          </Button>
+        </Row>
+      </Container>
       <Footer />
-    </div>
+    </Container>
   );
 }
 
