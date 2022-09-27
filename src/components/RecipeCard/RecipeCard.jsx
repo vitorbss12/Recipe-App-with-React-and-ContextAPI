@@ -27,7 +27,7 @@ function RecipeCard({ id, img, name, option, urlId }) {
         variant="top"
         className="rounded"
       />
-      <Card.Title data-testid={ `${id}-card-name` }>{ name }</Card.Title>
+      <Card.Title>{ name }</Card.Title>
     </Card>
   );
 }
