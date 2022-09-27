@@ -20,7 +20,7 @@ function FooterDetails({ option, id }) {
   return (
     <footer className="d-flex">
       <Container className="footer d-flex flex-column pt-3 pb-3">
-        { !doneRecipe && (
+        { !doneRecipe ? (
           <Row className="d-flex justify-content-center">
             <Button
               type="submit"
@@ -31,7 +31,18 @@ function FooterDetails({ option, id }) {
               { inProgressRecipe ? 'Continue Recipe' : 'Start Recipe' }
             </Button>
           </Row>
-        ) }
+        ) : (
+          <Row className="d-flex justify-content-center">
+            <Button
+              type="submit"
+              onClick={ () => history.push('/done-recipes') }
+              className="mr-2 ml-2 border-0 rounded"
+              bsPrefix="header-footer-btn"
+            >
+              Done Recipes
+            </Button>
+          </Row>
+        )}
       </Container>
     </footer>
   );

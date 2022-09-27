@@ -12,7 +12,7 @@ function DoneRecipes() {
 
   useEffect(() => {
     const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-    if (filter !== 'all') {
+    if (doneRecipes && filter !== 'all') {
       const recipes = doneRecipes.filter((recipe) => recipe.type === filter);
       setCurrentRecipes(recipes);
     } else {

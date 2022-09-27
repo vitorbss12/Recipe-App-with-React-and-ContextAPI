@@ -59,9 +59,13 @@ function RecipeContent({ option, page, id }) {
   );
 }
 
+RecipeContent.defaultProps = {
+  page: '',
+};
+
 RecipeContent.propTypes = {
   option: PropTypes.string.isRequired,
-  page: PropTypes.string.isRequired,
+  page: PropTypes.string,
   id: PropTypes.number.isRequired,
 };
 
