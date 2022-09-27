@@ -1,59 +1,67 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import ShareButton from '../ShareButton/ShareButton';
 
-function DoneDrinkCard({ recipe, index }) {
+function FavoriteFoodCard({ recipe }) {
   const history = useHistory();
-  const imageStyle = {
-    width: '100%',
-    padding: '10px',
-  };
 
   return (
-    <div key={ recipe.name }>
-      <input
-        type="image"
-        src={ recipe.image }
-        alt={ recipe.name }
-        data-testid={ `${index}-horizontal-image` }
-        style={ imageStyle }
-        onClick={ () => { history.push(`/drinks/${recipe.id}`); } }
-      />
-      <p
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        { `${recipe.category} - ${recipe.alcoholicOrNot}` }
-      </p>
-      <Link
-        data-testid={ `${index}-horizontal-name` }
-        to={ `/drinks/${recipe.id}` }
-      >
-        { recipe.name }
-      </Link>
-      <p
-        data-testid={ `${index}-horizontal-done-date` }
-      >
-        { `Done in: ${recipe.doneDate}` }
-      </p>
-      <ShareButton
-        datatest={ `${index}-horizontal-share-btn` }
-        url={ `/foods/${recipe.id}` }
-      />
-    </div>
+    <Container
+      fluid="xxl"
+      key={ recipe.name }
+      className="d-flex flex-row justify-content-center align-items-center mb-3"
+    >
+      <Col className="d-flex justify-content-end m-0">
+        <input
+          type="image"
+          src={ recipe.image }
+          alt={ recipe.name }
+          className="w-75 rounded"
+          onClick={ () => { history.push(`/foods/${recipe.id}`); } }
+        />
+      </Col>
+      <Col className="d-flex flex-column">
+        <Row>
+          { recipe.nationality === '' ? (
+            <p className="mb-0">
+              { `${recipe.category}` }
+            </p>
+          ) : (
+            <p className="mb-0">
+              { `${recipe.nationality} - ${recipe.category}` }
+            </p>
+          )}
+        </Row>
+        <Row>
+          <Link
+            to={ `/drinks/${recipe.id}` }
+            className="mb-2"
+          >
+            { recipe.name }
+          </Link>
+        </Row>
+        <Row className="d-flex justify-content-start align-items-start">
+          <ShareButton
+            url={ `/foods/${recipe.id}` }
+          />
+        </Row>
+      </Col>
+    </Container>
   );
 }
 
-DoneDrinkCard.propTypes = {
+FavoriteFoodCard.propTypes = {
   recipe: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    doneDate: PropTypes.string.isRequired,
-    alcoholicOrNot: PropTypes.string.isRequired,
+    nationality: PropTypes.string.isRequired,
   }).isRequired,
-  index: PropTypes.number.isRequired,
 };
 
-export default DoneDrinkCard;
+export default FavoriteFoodCard;

@@ -158,13 +158,13 @@ function RecipeInProgressIngredients({ option, id }) {
                     ? 'check-container text-marked mb-1 ml-4'
                     : 'check-container mb-1 ml-4'
                 }
-                onChange={ () => getCurrentIngredients(ingredient) }
               >
                 <input
                   type="checkbox"
                   id={ `${index}-ingredient-step` }
                   checked={ inputCheck(ingredient) }
                   className="mr-2 input-ingredients"
+                  onChange={ () => getCurrentIngredients(ingredient) }
                 />
                 {ingredient}
                 <span className="checkmark ml-2 mr-2" />
