@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import PropTypes from 'prop-types';
 import RecipeIngredients from '../RecipeDetailsIngredients/RecipeIngredients';
 import RecipeInProgressIngredients
-from '../RecipeInProgressIngredients/RecipeInProgressIngredients';
+from '../InProgressIngredients/InProgressIngredients';
 
 function Ingredients({ option, page, id, ingredients }) {
   return (

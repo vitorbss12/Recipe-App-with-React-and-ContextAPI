@@ -21,9 +21,12 @@
     "react-scripts": "5.0.0",
     "websocket-extensions": ">=0.1.4"
   },
+  "homepage": "https://vitorbss12.github.io/Recipe-App-with-React-and-ContextAPI/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js,.jsx",
     "lint:styles": "npx stylelint '**/*.css'"

@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import getIngredients from '../../utils/getIngredients';
 import RecipesContext from '../../contexts/Recipes/RecipesContext';
 import FilterContext from '../../contexts/Filters/FilterContext';
-import './RecipeInProgressIngredients.css';
+import './InProgressIngredients.css';
 
 function RecipeInProgressIngredients({ option, id }) {
   const { currentDrink, currentFood } = useContext(RecipesContext);
