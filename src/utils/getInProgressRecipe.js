@@ -2,11 +2,11 @@ function getInProgressRecipe(option, id) {
   const storageInProgressRecipes = localStorage.getItem('inProgressRecipes');
   if (storageInProgressRecipes) {
     const inProgressRecipes = JSON.parse(storageInProgressRecipes);
-    if (option === 'food' && inProgressRecipes.meals) {
+    if (option === 'foods' && inProgressRecipes.meals) {
       return Object.keys(inProgressRecipes.meals)
         .some((recipe) => Number(recipe) === id);
     }
-    if (option === 'drink' && inProgressRecipes.cocktails) {
+    if (option === 'drinks' && inProgressRecipes.cocktails) {
       return Object.keys(inProgressRecipes.cocktails)
         .some((recipe) => Number(recipe) === id);
     }

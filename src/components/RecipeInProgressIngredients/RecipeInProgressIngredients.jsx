@@ -32,7 +32,7 @@ function RecipeInProgressIngredients({ option, id }) {
   }, [key, id]);
 
   useEffect(() => {
-    if (option === 'drink') {
+    if (option === 'drinks') {
       setCurrentRecipe(currentDrink);
       setKey('cocktails');
     }

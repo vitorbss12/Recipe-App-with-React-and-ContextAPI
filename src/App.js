@@ -17,7 +17,7 @@ import inProgressDrinkRecipe from './pages/InProgress/InProgressDrinkRecipe';
 // import ExploreIngredientsFoods from './pages/Explore/ExploreIngredientsFoods';
 // import ExploreNationalitiesFoods from './pages/Explore/ExploreNationalitiesFoods';
 import Profile from './pages/Profile/Profile';
-// import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
+import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes/FavoriteRecipes';
 
 function App() {
@@ -83,11 +83,11 @@ function App() {
             path="/profile"
             component={ Profile }
           />
-          {/* <Route
+          <Route
             exact
             path="/done-recipes"
             component={ DoneRecipes }
-          /> */}
+          />
           <Route
             exact
             path="/favorite-recipes"

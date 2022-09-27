@@ -14,8 +14,8 @@ function FooterDetails({ option, id }) {
 
   useEffect(() => {
     setDoneRecipe(getDoneRecipe(id));
-    setInProgressRecipe(getInProgressRecipe('food', id));
-  }, [id]);
+    setInProgressRecipe(getInProgressRecipe(option, id));
+  }, [option, id]);
 
   return (
     <footer className="d-flex">

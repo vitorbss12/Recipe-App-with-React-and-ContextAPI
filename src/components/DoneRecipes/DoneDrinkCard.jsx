@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
-import ShareButton from '../RecipeDetails/ShareButton';
+import ShareButton from '../ShareButton/ShareButton';
 
 function DoneDrinkCard({ recipe, index }) {
   const history = useHistory();

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+// import Button from 'react-bootstrap/Button';
 import Header from '../../components/Header/Header';
+import FavoriteCategories from '../../components/FavoriteCategories/FavoriteCategories';
 import DoneFoodCard from '../../components/DoneRecipes/DoneFoodCard';
 import DoneDrinkCard from '../../components/DoneRecipes/DoneDrinkCard';
 
@@ -23,49 +25,34 @@ function DoneRecipes() {
   };
 
   return (
-    <div>
-      <Header title="Done Recipes" />
-      <Button
-        variant="primary"
-        data-testid="filter-by-all-btn"
-        name="all"
-        onClick={ handleClick }
+    <Container
+      fluid="xxl"
+      className="d-flex flex-column flex-fill"
+    >
+      <Header title="Done Recipes" recipeDetails />
+      <FavoriteCategories handleClick={ handleClick } />
+      <Container
+        fluid="xxl"
+        className="d-flex flex-column overflow-auto"
       >
-        All
-      </Button>
-      <Button
-        variant="primary"
-        data-testid="filter-by-food-btn"
-        name="food"
-        onClick={ handleClick }
-      >
-        Foods
-      </Button>
-      <Button
-        variant="primary"
-        data-testid="filter-by-drink-btn"
-        name="drink"
-        onClick={ handleClick }
-      >
-        Drinks
-      </Button>
-      { currentRecipes
-        && currentRecipes.map((recipe, index) => (
-          recipe.type === 'food' ? (
-            <DoneFoodCard
-              key={ recipe.name }
-              recipe={ recipe }
-              index={ index }
-            />
-          ) : (
-            <DoneDrinkCard
-              key={ recipe.name }
-              recipe={ recipe }
-              index={ index }
-            />
-          )
-        ))}
-    </div>
+        { currentRecipes
+          && currentRecipes.map((recipe, index) => (
+            recipe.type === 'foods' ? (
+              <DoneFoodCard
+                key={ recipe.name }
+                recipe={ recipe }
+                index={ index }
+              />
+            ) : (
+              <DoneDrinkCard
+                key={ recipe.name }
+                recipe={ recipe }
+                index={ index }
+              />
+            )
+          ))}
+      </Container>
+    </Container>
   );
 }
 
