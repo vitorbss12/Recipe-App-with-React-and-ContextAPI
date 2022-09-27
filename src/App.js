@@ -8,6 +8,8 @@ import FoodsHome from './pages/Homes/FoodsHome';
 import DrinksHome from './pages/Homes/DrinksHome';
 import FoodRecipeDetail from './pages/RecipeDetails/FoodRecipeDetail';
 import DrinkRecipeDetail from './pages/RecipeDetails/DrinkRecipeDetail';
+import inProgressFoodRecipe from './pages/InProgress/InProgressFoodRecipe';
+import inProgressDrinkRecipe from './pages/InProgress/InProgressDrinkRecipe';
 // import Explore from './pages/Explore/Explore';
 // import ExploreFoods from './pages/Explore/ExploreFoods';
 // import ExploreDrinks from './pages/Explore/ExploreDrinks';
@@ -17,8 +19,6 @@ import DrinkRecipeDetail from './pages/RecipeDetails/DrinkRecipeDetail';
 import Profile from './pages/Profile/Profile';
 // import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes/FavoriteRecipes';
-// import inProgressFoodRecipe from './pages/InProgress/InProgressFoodRecipe';
-// import inProgressDrinkRecipe from './pages/InProgress/InProgressDrinkRecipe';
 
 function App() {
   return (
@@ -49,6 +49,16 @@ function App() {
             exact
             path="/drinks/:id"
             component={ DrinkRecipeDetail }
+          />
+          <Route
+            exact
+            path="/foods/:id/in-progress"
+            component={ inProgressFoodRecipe }
+          />
+          <Route
+            exact
+            path="/drinks/:id/in-progress"
+            component={ inProgressDrinkRecipe }
           />
           {/* <Route exact path="/explore" component={ Explore } />
           <Route exact path="/explore/drinks" component={ ExploreDrinks } />
@@ -83,16 +93,6 @@ function App() {
             path="/favorite-recipes"
             component={ FavoriteRecipes }
           />
-          {/* <Route
-            exact
-            path="/foods/:id/in-progress"
-            component={ inProgressFoodRecipe }
-          />
-          <Route
-            exact
-            path="/drinks/:id/in-progress"
-            component={ inProgressDrinkRecipe }
-          /> */}
         </Switch>
       </RecipesProvider>
     </FilterProvider>

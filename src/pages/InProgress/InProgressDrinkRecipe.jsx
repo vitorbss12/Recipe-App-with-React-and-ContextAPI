@@ -3,15 +3,17 @@ import { useLocation, useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
-import useFetchCurrentRecipe from '../../hooks-utils/useFetchCurrentRecipe';
-import DrinksContext from '../../context/DrinksContext';
-import FilterContext from '../../context/FilterContext';
-import ShareButton from '../../components/RecipeDetails/ShareButton';
-import FavoriteButton from '../../components/FavoriteButtonInDetails/FavoriteButton';
-import IngredientList from '../../components/RecipeDetails/IngredientList';
+import RecipesContext from '../../contexts/Recipes/RecipesContext';
+import FilterContext from '../../contexts/Filters/FilterContext';
+import useFetchCurrentRecipe from '../../hooks/useFetchCurrentRecipe';
+import ShareButton from '../../components/ShareButton/ShareButton';
+import FavoriteButton
+from '../../components/FavoriteButtonInDetails/FavoriteButtonInDetails';
+import RecipeInProgressIngredients
+from '../../components/RecipeInProgressIngredients/RecipeInProgressIngredients';
 
 function DrinkRecipeDetails() {
-  const { currentDrink } = useContext(DrinksContext);
+  const { currentDrink } = useContext(RecipesContext);
   const { doneRecipes, disabledBtn } = useContext(FilterContext);
   const location = useLocation();
   const history = useHistory();
@@ -50,7 +52,7 @@ function DrinkRecipeDetails() {
       </h5>
       <ShareButton />
       <FavoriteButton option="drink" id={ drinkId } />
-      <IngredientList option="drink" id={ drinkId } />
+      <RecipeInProgressIngredients option="drink" id={ drinkId } />
       <p data-testid="instructions">{ currentDrink.strInstructions }</p>
       <Navbar fixed="bottom">
         <Button

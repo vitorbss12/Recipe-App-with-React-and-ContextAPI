@@ -1,13 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import useGetIngredients from '../../utils/getIngredients';
-import DrinksContext from '../../contexts/Drinks/DrinksContext';
-import FoodsContext from '../../contexts/Foods/FoodsContext';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import getIngredients from '../../utils/getIngredients';
+import RecipesContext from '../../contexts/Recipes/RecipesContext';
 import FilterContext from '../../contexts/Filters/FilterContext';
+import './RecipeInProgressIngredients.css';
 
-function IngredientList({ option, id }) {
-  const { currentDrink } = useContext(DrinksContext);
-  const { currentFood } = useContext(FoodsContext);
+function RecipeInProgressIngredients({ option, id }) {
+  const { currentDrink, currentFood } = useContext(RecipesContext);
   const { setDoneRecipes, setDisabledBtn } = useContext(FilterContext);
   const [currentRecipe, setCurrentRecipe] = useState('');
   const [currentId, setCurrentId] = useState(null);
@@ -18,7 +20,7 @@ function IngredientList({ option, id }) {
   const [inProgress, setInProgress] = useState(false);
   const [doneRecipe, setDoneRecipe] = useState(false);
   const [key, setKey] = useState('');
-  const ingredients = useGetIngredients(currentRecipe);
+  const ingredients = getIngredients(currentRecipe);
 
   useEffect(() => {
     const pastLocalStore = JSON
@@ -34,7 +36,7 @@ function IngredientList({ option, id }) {
       setCurrentRecipe(currentDrink);
       setKey('cocktails');
     }
-    if (option === 'food') {
+    if (option === 'foods') {
       setCurrentRecipe(currentFood);
       setKey('meals');
     }
@@ -82,22 +84,6 @@ function IngredientList({ option, id }) {
     }
   };
 
-  const labelStyle = (ingredient) => {
-    const normalStyle = {
-      margin: '5px',
-      width: '100%',
-    };
-    const markedStyle = {
-      margin: '5px',
-      width: '100%',
-      textDecoration: 'line-through',
-    };
-    if (currentIngredients.includes(ingredient)) {
-      return markedStyle;
-    }
-    return normalStyle;
-  };
-
   const inputCheck = (ingredient) => {
     if (currentIngredients.includes(ingredient)) {
       return true;
@@ -117,16 +103,16 @@ function IngredientList({ option, id }) {
       }
       return tags;
     };
-    setCurrentId(option === 'food' ? 'idMeal' : 'idDrink');
-    setCurrentName(option === 'food' ? 'strMeal' : 'strDrink');
-    setCurrentImg(option === 'food' ? 'strMealThumb' : 'strDrinkThumb');
-    setCurrentTags(option === 'food' ? getTags() : '');
+    setCurrentId(option === 'foods' ? 'idMeal' : 'idDrink');
+    setCurrentName(option === 'foods' ? 'strMeal' : 'strDrink');
+    setCurrentImg(option === 'foods' ? 'strMealThumb' : 'strDrinkThumb');
+    setCurrentTags(option === 'foods' ? getTags() : '');
   }, [option, currentRecipe]);
 
   useEffect(() => {
     if (doneRecipe) {
-      const currentAlcoholicOrNot = option === 'food' ? '' : currentRecipe.strAlcoholic;
-      const strArea = option === 'food' ? currentRecipe.strArea : '';
+      const currentAlcoholicOrNot = option === 'foods' ? '' : currentRecipe.strAlcoholic;
+      const strArea = option === 'foods' ? currentRecipe.strArea : '';
       const newRecipe = {
         id: currentRecipe[currentId],
         type: option,
@@ -159,33 +145,41 @@ function IngredientList({ option, id }) {
     currentRecipe, currentId, currentName, currentImg, currentTags]);
 
   return (
-    <div>
-      {
-        ingredients.map((ingredient, index) => (
-          <label
-            key={ index }
-            htmlFor={ `${index}-ingredient-step` }
-            data-testid={ `${index}-ingredient-step` }
-            style={ labelStyle(ingredient) }
-            onChange={ () => getCurrentIngredients(ingredient) }
-          >
-            <input
-              type="checkbox"
-              id={ `${index}-ingredient-step` }
-              // onChange={ handleChange }
-              checked={ inputCheck(ingredient) }
-            />
-            {ingredient}
-          </label>
-        ))
-      }
-    </div>
+    <Container fluid="xxl">
+      <h6 className="pl-4">Ingredients:</h6>
+      <Row className="d-flex flex-column flex-wrap pl-2 m-0">
+        {
+          ingredients.map((ingredient, index) => (
+            <Col key={ index } className="d-flex align-items-center">
+              <label
+                htmlFor={ `${index}-ingredient-step` }
+                className={
+                  currentIngredients.includes(ingredient)
+                    ? 'check-container text-marked mb-1 ml-4'
+                    : 'check-container mb-1 ml-4'
+                }
+                onChange={ () => getCurrentIngredients(ingredient) }
+              >
+                <input
+                  type="checkbox"
+                  id={ `${index}-ingredient-step` }
+                  checked={ inputCheck(ingredient) }
+                  className="mr-2 input-ingredients"
+                />
+                {ingredient}
+                <span className="checkmark ml-2 mr-2" />
+              </label>
+            </Col>
+          ))
+        }
+      </Row>
+    </Container>
   );
 }
 
-IngredientList.propTypes = {
+RecipeInProgressIngredients.propTypes = {
   option: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
 };
 
-export default IngredientList;
+export default RecipeInProgressIngredients;
