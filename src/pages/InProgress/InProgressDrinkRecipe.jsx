@@ -11,13 +11,13 @@ function DrinkRecipeDetails() {
   const { doneRecipes } = useContext(FilterContext);
   const location = useLocation();
   const history = useHistory();
-  const drinkId = parseInt(location.pathname.split('/')[2], 10);
+  const drinkId = parseInt(location.pathname.split('/')[3], 10);
 
   useFetchCurrentRecipe('drinks', drinkId);
 
   const handleClick = () => {
     localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
-    history.push('/done-recipes');
+    history.push('/Recipe-App-with-React-and-ContextAPI/done-recipes');
   };
 
   return (

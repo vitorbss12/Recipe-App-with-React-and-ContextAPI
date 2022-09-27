@@ -9,10 +9,10 @@ function RecipeCard({ img, name, option, urlId }) {
 
   const handleClick = (url) => {
     if (option === 'food') {
-      history.push(`/foods/${url}`);
+      history.push(`/Recipe-App-with-React-and-ContextAPI/foods/${url}`);
     }
     if (option === 'drink') {
-      history.push(`/drinks/${url}`);
+      history.push(`/Recipe-App-with-React-and-ContextAPI/drinks/${url}`);
     }
   };
 

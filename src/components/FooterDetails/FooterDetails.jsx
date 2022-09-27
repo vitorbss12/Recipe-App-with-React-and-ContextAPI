@@ -24,7 +24,9 @@ function FooterDetails({ option, id }) {
           <Row className="d-flex justify-content-center">
             <Button
               type="submit"
-              onClick={ () => history.push(`/${option}/${id}/in-progress`) }
+              onClick={ () => history.push(
+                `/Recipe-App-with-React-and-ContextAPI/${option}/${id}/in-progress`,
+              ) }
               className="mr-2 ml-2 border-0 rounded"
               bsPrefix="header-footer-btn"
             >
@@ -35,7 +37,9 @@ function FooterDetails({ option, id }) {
           <Row className="d-flex justify-content-center">
             <Button
               type="submit"
-              onClick={ () => history.push('/done-recipes') }
+              onClick={ () => history.push(
+                '/Recipe-App-with-React-and-ContextAPI/done-recipes',
+              ) }
               className="mr-2 ml-2 border-0 rounded"
               bsPrefix="header-footer-btn"
             >

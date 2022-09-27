@@ -12,7 +12,7 @@ function ExploreFoods() {
 
   const handleSurpriseMe = async () => {
     const [meal] = await fetchRandomRecipe();
-    history.push(`/foods/${meal.idMeal}`);
+    history.push(`/Recipe-App-with-React-and-ContextAPI/foods/${meal.idMeal}`);
   };
 
   return (
@@ -27,7 +27,9 @@ function ExploreFoods() {
             type="button"
             className="mt-2 mb-2 border-0 rounded"
             bsPrefix="default-btn"
-            onClick={ () => history.push('/explore/foods/ingredients') }
+            onClick={ () => history.push(
+              '/Recipe-App-with-React-and-ContextAPI/explore/foods/ingredients',
+            ) }
           >
             By Ingredient
           </Button>
@@ -35,7 +37,9 @@ function ExploreFoods() {
             type="button"
             className="mt-2 mb-2 border-0 rounded"
             bsPrefix="default-btn"
-            onClick={ () => history.push('/explore/foods/nationalities') }
+            onClick={ () => history.push(
+              '/Recipe-App-with-React-and-ContextAPI/explore/foods/nationalities',
+            ) }
           >
             By Nationality
           </Button>

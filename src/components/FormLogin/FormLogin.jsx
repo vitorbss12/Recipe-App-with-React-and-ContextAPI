@@ -23,7 +23,7 @@ function FormLogin() {
   const loginFormsSubmit = (event) => {
     event.preventDefault();
     saveLoginInLocalStorage(userEmail);
-    history.push('/foods');
+    history.push('/Recipe-App-with-React-and-ContextAPI/foods');
   };
 
   return (

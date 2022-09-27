@@ -32,7 +32,9 @@ function Header({ title, showSearchBar, recipeDetails }) {
               type="button"
               className="rounded border-0"
               bsPrefix="header-footer-btn"
-              onClick={ () => history.push('/profile') }
+              onClick={ () => history.push(
+                '/Recipe-App-with-React-and-ContextAPI/profile',
+              ) }
             >
               Profile
             </Button>

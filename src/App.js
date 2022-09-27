@@ -29,82 +29,82 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/"
+            path="/Recipe-App-with-React-and-ContextAPI/"
             component={ Login }
           />
           <Route
             exact
-            path="/foods"
+            path="/Recipe-App-with-React-and-ContextAPI/foods"
             component={ FoodsHome }
           />
           <Route
             exact
-            path="/drinks"
+            path="/Recipe-App-with-React-and-ContextAPI/drinks"
             component={ DrinksHome }
           />
           <Route
             exact
-            path="/foods/:id"
+            path="/Recipe-App-with-React-and-ContextAPI/foods/:id"
             component={ FoodRecipeDetail }
           />
           <Route
             exact
-            path="/drinks/:id"
+            path="/Recipe-App-with-React-and-ContextAPI/drinks/:id"
             component={ DrinkRecipeDetail }
           />
           <Route
             exact
-            path="/foods/:id/in-progress"
+            path="/Recipe-App-with-React-and-ContextAPI/foods/:id/in-progress"
             component={ inProgressFoodRecipe }
           />
           <Route
             exact
-            path="/drinks/:id/in-progress"
+            path="/Recipe-App-with-React-and-ContextAPI/drinks/:id/in-progress"
             component={ inProgressDrinkRecipe }
           />
           <Route
             exact
-            path="/explore"
+            path="/Recipe-App-with-React-and-ContextAPI/explore"
             component={ Explore }
           />
           <Route
             exact
-            path="/explore/foods"
+            path="/Recipe-App-with-React-and-ContextAPI/explore/foods"
             component={ ExploreFoods }
           />
           <Route
             exact
-            path="/explore/drinks"
+            path="/Recipe-App-with-React-and-ContextAPI/explore/drinks"
             component={ ExploreDrinks }
           />
           <Route
             exact
-            path="/explore/foods/ingredients"
+            path="/Recipe-App-with-React-and-ContextAPI/explore/foods/ingredients"
             component={ ExploreIngredientsFoods }
           />
           <Route
             exact
-            path="/explore/drinks/ingredients"
+            path="/Recipe-App-with-React-and-ContextAPI/explore/drinks/ingredients"
             component={ ExploreIngredientsDrinks }
           />
           <Route
             exact
-            path="/explore/foods/nationalities"
+            path="/Recipe-App-with-React-and-ContextAPI/explore/foods/nationalities"
             component={ ExploreNationalitiesFoods }
           />
           <Route
             exact
-            path="/profile"
+            path="/Recipe-App-with-React-and-ContextAPI/profile"
             component={ Profile }
           />
           <Route
             exact
-            path="/done-recipes"
+            path="/Recipe-App-with-React-and-ContextAPI/done-recipes"
             component={ DoneRecipes }
           />
           <Route
             exact
-            path="/favorite-recipes"
+            path="/Recipe-App-with-React-and-ContextAPI/favorite-recipes"
             component={ FavoriteRecipes }
           />
         </Switch>

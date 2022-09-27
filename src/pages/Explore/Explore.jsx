@@ -20,7 +20,9 @@ function Explore() {
             type="button"
             className="mt-2 mb-2 border-0 rounded"
             bsPrefix="default-btn"
-            onClick={ () => history.push('/explore/foods') }
+            onClick={ () => history.push(
+              '/Recipe-App-with-React-and-ContextAPI/explore/foods',
+            ) }
           >
             Explore Foods
           </Button>
@@ -28,7 +30,9 @@ function Explore() {
             type="button"
             className="mt-2 mb-2 border-0 rounded"
             bsPrefix="default-btn"
-            onClick={ () => history.push('/explore/drinks') }
+            onClick={ () => history.push(
+              '/Recipe-App-with-React-and-ContextAPI/explore/drinks',
+            ) }
           >
             Explore Drinks
           </Button>

@@ -8,7 +8,7 @@ import FooterDetails from '../../components/FooterDetails/FooterDetails';
 
 function DrinkRecipeDetails() {
   const location = useLocation();
-  const [recipeId] = useState(parseInt(location.pathname.split('/')[2], 10));
+  const [recipeId] = useState(parseInt(location.pathname.split('/')[3], 10));
 
   useFetchCurrentRecipe('drinks', recipeId);
 

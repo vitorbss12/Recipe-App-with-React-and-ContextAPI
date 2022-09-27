@@ -16,7 +16,7 @@ function Footer() {
             type="button"
             className="mr-2 ml-2 border-0 rounded"
             bsPrefix="header-footer-btn"
-            onClick={ () => history.push('/foods') }
+            onClick={ () => history.push('/Recipe-App-with-React-and-ContextAPI/foods') }
           >
             Foods
           </Button>
@@ -24,7 +24,9 @@ function Footer() {
             type="button"
             className="mr-2 ml-2 border-0 rounded"
             bsPrefix="header-footer-btn"
-            onClick={ () => history.push('/explore') }
+            onClick={
+              () => history.push('/Recipe-App-with-React-and-ContextAPI/explore')
+            }
           >
             Explore
           </Button>
@@ -32,7 +34,7 @@ function Footer() {
             type="button"
             className="mr-2 ml-2 border-0 rounded"
             bsPrefix="header-footer-btn"
-            onClick={ () => history.push('/drinks') }
+            onClick={ () => history.push('/Recipe-App-with-React-and-ContextAPI/drinks') }
           >
             Drinks
           </Button>
