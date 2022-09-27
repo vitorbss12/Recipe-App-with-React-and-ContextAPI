@@ -1,10 +1,11 @@
-async function fetchByIngredient(ingredient) {
-  const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+async function fetchNationalities() {
+  const url = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
 
   try {
     const response = await fetch(url);
     const { meals } = await response.json();
     if (meals) {
+      console.log(meals);
       return meals;
     }
   } catch (error) {
@@ -12,4 +13,4 @@ async function fetchByIngredient(ingredient) {
   }
 }
 
-export default fetchByIngredient;
+export default fetchNationalities;

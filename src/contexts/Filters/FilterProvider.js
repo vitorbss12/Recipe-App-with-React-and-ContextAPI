@@ -14,6 +14,7 @@ function FilterProvider({ children }) {
   const [disabledBtn, setDisabledBtn] = useState(true);
 
   const [filterByIngredient, setFilterByIngredient] = useState(null);
+  const [filterByNationality, setFilterByNationality] = useState(null);
 
   // carrega as receitas assim que a tela carrega
 
@@ -51,6 +52,8 @@ function FilterProvider({ children }) {
     setCategory,
     filterByIngredient,
     setFilterByIngredient,
+    filterByNationality,
+    setFilterByNationality,
   };
 
   return (

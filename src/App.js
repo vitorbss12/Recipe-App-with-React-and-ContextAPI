@@ -13,9 +13,10 @@ import inProgressDrinkRecipe from './pages/InProgress/InProgressDrinkRecipe';
 import Explore from './pages/Explore/Explore';
 import ExploreFoods from './pages/ExploreRecipes/ExploreFoods';
 import ExploreIngredientsFoods from './pages/ExploreIngredients/ExploreIngredientsFoods';
+import ExploreNationalitiesFoods
+from './pages/ExploreNationalities/ExploreNationalitiesFoods';
 // import ExploreDrinks from './pages/Explore/ExploreDrinks';
 // import ExploreIngredientsDrinks from './pages/Explore/ExploreIngredientsDrinks';
-// import ExploreNationalitiesFoods from './pages/Explore/ExploreNationalitiesFoods';
 import Profile from './pages/Profile/Profile';
 import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes/FavoriteRecipes';
@@ -80,12 +81,12 @@ function App() {
             exact
             path="/explore/drinks/ingredients"
             component={ ExploreIngredientsDrinks }
-          />
+          /> */}
           <Route
             exact
             path="/explore/foods/nationalities"
             component={ ExploreNationalitiesFoods }
-          /> */}
+          />
           <Route
             exact
             path="/profile"
