@@ -140,4 +140,6 @@ npm run lint:styles
 
 - Este é um projeto de estudo desenvolvido em grupo durante minha formação na [Trybe](https://www.betrybe.com/). :rocket:
 
+- Este repositório está sendo monitorado pelo [SonarCloud](https://sonarcloud.io/) para avaliação de qualidade.
+
 - Quer saber mais sobre mim? Veja o meu [LinkedIn](https://www.linkedin.com/in/vitorbss/).
