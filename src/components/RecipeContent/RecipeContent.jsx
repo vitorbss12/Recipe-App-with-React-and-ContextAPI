@@ -6,7 +6,6 @@ import RecipesContext from '../../contexts/Recipes/RecipesContext';
 import RecipeDetailsTop from '../RecipeDetailsTop/RecipeDetailsTop';
 import Ingredients from '../Ingredients/Ingredients';
 import RecipeInstructions from '../RecipeInstructions/RecipeInstructions';
-// import RecipeVideo from '../RecipeVideo/RecipeVideo';
 import Recommendations from '../Recommendations/Recommendations';
 
 function RecipeContent({ option, page, id }) {
@@ -47,7 +46,6 @@ function RecipeContent({ option, page, id }) {
             ingredients={ ingredients }
           />
           <RecipeInstructions instructions={ currentRecipe.strInstructions } />
-          {/* <RecipeVideo name={ currentFood.strMeal } url={ currentFood.strYoutube } /> */}
           <Recommendations option={ option === 'foods' ? 'drinks' : 'foods' } />
         </>
       ) : (
