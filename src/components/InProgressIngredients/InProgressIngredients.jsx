@@ -84,12 +84,7 @@ function RecipeInProgressIngredients({ option, id }) {
     }
   };
 
-  const inputCheck = (ingredient) => {
-    if (currentIngredients.includes(ingredient)) {
-      return true;
-    }
-    return false;
-  };
+  const inputCheck = (ingredient) => currentIngredients.includes(ingredient);
 
   useEffect(() => {
     const getTags = () => {
