@@ -33,9 +33,7 @@ function RecipeContent({ option, page, id }) {
           <RecipeDetailsTop
             option={ option }
             title={ option === 'foods' ? currentRecipe.strMeal : currentRecipe.strDrink }
-            category={
-              option === 'foods' ? currentRecipe.strCategory : currentRecipe.strCategory
-            }
+            category={ currentRecipe.strCategory }
             image={
               option === 'foods'
                 ? currentRecipe.strMealThumb : currentRecipe.strDrinkThumb
