@@ -1,28 +1,28 @@
 # App de Receitas - React, Context API e Bootstrap
-### Este Projeto está sendo refatorado. Algumas funcionalidades podem ser comprometidas até sua finalização.
 
 Esse projeto é uma aplicação de receitas, onde é possível ver receitas de comidas e bebidas a partir das APIs do [TheMealDB](https://www.themealdb.com/api.php) e [TheCocktailDB](https://www.thecocktaildb.com/api.php). É possível acessar cada uma das receitas e ver detalhes sobre elas, como ingredientes e instruções. Também é possível favoritar receitas e marca-las como prontas a partir de checkboxes com os ingredientes necessários na tela de detalhes, e acessar na página de receitas prontas, da mesma forma que as favoritas. A aplicação também possui um sistema de busca, onde é possível pesquisar por nome de receitas ou ingredientes, além de filtros por categorias. É baseada em três principais páginas, de comidas, bebidas e explorar, que contém mais opções de receitas. A aplicação foi desenvolvida em React, utilizando Context API para gerenciar o estado global da aplicação, e Bootstrap para estilização.
 
-Este projeto foi desenvolvido em grupo durante o curso de Desenvolvimento Web da Trybe, com os companheiros(a):
+Foi desenvolvido em grupo durante o curso de Desenvolvimento Web da Trybe, com os companheiros(a):
   - [Vinícius Teixeira](https://github.com/tex008)
   - [Luciano Freitas](https://github.com/Ludoug-f)
   - [Paula Henrique](https://github.com/henriquesPaula)
   - [Celso Fiorani](https://github.com/fioranicelso)
 
-Em breve será possível testar a aplicação: []() 
+A aplicação pode ser testada aqui: [Recipe App](https://vitorbss12.github.io/Recipe-App-with-React-and-ContextAPI/) 
 
 ![recipesAppDemo](./readmeImages/recipesAppDemo.png)
 
 ## Conteúdo
 
 - [App de Receitas - React, Context API e Bootstrap](#app-de-receitas---react-context-api-e-bootstrap)
-    - [Este Projeto está sendo refatorado. Algumas funcionalidades podem ser comprometidas até sua finalização.](#este-projeto-está-sendo-refatorado-algumas-funcionalidades-podem-ser-comprometidas-até-sua-finalização)
   - [Conteúdo](#conteúdo)
 - [**Recursos App de Receitas**](#recursos-app-de-receitas)
     - [**Login**](#login)
     - [**Página Principal de Comidas**](#página-principal-de-comidas)
     - [**Página Principal de Bebidas**](#página-principal-de-bebidas)
-      - [**Em Breve**](#em-breve)
+    - [**Explorar**](#explorar)
+    - [**Detalhes de Receita**](#detalhes-de-receita)
+    - [**Perfil, Receitas Favoritas e Feitas**](#perfil-receitas-favoritas-e-feitas)
 - [**Instruções**](#instruções)
     - [**Instalação**](#instalação)
     - [**Execução**](#execução)
@@ -57,9 +57,25 @@ Funciona da mesma forma forma que a página de comidas, com a diferença de que 
 
 ![Drinks Home](./readmeImages/drinksHomeApp.png)
 
-#### **Em Breve**
+### **Explorar**
 
-As demais páginas e funcionalidades estão sendo refatoradas e estilizadas. Em breve mais dados sobre a aplicação.
+A página de explorar permite encontrar receitas de comidas e bebidas utilizando características das receitas. As comidas podem ser exploradas por ingrediente, região e de forma aleatória, enquanto as bebidas apenas por ingrediente e região.
+
+![Explore](./readmeImages/exploreApp.png)
+![Explore By Ingredients and Nationalities](./readmeImages/exploreIngreAndNat.png)
+
+### **Detalhes de Receita**
+
+Cada receita possui uma página com suas informações, como nome, foto, ingredientes, instruções e recomendações. Nessa página o usuário pode adicionar a receita aos favoritos, compartilhar a receita, iniciar e finalizar a receita. O modelo de detalhes funciona da mesma forma para comidas e bebidas.
+
+![Recipe Details](./readmeImages/detailsApp.png)
+
+### **Perfil, Receitas Favoritas e Feitas**
+
+A página de perfil permite que o usuário veja seu e-mail e acessar a página de receitas feitas e receitas favoritas, além de fazer logout que removera o e-mail do local storage.
+A página de receitas feitas mostra as receitas que o usuário finalizou, e a página de receitas favoritas mostra as receitas que o usuário adicionou aos favoritos.
+
+![Recipe Details](./readmeImages/profileFavoriteAndDoneApp.png)
 
 # **Instruções**
 
