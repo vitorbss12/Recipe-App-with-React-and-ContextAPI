@@ -1,5 +1,10 @@
 # App de Receitas - React, Context API e Bootstrap
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=vitorbss12_Recipe-App-with-React-and-ContextAPI&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=vitorbss12_Recipe-App-with-React-and-ContextAPI)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=vitorbss12_Recipe-App-with-React-and-ContextAPI&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=vitorbss12_Recipe-App-with-React-and-ContextAPI)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=vitorbss12_Recipe-App-with-React-and-ContextAPI&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=vitorbss12_Recipe-App-with-React-and-ContextAPI)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=vitorbss12_Recipe-App-with-React-and-ContextAPI&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=vitorbss12_Recipe-App-with-React-and-ContextAPI)
+
 Esse projeto é uma aplicação de receitas, onde é possível ver receitas de comidas e bebidas a partir das APIs do [TheMealDB](https://www.themealdb.com/api.php) e [TheCocktailDB](https://www.thecocktaildb.com/api.php). É possível acessar cada uma das receitas e ver detalhes sobre elas, como ingredientes e instruções. Também é possível favoritar receitas e marca-las como prontas a partir de checkboxes com os ingredientes necessários na tela de detalhes, e acessar na página de receitas prontas, da mesma forma que as favoritas. A aplicação também possui um sistema de busca, onde é possível pesquisar por nome de receitas ou ingredientes, além de filtros por categorias. É baseada em três principais páginas, de comidas, bebidas e explorar, que contém mais opções de receitas. A aplicação foi desenvolvida em React, utilizando Context API para gerenciar o estado global da aplicação, e Bootstrap para estilização.
 
 Foi desenvolvido em grupo durante o curso de Desenvolvimento Web da Trybe, com os companheiros(a):
